@@ -60,11 +60,13 @@ bool GameLayer::init()
     this->addChild(_court);
     
     _player1 = GameSprite::gameSpriteWithFile("mallet.png");
-    _player1->setPosition(ccp(_screenSize.width * 0.5, _player1->radius() * 2));
+    _originalPoint1 = ccp(_screenSize.width * 0.5, _player1->radius() * 2);
+    _player1->setPosition(_originalPoint1);
     this->addChild(_player1);
     
     _player2 = GameSprite::gameSpriteWithFile("mallet.png");
     _player2->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height - _player2->radius() * 2));
+    _originalPoint2 = ccp(_screenSize.width * 0.5, _screenSize.height - _player2->radius() * 2);
     this->addChild(_player2);
     
     _ball = GameSprite::gameSpriteWithFile("puck.png");
@@ -304,11 +306,13 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
     }
 }
 
-void GameLayer::ccTouchesEnd(CCSet* pTouches, CCEvent* event) {
+void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
     CCSetIterator i;
     CCTouch* touch;
     CCPoint tap;
     GameSprite* player;
+    
+    printf("end");
     
     for (i = pTouches->begin(); i != pTouches->end(); i++) {
         touch = (CCTouch *)(*i);
@@ -320,6 +324,11 @@ void GameLayer::ccTouchesEnd(CCSet* pTouches, CCEvent* event) {
                 if (player->getTouch() != NULL && player->getTouch() == touch) {
                     player->setTouch(NULL);
                     player->setVector(ccp(0, 0));
+                    if (p == 0) {
+                        player->setPosition(_originalPoint1);
+                    } else {
+                        player->setPosition(_originalPoint2);
+                    }
                 }
             }
         }

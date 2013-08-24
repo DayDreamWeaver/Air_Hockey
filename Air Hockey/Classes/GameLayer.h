@@ -22,6 +22,9 @@ class GameLayer : public cocos2d::CCLayer
     CCLabelTTF * _player1ScoreLabel;
     CCLabelTTF * _player2ScoreLabel;
     
+    CCPoint _originalPoint1;
+    CCPoint _originalPoint2;
+    
     CCSize _screenSize;
     
     int _player1Score;
@@ -48,7 +51,7 @@ public:
     // touch handler
     virtual void ccTouchesBegan(CCSet* pTouches, CCEvent* event);
     virtual void ccTouchesMoved(CCSet* pTouches, CCEvent* event);
-    virtual void ccTouchesEnd(CCSet* pTouches, CCEvent* event);
+    virtual void ccTouchesEnded(CCSet* pTouches, CCEvent* event);
 
     void update(float dt);
 };
