@@ -66,13 +66,14 @@ bool GameLayer::init()
     this->addChild(_court);
     
     _player1 = GameSprite::gameSpriteWithFile("mallet.png");
-    _originalPoint1 = ccp(_screenSize.width * 0.5, _player1->radius() * 2);
+    _originalPoint1 = ccp(_screenSize.width * 0.5, _player1->radius() * 8);
     _player1->setPosition(_originalPoint1);
     this->addChild(_player1);
     
     _player2 = GameSprite::gameSpriteWithFile("mallet.png");
-    _player2->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height - _player2->radius() * 2));
-    _originalPoint2 = ccp(_screenSize.width * 0.5, _screenSize.height - _player2->radius() * 2);
+    _originalPoint2 = ccp(_screenSize.width * 0.5, _screenSize.height - _player2->radius() * 8);
+    _player2->setPosition(_originalPoint2);
+    
     this->addChild(_player2);
     
     _ball = GameSprite::gameSpriteWithFile("puck.png");
@@ -263,8 +264,8 @@ void GameLayer::playerScore(int player) {
     }
     
     // clear touch obj
-    _player1->setPosition(ccp(_screenSize.width * 0.5, _player1->radius() * 2));
-    _player2->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height - _player1->radius() * 2));
+    _player1->setPosition(_originalPoint1);
+    _player2->setPosition(_originalPoint2);
     _player1->setTouch(NULL);
     _player2->setTouch(NULL);
 }

@@ -40,9 +40,11 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     std::vector<std::string> searchPaths;
     if (screenSize.width > 768) {
+        printf("hd here.\n");
         searchPaths.push_back("hd");
         pDirector->setContentScaleFactor(2);
     } else {
+        printf("sd here.\n");
         searchPaths.push_back("sd");
         pDirector->setContentScaleFactor(1);
     }
