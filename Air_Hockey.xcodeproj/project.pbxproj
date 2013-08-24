@@ -699,8 +699,8 @@
 		C83E870417C4FCFC0070B193 /* sd */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sd; path = Resources/sd; sourceTree = "<group>"; };
 		C83E870717C503F80070B193 /* hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = hit.wav; path = Resources/hit.wav; sourceTree = "<group>"; };
 		C83E870817C503F80070B193 /* score.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = score.wav; path = Resources/score.wav; sourceTree = "<group>"; };
-		C83E870B17C5072B0070B193 /* GameSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSprite.cpp; sourceTree = "<group>"; };
-		C83E870C17C5072B0070B193 /* GameSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSprite.h; sourceTree = "<group>"; };
+		C83E870B17C5072B0070B193 /* GameSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameSprite.cpp; path = Classes/GameSprite.cpp; sourceTree = "<group>"; };
+		C83E870C17C5072B0070B193 /* GameSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameSprite.h; path = Classes/GameSprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
