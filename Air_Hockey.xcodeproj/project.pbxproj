@@ -228,7 +228,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C83E841617C4F61B0070B193 /* Air Hockey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Air Hockey.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C83E841617C4F61B0070B193 /* Air_Hockey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Air_Hockey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83E841917C4F61B0070B193 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C83E841B17C4F61B0070B193 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		C83E841D17C4F61B0070B193 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -695,10 +695,10 @@
 		C83E86F917C4F6200070B193 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		C83E86FB17C4F6200070B193 /* GameLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = Classes/GameLayer.h; sourceTree = "<group>"; };
 		C83E86FC17C4F6210070B193 /* GameLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GameLayer.cpp; path = Classes/GameLayer.cpp; sourceTree = "<group>"; };
-		C83E870317C4FCFC0070B193 /* hd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = hd; sourceTree = "<group>"; };
-		C83E870417C4FCFC0070B193 /* sd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sd; sourceTree = "<group>"; };
-		C83E870717C503F80070B193 /* hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit.wav; sourceTree = "<group>"; };
-		C83E870817C503F80070B193 /* score.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = score.wav; sourceTree = "<group>"; };
+		C83E870317C4FCFC0070B193 /* hd */ = {isa = PBXFileReference; lastKnownFileType = folder; name = hd; path = Resources/hd; sourceTree = "<group>"; };
+		C83E870417C4FCFC0070B193 /* sd */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sd; path = Resources/sd; sourceTree = "<group>"; };
+		C83E870717C503F80070B193 /* hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = hit.wav; path = Resources/hit.wav; sourceTree = "<group>"; };
+		C83E870817C503F80070B193 /* score.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = score.wav; path = Resources/score.wav; sourceTree = "<group>"; };
 		C83E870B17C5072B0070B193 /* GameSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSprite.cpp; sourceTree = "<group>"; };
 		C83E870C17C5072B0070B193 /* GameSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSprite.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -727,7 +727,7 @@
 		C83E840D17C4F61B0070B193 = {
 			isa = PBXGroup;
 			children = (
-				C83E842917C4F61B0070B193 /* Air Hockey */,
+				C83E842917C4F61B0070B193 /* Air_Hockey */,
 				C83E841817C4F61B0070B193 /* Frameworks */,
 				C83E841717C4F61B0070B193 /* Products */,
 			);
@@ -736,7 +736,7 @@
 		C83E841717C4F61B0070B193 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C83E841617C4F61B0070B193 /* Air Hockey.app */,
+				C83E841617C4F61B0070B193 /* Air_Hockey.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -756,7 +756,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C83E842917C4F61B0070B193 /* Air Hockey */ = {
+		C83E842917C4F61B0070B193 /* Air_Hockey */ = {
 			isa = PBXGroup;
 			children = (
 				C83E842A17C4F61C0070B193 /* Resources */,
@@ -765,7 +765,7 @@
 				C83E86F717C4F6200070B193 /* Classes */,
 				C83E86F517C4F6200070B193 /* Supporting Files */,
 			);
-			path = "Air Hockey";
+			path = Air_Hockey;
 			sourceTree = "<group>";
 		};
 		C83E842A17C4F61C0070B193 /* Resources */ = {
@@ -1718,9 +1718,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C83E841517C4F61B0070B193 /* Air Hockey */ = {
+		C83E841517C4F61B0070B193 /* Air_Hockey */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C83E870017C4F6210070B193 /* Build configuration list for PBXNativeTarget "Air Hockey" */;
+			buildConfigurationList = C83E870017C4F6210070B193 /* Build configuration list for PBXNativeTarget "Air_Hockey" */;
 			buildPhases = (
 				C83E841217C4F61B0070B193 /* Sources */,
 				C83E841317C4F61B0070B193 /* Frameworks */,
@@ -1730,9 +1730,9 @@
 			);
 			dependencies = (
 			);
-			name = "Air Hockey";
-			productName = "Air Hockey";
-			productReference = C83E841617C4F61B0070B193 /* Air Hockey.app */;
+			name = Air_Hockey;
+			productName = Air_Hockey;
+			productReference = C83E841617C4F61B0070B193 /* Air_Hockey.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1743,7 +1743,7 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 			};
-			buildConfigurationList = C83E841117C4F61B0070B193 /* Build configuration list for PBXProject "Air Hockey" */;
+			buildConfigurationList = C83E841117C4F61B0070B193 /* Build configuration list for PBXProject "Air_Hockey" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1755,7 +1755,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C83E841517C4F61B0070B193 /* Air Hockey */,
+				C83E841517C4F61B0070B193 /* Air_Hockey */,
 			);
 		};
 /* End PBXProject section */
@@ -2056,19 +2056,19 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Air Hockey/Prefix.pch";
+				GCC_PREFIX_HEADER = Air_Hockey/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
-				INFOPLIST_FILE = "Air Hockey/Resources/Info.plist";
+				INFOPLIST_FILE = Air_Hockey/Resources/Info.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Air Hockey/libs/cocos2dx/platform/third_party/ios/libraries\"",
+					"\"$(SRCROOT)/Air_Hockey/libs/cocos2dx/platform/third_party/ios/libraries\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-lz",
 					"-lsqlite3",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Air_Hockey;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2079,19 +2079,19 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Air Hockey/Prefix.pch";
+				GCC_PREFIX_HEADER = Air_Hockey/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
-				INFOPLIST_FILE = "Air Hockey/Resources/Info.plist";
+				INFOPLIST_FILE = Air_Hockey/Resources/Info.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Air Hockey/libs/cocos2dx/platform/third_party/ios/libraries\"",
+					"\"$(SRCROOT)/Air_Hockey/libs/cocos2dx/platform/third_party/ios/libraries\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-lz",
 					"-lsqlite3",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Air_Hockey;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2100,7 +2100,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C83E841117C4F61B0070B193 /* Build configuration list for PBXProject "Air Hockey" */ = {
+		C83E841117C4F61B0070B193 /* Build configuration list for PBXProject "Air_Hockey" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C83E86FE17C4F6210070B193 /* Debug */,
@@ -2109,13 +2109,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C83E870017C4F6210070B193 /* Build configuration list for PBXNativeTarget "Air Hockey" */ = {
+		C83E870017C4F6210070B193 /* Build configuration list for PBXNativeTarget "Air_Hockey" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C83E870117C4F6210070B193 /* Debug */,
 				C83E870217C4F6210070B193 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
