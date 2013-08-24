@@ -289,10 +289,10 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                     if (player->getPositionY() < _screenSize.height * 0.5f) {
                         if (nextPosition.y > _screenSize.height * 0.5 - player->radius()) {
                             nextPosition.y = _screenSize.height * 0.5 - player->radius();
-                        } else {
-                            if (nextPosition.y > _screenSize.height * 0.5 + player->radius()) {
-                                nextPosition.y = _screenSize.height * 0.5 + player->radius();
-                            }
+                        }
+                    } else {
+                        if (nextPosition.y < _screenSize.height * 0.5 + player->radius()) {
+                            nextPosition.y = _screenSize.height * 0.5 + player->radius();
                         }
                     }
                     

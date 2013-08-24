@@ -11,3 +11,8 @@
 *.lai
 *.la
 *.a
+
+# mac system files
+.DS_Store
+Air\ Hockey.xcodeproj/project.xcworkspace/xcuserdata/lai-c.xcuserdatad/
+Air\ Hockey.xcodeproj/xcuserdata/lai-c.xcuserdatad/
