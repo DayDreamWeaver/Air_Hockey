@@ -220,11 +220,17 @@
 		C83E86F417C4F6200070B193 /* cocos2dx-ext_public.defines.txt in Resources */ = {isa = PBXBuildFile; fileRef = C83E86F317C4F6200070B193 /* cocos2dx-ext_public.defines.txt */; };
 		C83E86FA17C4F6200070B193 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E86F917C4F6200070B193 /* AppDelegate.cpp */; };
 		C83E86FD17C4F6210070B193 /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E86FC17C4F6210070B193 /* GameLayer.cpp */; };
-		C83E870517C4FCFC0070B193 /* hd in Resources */ = {isa = PBXBuildFile; fileRef = C83E870317C4FCFC0070B193 /* hd */; };
-		C83E870617C4FCFC0070B193 /* sd in Resources */ = {isa = PBXBuildFile; fileRef = C83E870417C4FCFC0070B193 /* sd */; };
 		C83E870917C503F80070B193 /* hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = C83E870717C503F80070B193 /* hit.wav */; };
 		C83E870A17C503F80070B193 /* score.wav in Resources */ = {isa = PBXBuildFile; fileRef = C83E870817C503F80070B193 /* score.wav */; };
 		C83E870D17C5072B0070B193 /* GameSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E870B17C5072B0070B193 /* GameSprite.cpp */; };
+		C8C0626117C961AC00958358 /* court.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625C17C961AC00958358 /* court.png */; };
+		C8C0626217C961AC00958358 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625D17C961AC00958358 /* logo.png */; };
+		C8C0626317C961AC00958358 /* mallet.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625E17C961AC00958358 /* mallet.png */; };
+		C8C0626417C961AC00958358 /* puck.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625F17C961AC00958358 /* puck.png */; };
+		C8C0626B17C9620E00958358 /* court.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0626717C9620E00958358 /* court.png */; };
+		C8C0626C17C9620E00958358 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0626817C9620E00958358 /* logo.png */; };
+		C8C0626D17C9620E00958358 /* mallet.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0626917C9620E00958358 /* mallet.png */; };
+		C8C0626E17C9620E00958358 /* puck.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0626A17C9620E00958358 /* puck.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -695,12 +701,18 @@
 		C83E86F917C4F6200070B193 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		C83E86FB17C4F6200070B193 /* GameLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = Classes/GameLayer.h; sourceTree = "<group>"; };
 		C83E86FC17C4F6210070B193 /* GameLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GameLayer.cpp; path = Classes/GameLayer.cpp; sourceTree = "<group>"; };
-		C83E870317C4FCFC0070B193 /* hd */ = {isa = PBXFileReference; lastKnownFileType = folder; name = hd; path = Resources/hd; sourceTree = "<group>"; };
-		C83E870417C4FCFC0070B193 /* sd */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sd; path = Resources/sd; sourceTree = "<group>"; };
 		C83E870717C503F80070B193 /* hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = hit.wav; path = Resources/hit.wav; sourceTree = "<group>"; };
 		C83E870817C503F80070B193 /* score.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = score.wav; path = Resources/score.wav; sourceTree = "<group>"; };
 		C83E870B17C5072B0070B193 /* GameSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameSprite.cpp; path = Classes/GameSprite.cpp; sourceTree = "<group>"; };
 		C83E870C17C5072B0070B193 /* GameSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameSprite.h; path = Classes/GameSprite.h; sourceTree = "<group>"; };
+		C8C0625C17C961AC00958358 /* court.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = court.png; path = Resources/hd/court.png; sourceTree = "<group>"; };
+		C8C0625D17C961AC00958358 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Resources/hd/logo.png; sourceTree = "<group>"; };
+		C8C0625E17C961AC00958358 /* mallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mallet.png; path = Resources/hd/mallet.png; sourceTree = "<group>"; };
+		C8C0625F17C961AC00958358 /* puck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puck.png; path = Resources/hd/puck.png; sourceTree = "<group>"; };
+		C8C0626717C9620E00958358 /* court.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = court.png; path = Resources/sd/court.png; sourceTree = "<group>"; };
+		C8C0626817C9620E00958358 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Resources/sd/logo.png; sourceTree = "<group>"; };
+		C8C0626917C9620E00958358 /* mallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mallet.png; path = Resources/sd/mallet.png; sourceTree = "<group>"; };
+		C8C0626A17C9620E00958358 /* puck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puck.png; path = Resources/sd/puck.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -773,8 +785,8 @@
 			children = (
 				C83E870717C503F80070B193 /* hit.wav */,
 				C83E870817C503F80070B193 /* score.wav */,
-				C83E870317C4FCFC0070B193 /* hd */,
-				C83E870417C4FCFC0070B193 /* sd */,
+				C8C0625B17C9619200958358 /* hd */,
+				C8C0626617C961F400958358 /* sd */,
 				C83E842B17C4F61C0070B193 /* CloseNormal.png */,
 				C83E842D17C4F61C0070B193 /* CloseSelected.png */,
 				C83E842F17C4F61C0070B193 /* Default.png */,
@@ -1715,6 +1727,28 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
+		C8C0625B17C9619200958358 /* hd */ = {
+			isa = PBXGroup;
+			children = (
+				C8C0625C17C961AC00958358 /* court.png */,
+				C8C0625D17C961AC00958358 /* logo.png */,
+				C8C0625E17C961AC00958358 /* mallet.png */,
+				C8C0625F17C961AC00958358 /* puck.png */,
+			);
+			name = hd;
+			sourceTree = "<group>";
+		};
+		C8C0626617C961F400958358 /* sd */ = {
+			isa = PBXGroup;
+			children = (
+				C8C0626717C9620E00958358 /* court.png */,
+				C8C0626817C9620E00958358 /* logo.png */,
+				C8C0626917C9620E00958358 /* mallet.png */,
+				C8C0626A17C9620E00958358 /* puck.png */,
+			);
+			name = sd;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1780,10 +1814,16 @@
 				C83E864617C4F61F0070B193 /* project.pbxproj in Resources */,
 				C83E86F217C4F6200070B193 /* cocos2dx-ext.mkf in Resources */,
 				C83E86F417C4F6200070B193 /* cocos2dx-ext_public.defines.txt in Resources */,
-				C83E870517C4FCFC0070B193 /* hd in Resources */,
-				C83E870617C4FCFC0070B193 /* sd in Resources */,
 				C83E870917C503F80070B193 /* hit.wav in Resources */,
 				C83E870A17C503F80070B193 /* score.wav in Resources */,
+				C8C0626117C961AC00958358 /* court.png in Resources */,
+				C8C0626217C961AC00958358 /* logo.png in Resources */,
+				C8C0626317C961AC00958358 /* mallet.png in Resources */,
+				C8C0626417C961AC00958358 /* puck.png in Resources */,
+				C8C0626B17C9620E00958358 /* court.png in Resources */,
+				C8C0626C17C9620E00958358 /* logo.png in Resources */,
+				C8C0626D17C9620E00958358 /* mallet.png in Resources */,
+				C8C0626E17C9620E00958358 /* puck.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
