@@ -31,6 +31,9 @@ class GameLayer : public cocos2d::CCLayer
     int _player2Score;
     
     void playerScore(int player);
+    
+    // draw line between touch point and origin point
+    void drawLine(CCPoint a, CCPoint b, int color, int boldDegree);
 
 public:
     
@@ -54,6 +57,7 @@ public:
     virtual void ccTouchesEnded(CCSet* pTouches, CCEvent* event);
 
     void update(float dt);
+    virtual void draw();
 };
 
 #endif // __GAMELAYER_H__

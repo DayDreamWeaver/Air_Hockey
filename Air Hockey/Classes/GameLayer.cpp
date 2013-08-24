@@ -4,6 +4,10 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
+#define RED 1
+#define NORMAL_BOLD 10
+#define MAX_BOLD 200
+
 CCScene* GameLayer::scene()
 {
     // 'scene' is an autorelease object
@@ -57,6 +61,8 @@ bool GameLayer::init()
 
     _court = GameSprite::gameSpriteWithFile("court.png");
     _court->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5));
+    // set Z value to -1, to set background to the bottom
+    _court->setZOrder(-1);
     this->addChild(_court);
     
     _player1 = GameSprite::gameSpriteWithFile("mallet.png");
@@ -107,6 +113,36 @@ bool GameLayer::init()
     this->schedule(schedule_selector(GameSprite::update));
     
     return true;
+}
+
+void GameLayer::draw() {
+    if (!_isShowLogo) {
+        // become bolder when distance become larger, and start NORMAL_BOLD to MAX_BOLD
+        int blod_value_1 = (ccpDistance(_originalPoint1, _player1->getPosition()) / _screenSize.height) * MAX_BOLD;
+        int blod_value_2 = (ccpDistance(_originalPoint2, _player2->getPosition()) / _screenSize.height) * MAX_BOLD;
+        
+        drawLine(_originalPoint1, _player1->getPosition(), RED, blod_value_1);
+        drawLine(_originalPoint2, _player2->getPosition(), RED, blod_value_2);
+    }
+}
+
+void GameLayer::drawLine(CCPoint a, CCPoint b, int color, int bold) {
+    // select color
+    switch (color) {
+        case RED:
+            //red line from bottom left to top right corner
+            ccDrawColor4F(1.0f, 0.0f, 0.0f, 1.0f);
+            break;
+    }
+    
+    // set bold value of line
+    if (bold < NORMAL_BOLD) {
+        bold = NORMAL_BOLD;
+    }
+    glLineWidth(bold);
+
+    // draw line
+    ccDrawLine(a, b);
 }
 
 void GameLayer::update(float dt) {
@@ -325,8 +361,10 @@ void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
                     player->setTouch(NULL);
                     player->setVector(ccp(0, 0));
                     if (p == 0) {
+                        // player 1
                         player->setPosition(_originalPoint1);
                     } else {
+                        // player 2
                         player->setPosition(_originalPoint2);
                     }
                 }
