@@ -7,6 +7,7 @@ using namespace CocosDenshion;
 #define RED 1
 #define NORMAL_BOLD 10
 #define MAX_BOLD 200
+#define MAX_SCALE 20
 
 CCScene* GameLayer::scene()
 {
@@ -103,9 +104,6 @@ bool GameLayer::init()
     // arrow
     _arrow1 = GameSprite::gameSpriteWithFile("arrow_1.png");
     _arrow1->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5));
-    _arrow1->setScaleX(0.5);
-    _arrow1->setScaleY(2);
-    _arrow1->setRotation(-90);
     this->addChild(_arrow1);
     
     
@@ -135,6 +133,28 @@ void GameLayer::draw() {
         drawLine(_originalPoint1, _player1->getPosition(), RED, blod_value_1);
         drawLine(_originalPoint2, _player2->getPosition(), RED, blod_value_2);
     }
+}
+
+void GameLayer::transformArrow(CCPoint start, CCPoint end) {
+    // adjust scale
+    float distance = ccpDistance(start, end);
+    CCSize size = _arrow1->boundingBox().size;
+    float scale = 0;
+    
+    if (distance > 0) {
+        scale = distance / _screenSize.height / 2 * MAX_SCALE;
+    }
+    
+    _arrow1->setScaleX(scale);
+    
+    // adjust angle
+    float diffx = end.x - start.x;
+    float diffy = end.y - start.y;
+    
+    float radian = -atan2(diffy, diffx);
+    float angle = CC_RADIANS_TO_DEGREES(radian);
+    
+    _arrow1->setRotation(angle);
 }
 
 void GameLayer::drawLine(CCPoint start, CCPoint end, int color, int bold) {
@@ -256,6 +276,9 @@ void GameLayer::update(float dt) {
         _player1->setPosition(_player1->getNextPosition());
         _player2->setPosition(_player2->getNextPosition());    
         _ball->setPosition(_ball->getNextPosition());
+        
+        // transform arrow
+        this->transformArrow(_originalPoint1, _player1->getPosition());
     }
 }
 
