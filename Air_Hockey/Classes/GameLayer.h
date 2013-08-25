@@ -16,6 +16,7 @@ class GameLayer : public cocos2d::CCLayer
     GameSprite * _ball;
     GameSprite * _logo;
     GameSprite * _court;
+    GameSprite * _arrow1;
     bool _isShowLogo;
     
     CCArray * _players;
@@ -33,7 +34,10 @@ class GameLayer : public cocos2d::CCLayer
     void playerScore(int player);
     
     // draw line between touch point and origin point
-    void drawLine(CCPoint a, CCPoint b, int color, int boldDegree);
+    void drawLine(CCPoint start, CCPoint end, int color, int boldDegree);
+    
+    // transform arrow according to player position
+    void transformArrow(CCPoint start, CCPoint end);
 
 public:
     

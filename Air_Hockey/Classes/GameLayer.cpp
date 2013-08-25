@@ -100,6 +100,15 @@ bool GameLayer::init()
     _logo->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5));
     this->addChild(_logo);
     
+    // arrow
+    _arrow1 = GameSprite::gameSpriteWithFile("arrow_1.png");
+    _arrow1->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5));
+    _arrow1->setScaleX(0.5);
+    _arrow1->setScaleY(2);
+    _arrow1->setRotation(-90);
+    this->addChild(_arrow1);
+    
+    
     if (_isShowLogo) {
         _court->setVisible(!_isShowLogo);
         _player1->setVisible(!_isShowLogo);
@@ -107,6 +116,7 @@ bool GameLayer::init()
         _ball->setVisible(!_isShowLogo);
         _player1ScoreLabel->setVisible(!_isShowLogo);
         _player2ScoreLabel->setVisible(!_isShowLogo);
+        _arrow1->setVisible(!_isShowLogo);
     }
     
     // listen to touch
@@ -127,7 +137,7 @@ void GameLayer::draw() {
     }
 }
 
-void GameLayer::drawLine(CCPoint a, CCPoint b, int color, int bold) {
+void GameLayer::drawLine(CCPoint start, CCPoint end, int color, int bold) {
     // select color
     switch (color) {
         case RED:
@@ -143,18 +153,21 @@ void GameLayer::drawLine(CCPoint a, CCPoint b, int color, int bold) {
     glLineWidth(bold);
 
     // draw line
-    ccDrawLine(a, b);
+    ccDrawLine(start, end);
 }
 
 void GameLayer::update(float dt) {
     if (!_isShowLogo) {
-        
+        // should be visible
         _court->setVisible(!_isShowLogo);
         _player1->setVisible(!_isShowLogo);
         _player2->setVisible(!_isShowLogo);
         _ball->setVisible(!_isShowLogo);
         _player1ScoreLabel->setVisible(!_isShowLogo);
         _player2ScoreLabel->setVisible(!_isShowLogo);
+        _arrow1->setVisible(!_isShowLogo);
+        
+        // should be unvisible
         _logo->setVisible(_isShowLogo);
         
         CCPoint ballNextPosition = _ball->getNextPosition();
