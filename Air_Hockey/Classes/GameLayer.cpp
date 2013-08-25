@@ -296,10 +296,11 @@ void GameLayer::springEffect(GameSprite * sprite, cocos2d::CCPoint start, cocos2
     float targetX = (end.x - start.x) * 2 + start.x;
     float targetY = (end.y - start.y) * 2 + start.y;
     
-    CCActionInterval * actionTo = CCMoveTo::create(0.5, ccp(targetX, targetY));
-    CCActionInterval * actionBack = CCMoveTo::create(0.2, _originalPoint1);
+    CCActionInterval * actionTo = CCMoveTo::create(0.4, ccp(targetX, targetY));
+    CCActionInterval * actionBack = CCMoveTo::create(0.15, _originalPoint1);
     
     _player1->runAction(CCSequence::create(actionTo, actionBack, NULL));
+    printf("%f, %f", _player1->getVector().x, _player1->getVector().y);
 }
 
 void GameLayer::playerScore(int player) {
@@ -417,7 +418,8 @@ void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
                 
                 if (player->getTouch() != NULL && player->getTouch() == touch) {
                     player->setTouch(NULL);
-                    player->setVector(ccp(0, 0));
+                    // need to keep its vector, because need to perform spring effect
+                    //player->setVector(ccp(0, 0));
                     if (p == 0) {
                         // player 1
                         //player->setPosition(_originalPoint1);
