@@ -39,6 +39,8 @@ class GameLayer : public cocos2d::CCLayer
     // transform arrow according to player position
     void transformArrow(CCPoint start, CCPoint end);
 
+    // count middel CCPoint
+    CCPoint get_middle_point(CCPoint start, CCPoint end);
 public:
     
     ~GameLayer();
@@ -62,6 +64,7 @@ public:
 
     void update(float dt);
     virtual void draw();
+    
 };
 
 #endif // __GAMELAYER_H__

@@ -103,7 +103,6 @@ bool GameLayer::init()
     
     // arrow
     _arrow1 = GameSprite::gameSpriteWithFile("arrow_1.png");
-    _arrow1->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5));
     this->addChild(_arrow1);
     
     
@@ -125,6 +124,7 @@ bool GameLayer::init()
 }
 
 void GameLayer::draw() {
+    /* test to draw line
     if (!_isShowLogo) {
         // become bolder when distance become larger, and start NORMAL_BOLD to MAX_BOLD
         int blod_value_1 = (ccpDistance(_originalPoint1, _player1->getPosition()) / _screenSize.height) * MAX_BOLD;
@@ -133,6 +133,7 @@ void GameLayer::draw() {
         drawLine(_originalPoint1, _player1->getPosition(), RED, blod_value_1);
         drawLine(_originalPoint2, _player2->getPosition(), RED, blod_value_2);
     }
+     */
 }
 
 void GameLayer::transformArrow(CCPoint start, CCPoint end) {
@@ -155,6 +156,15 @@ void GameLayer::transformArrow(CCPoint start, CCPoint end) {
     float angle = CC_RADIANS_TO_DEGREES(radian);
     
     _arrow1->setRotation(angle);
+    
+    // adjust position
+    CCPoint middelPoint = get_middle_point(start, end);
+    _arrow1->setPosition(middelPoint);
+    
+}
+                         
+CCPoint GameLayer::get_middle_point(CCPoint start, CCPoint end) {
+    return ccp((start.x + end.x) / 2, (start.y + end.y) / 2);
 }
 
 void GameLayer::drawLine(CCPoint start, CCPoint end, int color, int bold) {
