@@ -41,6 +41,9 @@ class GameLayer : public cocos2d::CCLayer
 
     // count middel CCPoint
     CCPoint get_middle_point(CCPoint start, CCPoint end);
+    
+    // spring effect
+    void springEffect(GameSprite * sprite, CCPoint start, CCPoint end);
 public:
     
     ~GameLayer();

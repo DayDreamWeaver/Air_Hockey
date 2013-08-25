@@ -160,7 +160,7 @@ void GameLayer::transformArrow(CCPoint start, CCPoint end) {
     // adjust position
     CCPoint middelPoint = get_middle_point(start, end);
     _arrow1->setPosition(middelPoint);
-    
+
 }
                          
 CCPoint GameLayer::get_middle_point(CCPoint start, CCPoint end) {
@@ -292,10 +292,21 @@ void GameLayer::update(float dt) {
     }
 }
 
+void GameLayer::springEffect(GameSprite * sprite, cocos2d::CCPoint start, cocos2d::CCPoint end) {
+    float targetX = (end.x - start.x) * 2 + start.x;
+    float targetY = (end.y - start.y) * 2 + start.y;
+    
+    CCActionInterval * actionTo = CCMoveTo::create(0.5, ccp(targetX, targetY));
+    CCActionInterval * actionBack = CCMoveTo::create(0.2, _originalPoint1);
+    
+    _player1->runAction(CCSequence::create(actionTo, actionBack, NULL));
+}
+
 void GameLayer::playerScore(int player) {
     SimpleAudioEngine::sharedEngine()->playEffect("score.wav");
     _ball->setVector(ccp(0, 0));
     
+    // get back to original position
     char score_buffer[10];
     if (player == 1) {
         _player1Score++;
@@ -409,7 +420,9 @@ void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
                     player->setVector(ccp(0, 0));
                     if (p == 0) {
                         // player 1
-                        player->setPosition(_originalPoint1);
+                        //player->setPosition(_originalPoint1);
+                        // show spring effect
+                        this->springEffect(_player1, tap, _originalPoint1);
                     } else {
                         // player 2
                         player->setPosition(_originalPoint2);
