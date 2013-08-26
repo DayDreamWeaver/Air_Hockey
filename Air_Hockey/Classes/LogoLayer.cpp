@@ -56,6 +56,11 @@ bool LogoLayer::init() {
     _progressBar->setMidpoint(ccp(0, 0));
     _progressBar->setPosition(ccp(screenSize.width * 0.5, screenSize.height * 0.5 + 3));
     this->addChild(_progressBar);
+    
+    // create progress bar label
+    _barPercentage = CCLabelTTF::create("0", "Arial", 25);
+    _barPercentage->setPosition(ccp(screenSize.width * 0.5, screenSize.height * 0.5));
+    this->addChild(_barPercentage);
 
     // enable touch
     this->setTouchEnabled(true);
@@ -71,8 +76,12 @@ void LogoLayer::update(float dt) {
     
     percentage += 0.5f;
     
-    if (percentage < 100) {
+    char temp[10];
+    
+    if (percentage <= 100) {
         _progressBar->setPercentage(percentage);
+        sprintf(temp, "%d%%", int(percentage));
+        _barPercentage->setString(temp);
     } else {
         // load is completed, move to next scene
         // transition to next scene

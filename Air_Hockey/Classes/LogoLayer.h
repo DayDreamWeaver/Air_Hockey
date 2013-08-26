@@ -18,6 +18,7 @@ class LogoLayer : public cocos2d::CCLayer {
 
     GameSprite *_logo;
     CCProgressTimer *_progressBar;
+    CCLabelTTF * _barPercentage;
     
 public:
     ~LogoLayer();
