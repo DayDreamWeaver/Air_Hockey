@@ -6,7 +6,7 @@ using namespace CocosDenshion;
 
 #define RED 1
 #define NORMAL_BOLD 10
-#define MAX_BOLD 200
+#define MAX_BOLD 20
 #define MAX_SCALE 20
 #define MAX_BALL_SPEED 15
 #define MIN_BALL_SPEED 5
@@ -135,11 +135,11 @@ void GameLayer::draw() {
     //test to draw line of player's fixed track
     if (!_isShowLogo) {
         // become bolder when distance become larger, and start NORMAL_BOLD to MAX_BOLD
-        int blod_value_1 = (ccpDistance(_originalPoint1, _player1->getPosition()) / _screenSize.height) * MAX_BOLD;
-        int blod_value_2 = (ccpDistance(_originalPoint2, _player2->getPosition()) / _screenSize.height) * MAX_BOLD;
+        int blod_value_1 = 0.5 * MAX_BOLD;
+        int blod_value_2 = 0.5 * MAX_BOLD;
         
-        drawLine(_originalPoint1, _player1->getPosition(), RED, blod_value_1);
-        drawLine(_originalPoint2, _player2->getPosition(), RED, blod_value_2);
+        drawLine(ccp(0, _originalPlayer1Y), ccp(_screenSize.width, _originalPlayer1Y), RED, blod_value_1);
+        drawLine(ccp(0, _originalPlayer2Y), ccp(_screenSize.width, _originalPlayer2Y), RED, blod_value_2);
     }
     
 }
