@@ -9,6 +9,7 @@ using namespace CocosDenshion;
 #define MAX_BOLD 200
 #define MAX_SCALE 20
 #define MAX_BALL_SPEED 15
+#define MIN_BALL_SPEED 5
 
 CCScene* GameLayer::scene()
 {
@@ -238,6 +239,8 @@ void GameLayer::update(float dt) {
                 // control ball speed
                 if (force >= MAX_BALL_SPEED) {
                     force = MAX_BALL_SPEED;
+                } else if (force <= MIN_BALL_SPEED) {
+                    force = MIN_BALL_SPEED;
                 }
 
                 ballVector.x = force * cos(angle);
