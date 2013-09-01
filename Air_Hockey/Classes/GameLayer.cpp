@@ -200,6 +200,7 @@ void GameLayer::update(float dt) {
         // should be unvisible
         _logo->setVisible(_isShowLogo);
         
+        // update ball's position
         CCPoint ballNextPosition = _ball->getNextPosition();
         CCPoint ballVector = _ball->getVector();
         ballVector =  ccpMult(ballVector, 0.98f);
@@ -207,10 +208,12 @@ void GameLayer::update(float dt) {
         ballNextPosition.x += ballVector.x;
         ballNextPosition.y += ballVector.y;
 
+        // update player's position
         GameSprite * player;
         CCPoint playerNextPosition;
         CCPoint playerVector;
 
+        // simple collision detect
         float squared_radii = pow(_player1->radius() + _ball->radius(), 2);
         for (int p = 0; p < _players->count(); p++) {
             player = (GameSprite *)_players->objectAtIndex(p);
@@ -240,7 +243,8 @@ void GameLayer::update(float dt) {
                 SimpleAudioEngine::sharedEngine()->playEffect("hit.wav");
             }
         }
-
+        
+        // if ball's postion is out of court edge, push back to court
         if (ballNextPosition.x < _ball->radius()) {
             ballNextPosition.x = _ball->radius();
             ballVector.x *= -0.8f;
@@ -271,6 +275,7 @@ void GameLayer::update(float dt) {
             }
         }
 
+        // update vector and postio to ball
         _ball->setVector(ballVector);
         _ball->setNextPosition(ballNextPosition);
 
@@ -283,6 +288,7 @@ void GameLayer::update(float dt) {
             this->updatePlayerScore(1);
         }
 
+        // update player's position
         _player1->setPosition(_player1->getNextPosition());
         _player2->setPosition(_player2->getNextPosition());    
         _ball->setPosition(_ball->getNextPosition());
@@ -300,7 +306,6 @@ void GameLayer::doSpringEffect(GameSprite * sprite, cocos2d::CCPoint start, coco
     CCActionInterval * actionBack = CCMoveTo::create(0.15, _originalPoint1);
     
     _player1->runAction(CCSequence::create(actionTo, actionBack, NULL));
-    printf("%f, %f", _player1->getVector().x, _player1->getVector().y);
 }
 
 void GameLayer::updatePlayerScore(int player) {
@@ -321,7 +326,7 @@ void GameLayer::updatePlayerScore(int player) {
         _ball->setNextPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5 - 2 * _ball->radius()));
     }
     
-    // clear touch obj
+    // clear touch obj and set player to origin position
     _player1->setPosition(_originalPoint1);
     _player2->setPosition(_originalPoint2);
     _player1->setTouch(NULL);
@@ -335,7 +340,6 @@ void GameLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* event) {
     GameSprite* player;
     
     _isShowLogo = false;
-    printf("touch!!");
     
     for (i = pTouches->begin(); i != pTouches->end(); i++) {
         touch = (CCTouch *)(*i);
@@ -343,6 +347,7 @@ void GameLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* event) {
             tap = touch->getLocation();
             for (int p = 0; p < 2; p++) {
                 player = (GameSprite *)_players->objectAtIndex(p);
+                // if touch on player, set touch object onto player
                 if (player->boundingBox().containsPoint(tap)) {
                     player->setTouch(touch);
                 }
@@ -364,8 +369,10 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
             tap = touch->getLocation();
             for (int p = 0; p < _players->count(); p++) {
                 player = (GameSprite *)_players->objectAtIndex(p);
+                // if player contains a touch
                 if (player->getTouch() != NULL && player->getTouch() == touch) {
                     CCPoint nextPosition = tap;
+                    // if touch is out of coust, push it back
                     if (nextPosition.x < player->radius()) {
                         nextPosition.x = player->radius();
                     }
@@ -382,7 +389,6 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                         nextPosition.y = _screenSize.height - player->radius();
                     }
                     
-                    // keep player inside its court
                     if (player->getPositionY() < _screenSize.height * 0.5f) {
                         if (nextPosition.y > _screenSize.height * 0.5 - player->radius()) {
                             nextPosition.y = _screenSize.height * 0.5 - player->radius();
@@ -393,6 +399,7 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                         }
                     }
                     
+                    // update position and vector to player
                     player->setNextPosition(nextPosition);
                     player->setVector(ccp(tap.x - player->getPositionX(), tap.y - player->getPositionY()));
                 }

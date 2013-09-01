@@ -29,7 +29,7 @@ public:
 
     virtual void setPosition(const CCPoint& pos);
     inline float radius() {
-        return getTexture()->getContentSize().width * 0.5f;
+        return this->getTexture()->getContentSize().width * 0.5f;
     }
 };
 
