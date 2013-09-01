@@ -8,6 +8,7 @@ using namespace CocosDenshion;
 #define NORMAL_BOLD 10
 #define MAX_BOLD 200
 #define MAX_SCALE 20
+#define MAX_BALL_SPEED 15
 
 CCScene* GameLayer::scene()
 {
@@ -203,7 +204,7 @@ void GameLayer::update(float dt) {
         // update ball's position
         CCPoint ballNextPosition = _ball->getNextPosition();
         CCPoint ballVector = _ball->getVector();
-        ballVector =  ccpMult(ballVector, 0.98f);
+        ballVector =  ccpMult(ballVector, 0.99f);
 
         ballNextPosition.x += ballVector.x;
         ballNextPosition.y += ballVector.y;
@@ -233,6 +234,11 @@ void GameLayer::update(float dt) {
 
                 float force = sqrt(mag_ball + mag_player);
                 float angle = atan2(diffy, diffx);
+                
+                // control ball speed
+                if (force >= MAX_BALL_SPEED) {
+                    force = MAX_BALL_SPEED;
+                }
 
                 ballVector.x = force * cos(angle);
                 ballVector.y = force * sin(angle);
