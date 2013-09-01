@@ -26,6 +26,16 @@ GameSprite * GameSprite::gameSpriteWithFile(const char * pszFilename) {
     return NULL;
 }
 
+GameSprite * GameSprite::gameSpriteWithFrameName(const char *pszFilename) {
+    GameSprite * sprite = new GameSprite();
+    if (sprite && sprite->initWithSpriteFrameName(pszFilename)) {
+        sprite->autorelease();
+        return sprite;
+    }
+    CC_SAFE_DELETE(sprite);
+    return NULL;
+}
+
 void GameSprite::setPosition(const cocos2d::CCPoint &pos) {
     CCSprite::setPosition(pos);
     if (!_nextPositon.equals(pos)) {

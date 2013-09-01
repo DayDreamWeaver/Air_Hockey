@@ -24,6 +24,8 @@ public:
     ~GameSprite(void);
 
     static GameSprite* gameSpriteWithFile(const char * pszFilename);
+    // when using sprite sheet, create with frame name
+    static GameSprite* gameSpriteWithFrameName(const char * pszFilename);
 
     virtual void setPosition(const CCPoint& pos);
     inline float radius() {
