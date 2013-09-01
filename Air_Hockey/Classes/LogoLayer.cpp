@@ -74,7 +74,7 @@ void LogoLayer::update(float dt) {
     // draw progress bar
     float percentage = _progressBar->getPercentage();
     
-    percentage += 0.5f;
+    percentage += 10.0f;
     
     char temp[10];
     
