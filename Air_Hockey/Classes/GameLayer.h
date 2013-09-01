@@ -17,6 +17,7 @@ class GameLayer : public cocos2d::CCLayer
     GameSprite * _logo;
     GameSprite * _court;
     GameSprite * _arrow1;
+    GameSprite * _arrow2;
     bool _isShowLogo;
     
     CCArray * _players;
@@ -37,7 +38,7 @@ class GameLayer : public cocos2d::CCLayer
     void drawLine(CCPoint start, CCPoint end, int color, int boldDegree);
     
     // transform arrow according to player position
-    void transformArrow(CCPoint start, CCPoint end);
+    void transformArrow(GameSprite * arrow, CCPoint start, CCPoint end);
 
     // count middel CCPoint
     CCPoint getMiddlePoint(CCPoint start, CCPoint end);

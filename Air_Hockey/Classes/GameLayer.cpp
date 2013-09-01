@@ -104,9 +104,10 @@ bool GameLayer::init()
     this->addChild(_logo);
     
     // arrow
-    _arrow1 = GameSprite::gameSpriteWithFile("arrow_1.png");
+    _arrow1 = GameSprite::gameSpriteWithFile("arrow_8.png");
     this->addChild(_arrow1);
-    
+    _arrow2 = GameSprite::gameSpriteWithFile("arrow_2.png");
+    this->addChild(_arrow2);
     
     if (_isShowLogo) {
         _court->setVisible(!_isShowLogo);
@@ -116,6 +117,7 @@ bool GameLayer::init()
         _player1ScoreLabel->setVisible(!_isShowLogo);
         _player2ScoreLabel->setVisible(!_isShowLogo);
         _arrow1->setVisible(!_isShowLogo);
+        _arrow2->setVisible(!_isShowLogo);
     }
     
     // listen to touch
@@ -138,17 +140,17 @@ void GameLayer::draw() {
     */
 }
 
-void GameLayer::transformArrow(CCPoint start, CCPoint end) {
+void GameLayer::transformArrow(GameSprite * arrow, CCPoint start, CCPoint end) {
     // adjust scale
     float distance = ccpDistance(start, end);
-    CCSize size = _arrow1->boundingBox().size;
+    CCSize size = arrow->boundingBox().size;
     float scale = 0;
     
     if (distance > 0) {
         scale = distance / _screenSize.height / 2 * MAX_SCALE;
     }
     
-    _arrow1->setScaleX(scale);
+    arrow->setScaleX(scale);
     
     // adjust angle
     float diffx = end.x - start.x;
@@ -157,11 +159,11 @@ void GameLayer::transformArrow(CCPoint start, CCPoint end) {
     float radian = -atan2(diffy, diffx);
     float angle = CC_RADIANS_TO_DEGREES(radian);
     
-    _arrow1->setRotation(angle);
+    arrow->setRotation(angle);
     
     // adjust position
     CCPoint middelPoint = getMiddlePoint(start, end);
-    _arrow1->setPosition(middelPoint);
+    arrow->setPosition(middelPoint);
 
 }
                          
@@ -198,6 +200,7 @@ void GameLayer::update(float dt) {
         _player1ScoreLabel->setVisible(!_isShowLogo);
         _player2ScoreLabel->setVisible(!_isShowLogo);
         _arrow1->setVisible(!_isShowLogo);
+        _arrow2->setVisible(!_isShowLogo);
         
         // should be unvisible
         _logo->setVisible(_isShowLogo);
@@ -303,7 +306,8 @@ void GameLayer::update(float dt) {
         _ball->setPosition(_ball->getNextPosition());
         
         // transform arrow
-        this->transformArrow(_originalPoint1, _player1->getPosition());
+        this->transformArrow(_arrow1, _originalPoint1, _player1->getPosition());
+        this->transformArrow(_arrow2, _originalPoint2, _player2->getPosition());
     }
 }
 
@@ -312,9 +316,11 @@ void GameLayer::doSpringEffect(GameSprite * sprite, cocos2d::CCPoint start, coco
     float targetY = (end.y - start.y) * 2 + start.y;
     
     CCActionInterval * actionTo = CCMoveTo::create(0.4, ccp(targetX, targetY));
-    CCActionInterval * actionBack = CCMoveTo::create(0.15, _originalPoint1);
-    
-    _player1->runAction(CCSequence::create(actionTo, actionBack, NULL));
+    CCActionInterval * actionBack = CCMoveTo::create(0.15, end);
+   
+    sprite->runAction(CCSequence::create(actionTo, actionBack, NULL));
+    printf("%f, %f", sprite->getVector().x, sprite->getVector().y);
+
 }
 
 void GameLayer::updatePlayerScore(int player) {
@@ -443,7 +449,9 @@ void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
                         this->doSpringEffect(_player1, tap, _originalPoint1);
                     } else {
                         // player 2
-                        player->setPosition(_originalPoint2);
+                        //player->setPosition(_originalPoint2);
+                        // show spring effect
+                        this->doSpringEffect(_player2, tap, _originalPoint2);
                     }
                 }
             }
