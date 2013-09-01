@@ -132,7 +132,7 @@ bool GameLayer::init()
 }
 
 void GameLayer::draw() {
-    /* test to draw line
+    //test to draw line of player's fixed track
     if (!_isShowLogo) {
         // become bolder when distance become larger, and start NORMAL_BOLD to MAX_BOLD
         int blod_value_1 = (ccpDistance(_originalPoint1, _player1->getPosition()) / _screenSize.height) * MAX_BOLD;
@@ -141,7 +141,7 @@ void GameLayer::draw() {
         drawLine(_originalPoint1, _player1->getPosition(), RED, blod_value_1);
         drawLine(_originalPoint2, _player2->getPosition(), RED, blod_value_2);
     }
-    */
+    
 }
 
 void GameLayer::transformArrow(GameSprite * arrow, CCPoint start, CCPoint end) {
