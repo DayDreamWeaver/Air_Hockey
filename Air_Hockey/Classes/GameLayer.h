@@ -32,6 +32,9 @@ class GameLayer : public cocos2d::CCLayer
     int _player1Score;
     int _player2Score;
     
+    int _originalPlayer1Y;
+    int _originalPlayer2Y;
+    
     void updatePlayerScore(int player);
     
     // draw line between touch point and origin point

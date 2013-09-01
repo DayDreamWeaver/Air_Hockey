@@ -61,20 +61,24 @@ bool GameLayer::init()
     _player1Score = 0;
     _player2Score = 0;
     _screenSize = CCDirector::sharedDirector()->getWinSize();
-
+    // init original player 1 and 2's position Y
+    _originalPlayer1Y = _screenSize.height / 4;
+    _originalPlayer2Y = _screenSize.height - _originalPlayer1Y;
+    
     _court = GameSprite::gameSpriteWithFile("court.png");
     _court->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5));
     // set Z value to -1, to set background to the bottom
     _court->setZOrder(-1);
     this->addChild(_court);
     
+    
     _player1 = GameSprite::gameSpriteWithFile("mallet.png");
-    _originalPoint1 = ccp(_screenSize.width * 0.5, _player1->radius() * 8);
+    _originalPoint1 = ccp(_screenSize.width * 0.5, _originalPlayer1Y);
     _player1->setPosition(_originalPoint1);
     this->addChild(_player1);
     
     _player2 = GameSprite::gameSpriteWithFile("mallet.png");
-    _originalPoint2 = ccp(_screenSize.width * 0.5, _screenSize.height - _player2->radius() * 8);
+    _originalPoint2 = ccp(_screenSize.width * 0.5, _originalPlayer2Y);
     _player2->setPosition(_originalPoint2);
     
     this->addChild(_player2);
@@ -405,13 +409,11 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                     }
                     
                     if (player->getPositionY() < _screenSize.height * 0.5f) {
-                        if (nextPosition.y > _screenSize.height * 0.5 - player->radius()) {
-                            nextPosition.y = _screenSize.height * 0.5 - player->radius();
-                        }
+                        // update player 1's position Y
+                        nextPosition.y = _originalPlayer1Y;
                     } else {
-                        if (nextPosition.y < _screenSize.height * 0.5 + player->radius()) {
-                            nextPosition.y = _screenSize.height * 0.5 + player->radius();
-                        }
+                        // update player 2's position Y
+                        nextPosition.y = _originalPlayer2Y;
                     }
                     
                     // update position and vector to player
@@ -446,12 +448,12 @@ void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
                         // player 1
                         //player->setPosition(_originalPoint1);
                         // show spring effect
-                        this->doSpringEffect(_player1, tap, _originalPoint1);
+                        //this->doSpringEffect(_player1, tap, _originalPoint1);
                     } else {
                         // player 2
                         //player->setPosition(_originalPoint2);
                         // show spring effect
-                        this->doSpringEffect(_player2, tap, _originalPoint2);
+                        //this->doSpringEffect(_player2, tap, _originalPoint2);
                     }
                 }
             }
