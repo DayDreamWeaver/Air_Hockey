@@ -226,6 +226,7 @@
 		C88F2A2317C9A1550073CDDB /* arrow_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C88F2A2217C9A1550073CDDB /* arrow_1.png */; };
 		C88F2A2617CA531E0073CDDB /* LogoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88F2A2417CA531E0073CDDB /* LogoLayer.cpp */; };
 		C88F2A2C17CB51D90073CDDB /* logo_top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C88F2A2B17CB51D90073CDDB /* logo_top.jpg */; };
+		C8BD5CB317D3394F00ECAFB0 /* Code_Style in Resources */ = {isa = PBXBuildFile; fileRef = C8BD5CB217D3394F00ECAFB0 /* Code_Style */; };
 		C8C0626117C961AC00958358 /* court.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625C17C961AC00958358 /* court.png */; };
 		C8C0626217C961AC00958358 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625D17C961AC00958358 /* logo.png */; };
 		C8C0626317C961AC00958358 /* mallet.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625E17C961AC00958358 /* mallet.png */; };
@@ -715,6 +716,7 @@
 		C88F2A2417CA531E0073CDDB /* LogoLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LogoLayer.cpp; path = Classes/LogoLayer.cpp; sourceTree = "<group>"; };
 		C88F2A2517CA531E0073CDDB /* LogoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogoLayer.h; path = Classes/LogoLayer.h; sourceTree = "<group>"; };
 		C88F2A2B17CB51D90073CDDB /* logo_top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = logo_top.jpg; path = Resources/sd/logo_top.jpg; sourceTree = "<group>"; };
+		C8BD5CB217D3394F00ECAFB0 /* Code_Style */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Code_Style; path = Document/Code_Style; sourceTree = "<group>"; };
 		C8C0625C17C961AC00958358 /* court.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = court.png; path = Resources/hd/court.png; sourceTree = "<group>"; };
 		C8C0625D17C961AC00958358 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Resources/hd/logo.png; sourceTree = "<group>"; };
 		C8C0625E17C961AC00958358 /* mallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mallet.png; path = Resources/hd/mallet.png; sourceTree = "<group>"; };
@@ -784,6 +786,7 @@
 		C83E842917C4F61B0070B193 /* Air_Hockey */ = {
 			isa = PBXGroup;
 			children = (
+				C8BD5CB117D3389800ECAFB0 /* Document */,
 				C83E842A17C4F61C0070B193 /* Resources */,
 				C83E844217C4F61C0070B193 /* ios */,
 				C83E844B17C4F61C0070B193 /* libs */,
@@ -1742,6 +1745,14 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
+		C8BD5CB117D3389800ECAFB0 /* Document */ = {
+			isa = PBXGroup;
+			children = (
+				C8BD5CB217D3394F00ECAFB0 /* Code_Style */,
+			);
+			name = Document;
+			sourceTree = "<group>";
+		};
 		C8C0625B17C9619200958358 /* hd */ = {
 			isa = PBXGroup;
 			children = (
@@ -1849,6 +1860,7 @@
 				C8E50CBF17CB9F190097DF47 /* bar_inside.png in Resources */,
 				C8E50CC017CB9F190097DF47 /* bar_outside.png in Resources */,
 				C8E50CC417CC91850097DF47 /* Default-Portrait~ipad.png in Resources */,
+				C8BD5CB317D3394F00ECAFB0 /* Code_Style in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

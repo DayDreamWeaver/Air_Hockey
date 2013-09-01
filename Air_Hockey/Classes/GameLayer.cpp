@@ -133,7 +133,7 @@ void GameLayer::draw() {
         drawLine(_originalPoint1, _player1->getPosition(), RED, blod_value_1);
         drawLine(_originalPoint2, _player2->getPosition(), RED, blod_value_2);
     }
-     */
+    */
 }
 
 void GameLayer::transformArrow(CCPoint start, CCPoint end) {
@@ -158,12 +158,12 @@ void GameLayer::transformArrow(CCPoint start, CCPoint end) {
     _arrow1->setRotation(angle);
     
     // adjust position
-    CCPoint middelPoint = get_middle_point(start, end);
+    CCPoint middelPoint = getMiddlePoint(start, end);
     _arrow1->setPosition(middelPoint);
 
 }
                          
-CCPoint GameLayer::get_middle_point(CCPoint start, CCPoint end) {
+CCPoint GameLayer::getMiddlePoint(CCPoint start, CCPoint end) {
     return ccp((start.x + end.x) / 2, (start.y + end.y) / 2);
 }
 
@@ -276,11 +276,11 @@ void GameLayer::update(float dt) {
 
         // check for goals
         if (ballNextPosition.y < _ball->radius() * 2) {
-            this->playerScore(2);
+            this->updatePlayerScore(2);
         }
 
         if (ballNextPosition.y > _screenSize.height + _ball->radius() * 2) {
-            this->playerScore(1);
+            this->updatePlayerScore(1);
         }
 
         _player1->setPosition(_player1->getNextPosition());
@@ -292,7 +292,7 @@ void GameLayer::update(float dt) {
     }
 }
 
-void GameLayer::springEffect(GameSprite * sprite, cocos2d::CCPoint start, cocos2d::CCPoint end) {
+void GameLayer::doSpringEffect(GameSprite * sprite, cocos2d::CCPoint start, cocos2d::CCPoint end) {
     float targetX = (end.x - start.x) * 2 + start.x;
     float targetY = (end.y - start.y) * 2 + start.y;
     
@@ -303,7 +303,7 @@ void GameLayer::springEffect(GameSprite * sprite, cocos2d::CCPoint start, cocos2
     printf("%f, %f", _player1->getVector().x, _player1->getVector().y);
 }
 
-void GameLayer::playerScore(int player) {
+void GameLayer::updatePlayerScore(int player) {
     SimpleAudioEngine::sharedEngine()->playEffect("score.wav");
     _ball->setVector(ccp(0, 0));
     
@@ -424,7 +424,7 @@ void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
                         // player 1
                         //player->setPosition(_originalPoint1);
                         // show spring effect
-                        this->springEffect(_player1, tap, _originalPoint1);
+                        this->doSpringEffect(_player1, tap, _originalPoint1);
                     } else {
                         // player 2
                         player->setPosition(_originalPoint2);

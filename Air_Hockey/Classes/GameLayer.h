@@ -31,7 +31,7 @@ class GameLayer : public cocos2d::CCLayer
     int _player1Score;
     int _player2Score;
     
-    void playerScore(int player);
+    void updatePlayerScore(int player);
     
     // draw line between touch point and origin point
     void drawLine(CCPoint start, CCPoint end, int color, int boldDegree);
@@ -40,10 +40,10 @@ class GameLayer : public cocos2d::CCLayer
     void transformArrow(CCPoint start, CCPoint end);
 
     // count middel CCPoint
-    CCPoint get_middle_point(CCPoint start, CCPoint end);
+    CCPoint getMiddlePoint(CCPoint start, CCPoint end);
     
     // spring effect
-    void springEffect(GameSprite * sprite, CCPoint start, CCPoint end);
+    void doSpringEffect(GameSprite * sprite, CCPoint start, CCPoint end);
 public:
     
     ~GameLayer();
