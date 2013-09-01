@@ -8,6 +8,11 @@ using namespace cocos2d;
 
 #define GOAL_WIDTH 400
 
+enum {
+    UP,
+    DOWN,
+};
+
 class GameLayer : public cocos2d::CCLayer
 {
     // player object
@@ -48,6 +53,9 @@ class GameLayer : public cocos2d::CCLayer
     
     // spring effect
     void doSpringEffect(GameSprite * sprite, CCPoint start, CCPoint end);
+    
+    // get gesture direction
+    int getGestureDicrection(CCPoint start, CCPoint end);
 public:
     
     ~GameLayer();

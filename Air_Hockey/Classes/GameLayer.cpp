@@ -310,8 +310,8 @@ void GameLayer::update(float dt) {
         _ball->setPosition(_ball->getNextPosition());
         
         // transform arrow
-        this->transformArrow(_arrow1, _originalPoint1, _player1->getPosition());
-        this->transformArrow(_arrow2, _originalPoint2, _player2->getPosition());
+        //this->transformArrow(_arrow1, _originalPoint1, _player1->getPosition());
+        //this->transformArrow(_arrow2, _originalPoint2, _player2->getPosition());
     }
 }
 
@@ -325,6 +325,25 @@ void GameLayer::doSpringEffect(GameSprite * sprite, cocos2d::CCPoint start, coco
     sprite->runAction(CCSequence::create(actionTo, actionBack, NULL));
     printf("%f, %f", sprite->getVector().x, sprite->getVector().y);
 
+}
+
+int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end) {
+    
+    if (start.y < _screenSize.height / 2) {
+        //player 1
+        if (end.y >= start.y) {
+            return UP;
+        } else {
+            return DOWN;
+        }
+    } else {
+        //player 2
+        if (end.y <= start.y) {
+            return UP;
+        } else {
+            return DOWN;
+        }
+    }
 }
 
 void GameLayer::updatePlayerScore(int player) {
@@ -381,7 +400,7 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
     CCTouch* touch;
     CCPoint tap;
     GameSprite* player;
-    
+    int direction = -1;
     for (i = pTouches->begin(); i != pTouches->end(); i++) {
         touch = (CCTouch *)(*i);
         if (touch) {
@@ -391,7 +410,8 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                 // if player contains a touch
                 if (player->getTouch() != NULL && player->getTouch() == touch) {
                     CCPoint nextPosition = tap;
-                    // if touch is out of coust, push it back
+                    direction = this->getGestureDicrection(player->getPosition(), tap);
+                    // if touch is out of court, push it back
                     if (nextPosition.x < player->radius()) {
                         nextPosition.x = player->radius();
                     }
@@ -410,10 +430,31 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                     
                     if (player->getPositionY() < _screenSize.height * 0.5f) {
                         // update player 1's position Y
-                        nextPosition.y = _originalPlayer1Y;
+                        switch (direction) {
+                            case UP:
+                                nextPosition.y = _originalPlayer1Y;
+                                _arrow1->setVisible(false);
+                                break;
+                            case DOWN:
+                                _arrow1->setVisible(true);
+                                break;
+                            default:
+                                break;
+                        }
+                                                
                     } else {
                         // update player 2's position Y
-                        nextPosition.y = _originalPlayer2Y;
+                        switch (direction) {
+                            case UP:
+                                nextPosition.y = _originalPlayer2Y;
+                                _arrow2->setVisible(false);
+                                break;
+                            case DOWN:
+                                _arrow2->setVisible(true);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                     
                     // update position and vector to player
