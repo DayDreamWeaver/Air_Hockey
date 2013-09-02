@@ -146,29 +146,30 @@ void GameLayer::draw() {
 
 void GameLayer::transformArrow(GameSprite * arrow, CCPoint start, CCPoint end) {
     // adjust scale
-    float distance = ccpDistance(start, end);
-    CCSize size = arrow->boundingBox().size;
-    float scale = 0;
-    
-    if (distance > 0) {
-        scale = distance / _screenSize.height / 2 * MAX_SCALE;
+    if (arrow->isVisible()) {
+        float distance = ccpDistance(start, end);
+        CCSize size = arrow->boundingBox().size;
+        float scale = 0;
+        
+        if (distance > 0) {
+            scale = distance / _screenSize.height / 2 * MAX_SCALE;
+        }
+        
+        arrow->setScaleX(scale);
+        
+        // adjust angle
+        float diffx = end.x - start.x;
+        float diffy = end.y - start.y;
+        
+        float radian = -atan2(diffy, diffx);
+        float angle = CC_RADIANS_TO_DEGREES(radian);
+        
+        arrow->setRotation(angle);
+        
+        // adjust position
+        CCPoint middelPoint = this->getMiddlePoint(start, end);
+        arrow->setPosition(middelPoint);
     }
-    
-    arrow->setScaleX(scale);
-    
-    // adjust angle
-    float diffx = end.x - start.x;
-    float diffy = end.y - start.y;
-    
-    float radian = -atan2(diffy, diffx);
-    float angle = CC_RADIANS_TO_DEGREES(radian);
-    
-    arrow->setRotation(angle);
-    
-    // adjust position
-    CCPoint middelPoint = this->getMiddlePoint(start, end);
-    arrow->setPosition(middelPoint);
-
 }
                          
 CCPoint GameLayer::getMiddlePoint(CCPoint start, CCPoint end) {
@@ -203,8 +204,6 @@ void GameLayer::update(float dt) {
         _ball->setVisible(!_isShowLogo);
         _player1ScoreLabel->setVisible(!_isShowLogo);
         _player2ScoreLabel->setVisible(!_isShowLogo);
-        _arrow1->setVisible(!_isShowLogo);
-        _arrow2->setVisible(!_isShowLogo);
         
         // should be unvisible
         _logo->setVisible(_isShowLogo);
@@ -310,8 +309,8 @@ void GameLayer::update(float dt) {
         _ball->setPosition(_ball->getNextPosition());
         
         // transform arrow
-        //this->transformArrow(_arrow1, _originalPoint1, _player1->getPosition());
-        //this->transformArrow(_arrow2, _originalPoint2, _player2->getPosition());
+        this->transformArrow(_arrow1, _originalPoint1, _player1->getPosition());
+        this->transformArrow(_arrow2, _originalPoint2, _player2->getPosition());
     }
 }
 
@@ -327,23 +326,28 @@ void GameLayer::doSpringEffect(GameSprite * sprite, cocos2d::CCPoint start, coco
 
 }
 
-int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end) {
-    
-    if (start.y < _screenSize.height / 2) {
-        //player 1
-        if (end.y >= start.y) {
-            return UP;
-        } else {
-            return DOWN;
-        }
-    } else {
-        //player 2
-        if (end.y <= start.y) {
-            return UP;
-        } else {
-            return DOWN;
-        }
+int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end, int playerIndex) {
+    CCAssert(playerIndex == 0 or playerIndex == 1, "player index is fiexed as 0 or 2");
+    int result = -1;
+    switch (playerIndex) {
+        case 0:
+            if (end.y >= start.y) {
+                result = UP;
+            } else {
+                result = DOWN;
+            }
+            break;
+        case 1:
+            if (end.y >= start.y) {
+                result = UP;
+            } else {
+                result = DOWN;
+            }
+            break;
+        default:
+            break;
     }
+    return result;
 }
 
 void GameLayer::updatePlayerScore(int player) {
@@ -410,7 +414,16 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                 // if player contains a touch
                 if (player->getTouch() != NULL && player->getTouch() == touch) {
                     CCPoint nextPosition = tap;
-                    direction = this->getGestureDicrection(player->getPosition(), tap);
+                    switch (p) {
+                            // detect gesture for player 1
+                        case 0:
+                            direction = this->getGestureDicrection(_originalPoint1, tap, p);
+                            break;
+                        case 1:
+                            // detect gesture for player 2
+                            direction = this->getGestureDicrection(_originalPoint2, tap, p);
+                            break;
+                    }
                     // if touch is out of court, push it back
                     if (nextPosition.x < player->radius()) {
                         nextPosition.x = player->radius();
@@ -434,9 +447,11 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                             case UP:
                                 nextPosition.y = _originalPlayer1Y;
                                 _arrow1->setVisible(false);
+                                printf("UP\n");
                                 break;
                             case DOWN:
                                 _arrow1->setVisible(true);
+                                printf("DOWN\n");
                                 break;
                             default:
                                 break;

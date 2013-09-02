@@ -55,7 +55,7 @@ class GameLayer : public cocos2d::CCLayer
     void doSpringEffect(GameSprite * sprite, CCPoint start, CCPoint end);
     
     // get gesture direction
-    int getGestureDicrection(CCPoint start, CCPoint end);
+    int getGestureDicrection(CCPoint start, CCPoint end, int playerIndex);
 public:
     
     ~GameLayer();
