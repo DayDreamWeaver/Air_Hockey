@@ -166,7 +166,7 @@ void GameLayer::transformArrow(GameSprite * arrow, CCPoint start, CCPoint end) {
     arrow->setRotation(angle);
     
     // adjust position
-    CCPoint middelPoint = getMiddlePoint(start, end);
+    CCPoint middelPoint = this->getMiddlePoint(start, end);
     arrow->setPosition(middelPoint);
 
 }
