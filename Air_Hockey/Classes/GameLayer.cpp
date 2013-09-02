@@ -4,13 +4,6 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-#define RED 1
-#define NORMAL_BOLD 10
-#define MAX_BOLD 20
-#define MAX_SCALE 20
-#define MAX_BALL_SPEED 15
-#define MIN_BALL_SPEED 5
-
 CCScene* GameLayer::scene()
 {
     // 'scene' is an autorelease object
@@ -55,6 +48,9 @@ bool GameLayer::init()
 
     /////////////////////////////
     // 3. add your codes below...
+    
+    // player background
+    SimpleAudioEngine::sharedEngine()->playBackgroundMusic(BGM);
     
     // show logo at the begining of game
     _isShowLogo = true;
@@ -258,7 +254,7 @@ void GameLayer::update(float dt) {
                 ballNextPosition.x = playerNextPosition.x + (player->radius() + _ball->radius() + force) * cos(angle);
                 ballNextPosition.y = playerNextPosition.y + (player->radius() + _ball->radius() + force) * sin(angle);
 
-                SimpleAudioEngine::sharedEngine()->playEffect("hit.wav");
+                SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
             }
         }
         
@@ -266,13 +262,13 @@ void GameLayer::update(float dt) {
         if (ballNextPosition.x < _ball->radius()) {
             ballNextPosition.x = _ball->radius();
             ballVector.x *= -0.8f;
-            SimpleAudioEngine::sharedEngine()->playEffect("hit.wav");
+            SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
         }
 
         if (ballNextPosition.x > _screenSize.width - _ball->radius()) {
             ballNextPosition.x = _screenSize.width - _ball->radius();
             ballVector.x *= -0.8f;
-            SimpleAudioEngine::sharedEngine()->playEffect("hit.wav");
+            SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
         }
 
         if (ballNextPosition.y > _screenSize.height - _ball->radius()) {
@@ -280,7 +276,7 @@ void GameLayer::update(float dt) {
                 _ball->getPosition().x > _screenSize.width * 0.5f + GOAL_WIDTH * 0.5f ) {
                 ballNextPosition.y = _screenSize.height - _ball->radius();
                 ballVector.y *= -0.8f;
-                SimpleAudioEngine::sharedEngine()->playEffect("hit.wav");
+                SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
             }
         }
 
@@ -289,7 +285,7 @@ void GameLayer::update(float dt) {
                 _ball->getPosition().x > _screenSize.width * 0.5f + GOAL_WIDTH * 0.5f) {
                 ballNextPosition.y = _ball->radius();
                 ballVector.y *= -0.8f;
-                SimpleAudioEngine::sharedEngine()->playEffect("hit.wav");
+                SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
             }
         }
 
@@ -318,8 +314,8 @@ void GameLayer::update(float dt) {
 }
 
 void GameLayer::doSpringEffect(GameSprite * sprite, cocos2d::CCPoint start, cocos2d::CCPoint end) {
-    float targetX = (end.x - start.x) * 2 + start.x;
-    float targetY = (end.y - start.y) * 2 + start.y;
+    float targetX = (end.x - start.x) * 2.5 + start.x;
+    float targetY = (end.y - start.y) * 2.5 + start.y;
     
     CCActionInterval * actionTo = CCMoveTo::create(0.4, ccp(targetX, targetY));
     CCActionInterval * actionBack = CCMoveTo::create(0.15, end);
@@ -356,7 +352,7 @@ int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end
 }
 
 void GameLayer::updatePlayerScore(int player) {
-    SimpleAudioEngine::sharedEngine()->playEffect("score.wav");
+    SimpleAudioEngine::sharedEngine()->playEffect(SCORE_SE);
     _ball->setVector(ccp(0, 0));
     
     // get back to original position
@@ -378,6 +374,8 @@ void GameLayer::updatePlayerScore(int player) {
     _player2->setPosition(_originalPoint2);
     _player1->setTouch(NULL);
     _player2->setTouch(NULL);
+    _arrow1->setVisible(false);
+    _arrow2->setVisible(false);
 }
 
 void GameLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* event) {

@@ -23,6 +23,7 @@ AppDelegate::AppDelegate()
 
 AppDelegate::~AppDelegate()
 {
+    SimpleAudioEngine::sharedEngine()->end();   
 }
 
 bool AppDelegate::applicationDidFinishLaunching()
@@ -52,8 +53,12 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCFileUtils::sharedFileUtils()->setSearchResolutionsOrder(searchPaths);
     
     // add sound
-    SimpleAudioEngine::sharedEngine()->preloadEffect("hit.wav");
-    SimpleAudioEngine::sharedEngine()->preloadEffect("score.wav");
+    SimpleAudioEngine::sharedEngine()->preloadEffect(HIT_SE);
+    SimpleAudioEngine::sharedEngine()->preloadEffect(SCORE_SE);
+    SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic(BGM);
+    
+    SimpleAudioEngine::sharedEngine()->setEffectsVolume(0.5);
+    SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(0.5);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60);

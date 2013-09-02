@@ -8,6 +8,18 @@ using namespace cocos2d;
 
 #define GOAL_WIDTH 400
 
+#define RED 1
+#define NORMAL_BOLD 10
+#define MAX_BOLD 20
+#define MAX_SCALE 20
+#define MAX_BALL_SPEED 15
+#define MIN_BALL_SPEED 5
+
+#define HIT_SE "sound/hit.wav"
+#define SCORE_SE "sound/score.wav"
+#define ATTACK_READY_SE "sound/attack_ready.wav"
+#define BGM "sound/background.mp3"
+
 enum {
     UP,
     DOWN,
