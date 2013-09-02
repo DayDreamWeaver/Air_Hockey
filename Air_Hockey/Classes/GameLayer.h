@@ -25,6 +25,10 @@ class GameLayer : public cocos2d::CCLayer
     GameSprite * _arrow2;
     bool _isShowLogo;
     
+    // player attack start position
+    CCPoint _attackPoint1;
+    CCPoint _attackPoint2;
+    
     CCArray * _players;
     CCLabelTTF * _player1ScoreLabel;
     CCLabelTTF * _player2ScoreLabel;

@@ -71,7 +71,6 @@ bool GameLayer::init()
     _court->setZOrder(-1);
     this->addChild(_court);
     
-    
     _player1 = GameSprite::gameSpriteWithFile("mallet.png");
     _originalPoint1 = ccp(_screenSize.width * 0.5, _originalPlayer1Y);
     _player1->setPosition(_originalPoint1);
@@ -82,6 +81,10 @@ bool GameLayer::init()
     _player2->setPosition(_originalPoint2);
     
     this->addChild(_player2);
+    
+    // init attack point
+    _attackPoint1 = _originalPoint1;
+    _attackPoint2 = _originalPoint2;
     
     _ball = GameSprite::gameSpriteWithFile("puck.png");
     _ball->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5 - 2 * _ball->radius()));
@@ -309,8 +312,8 @@ void GameLayer::update(float dt) {
         _ball->setPosition(_ball->getNextPosition());
         
         // transform arrow
-        this->transformArrow(_arrow1, _originalPoint1, _player1->getPosition());
-        this->transformArrow(_arrow2, _originalPoint2, _player2->getPosition());
+        this->transformArrow(_arrow1, _attackPoint1, _player1->getPosition());
+        this->transformArrow(_arrow2, _attackPoint2, _player2->getPosition());
     }
 }
 
@@ -331,6 +334,7 @@ int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end
     int result = -1;
     switch (playerIndex) {
         case 0:
+            // player 1
             if (end.y >= start.y) {
                 result = UP;
             } else {
@@ -338,10 +342,11 @@ int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end
             }
             break;
         case 1:
+            // player 2
             if (end.y >= start.y) {
-                result = UP;
-            } else {
                 result = DOWN;
+            } else {
+                result = UP;
             }
             break;
         default:
@@ -447,6 +452,8 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                             case UP:
                                 nextPosition.y = _originalPlayer1Y;
                                 _arrow1->setVisible(false);
+                                // update attack start position
+                                _attackPoint1 = player->getPosition();
                                 printf("UP\n");
                                 break;
                             case DOWN:
@@ -463,6 +470,8 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                             case UP:
                                 nextPosition.y = _originalPlayer2Y;
                                 _arrow2->setVisible(false);
+                                // update attack start position
+                                _attackPoint2 = player->getPosition();
                                 break;
                             case DOWN:
                                 _arrow2->setVisible(true);
@@ -499,17 +508,20 @@ void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
                 if (player->getTouch() != NULL && player->getTouch() == touch) {
                     player->setTouch(NULL);
                     // need to keep its vector, because need to perform spring effect
-                    //player->setVector(ccp(0, 0));
                     if (p == 0) {
                         // player 1
-                        //player->setPosition(_originalPoint1);
+                        player->setPosition(_attackPoint1);
                         // show spring effect
-                        //this->doSpringEffect(_player1, tap, _originalPoint1);
+                        if (_arrow1->isVisible()) {
+                            this->doSpringEffect(_player1, tap, _attackPoint1);
+                        }
                     } else {
                         // player 2
-                        //player->setPosition(_originalPoint2);
+                        player->setPosition(_attackPoint2);
                         // show spring effect
-                        //this->doSpringEffect(_player2, tap, _originalPoint2);
+                        if (_arrow2->isVisible()) {
+                            this->doSpringEffect(_player2, tap, _attackPoint2);
+                        }
                     }
                 }
             }
