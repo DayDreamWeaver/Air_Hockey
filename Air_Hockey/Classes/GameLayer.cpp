@@ -327,7 +327,7 @@ void GameLayer::doSpringEffect(GameSprite * sprite, cocos2d::CCPoint start, coco
 }
 
 int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end, int playerIndex) {
-    CCAssert(playerIndex == 0 or playerIndex == 1, "player index is fiexed as 0 or 2");
+    CCAssert(playerIndex == 0 or playerIndex == 1, "player index is fiexed as 0 or 1");
     int result = -1;
     switch (playerIndex) {
         case 0:
