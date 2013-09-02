@@ -415,13 +415,13 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                 if (player->getTouch() != NULL && player->getTouch() == touch) {
                     CCPoint nextPosition = tap;
                     switch (p) {
-                            // detect gesture for player 1
+                            // detect gesture for player 1, make y position a little lower than original position
                         case 0:
-                            direction = this->getGestureDicrection(_originalPoint1, tap, p);
+                            direction = this->getGestureDicrection(ccp(_originalPoint1.x, _originalPoint1.y - _ball->radius()), tap, p);
                             break;
                         case 1:
-                            // detect gesture for player 2
-                            direction = this->getGestureDicrection(_originalPoint2, tap, p);
+                            // detect gesture for player 2, make y position a little higher than original position
+                            direction = this->getGestureDicrection(ccp(_originalPoint2.x, _originalPoint2.y + _ball->radius()), tap, p);
                             break;
                     }
                     // if touch is out of court, push it back
