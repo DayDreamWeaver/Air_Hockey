@@ -25,6 +25,12 @@ enum {
     DOWN,
 };
 
+enum {
+    Foreground,
+    Middleground,
+    Background,
+};
+
 class GameLayer : public cocos2d::CCLayer
 {
     // player object
