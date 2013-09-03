@@ -112,6 +112,12 @@ bool GameLayer::init()
     _arrow2 = GameSprite::gameSpriteWithFile("arrow_2.png");
     this->addChild(_arrow2);
     
+    // partcal system
+    _jet = CCParticleSystemQuad::create("jet.plist");
+    _jet->setAngle(180);
+    _jet->stopSystem();
+    this->addChild(_jet, Background);
+    
     if (_isShowLogo) {
         _court->setVisible(!_isShowLogo);
         _player1->setVisible(!_isShowLogo);
@@ -288,6 +294,10 @@ void GameLayer::update(float dt) {
                 SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
             }
         }
+        
+        // update jet partical postion
+        _jet->resetSystem();
+        _jet->setPosition(ballNextPosition);
 
         // update vector and postio to ball
         _ball->setVector(ballVector);
