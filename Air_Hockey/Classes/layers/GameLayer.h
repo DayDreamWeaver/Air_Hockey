@@ -2,7 +2,7 @@
 #define __GAMELAYER_H__
 
 #include "cocos2d.h"
-#include "../sprites/GameSprite.h"
+#include "../sprites/BaseSprite.h"
 
 using namespace cocos2d;
 
@@ -34,13 +34,13 @@ enum {
 class GameLayer : public cocos2d::CCLayer
 {
     // player object
-    GameSprite * _player1;
-    GameSprite * _player2;
-    GameSprite * _ball;
-    GameSprite * _logo;
-    GameSprite * _court;
-    GameSprite * _arrow1;
-    GameSprite * _arrow2;
+    BaseSprite * _player1;
+    BaseSprite * _player2;
+    BaseSprite * _ball;
+    BaseSprite * _logo;
+    BaseSprite * _court;
+    BaseSprite * _arrow1;
+    BaseSprite * _arrow2;
     bool _isShowLogo;
     
     // player attack start position
@@ -71,13 +71,13 @@ class GameLayer : public cocos2d::CCLayer
     void drawLine(CCPoint start, CCPoint end, int color, int boldDegree);
     
     // transform arrow according to player position
-    void transformArrow(GameSprite * arrow, CCPoint start, CCPoint end);
+    void transformArrow(BaseSprite * arrow, CCPoint start, CCPoint end);
 
     // count middel CCPoint
     CCPoint getMiddlePoint(CCPoint start, CCPoint end);
     
     // spring effect
-    void doSpringEffect(GameSprite * sprite, CCPoint start, CCPoint end);
+    void doSpringEffect(BaseSprite * sprite, CCPoint start, CCPoint end);
     
     // get gesture direction
     int getGestureDicrection(CCPoint start, CCPoint end, int playerIndex);

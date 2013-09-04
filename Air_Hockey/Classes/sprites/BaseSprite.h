@@ -14,20 +14,20 @@
 
 using namespace cocos2d;
 
-class GameSprite : public CCSprite {
+class BaseSprite : public CCSprite {
 public:
     CC_SYNTHESIZE(CCPoint, _nextPositon, NextPosition);
     CC_SYNTHESIZE(CCPoint, _vector, Vector);
     CC_SYNTHESIZE(CCTouch *, _touch, Touch);
     
-    GameSprite(void);
-    ~GameSprite(void);
+    BaseSprite(void);
+    ~BaseSprite(void);
 
-    static GameSprite* gameSpriteWithFile(const char * pszFilename);
+    static BaseSprite* gameSpriteWithFile(const char *pszFilename);
     // when using sprite sheet, create with frame name
-    static GameSprite* gameSpriteWithFrameName(const char * pszFilename);
+    static BaseSprite* gameSpriteWithFrameName(const char *pszFilename);
 
-    virtual void setPosition(const CCPoint& pos);
+    virtual void setPosition(const CCPoint &pos);
     
     inline float getRadius() {
         return this->getTexture()->getContentSize().width * 0.5f;

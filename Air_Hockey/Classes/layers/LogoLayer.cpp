@@ -35,18 +35,18 @@ bool LogoLayer::init() {
     CCPoint screenCenter = ccp(screenSize.width * 0.5, screenSize.height * 0.5);
 
     // create logo sprite
-    _logo = GameSprite::gameSpriteWithFile("logo_top.jpg");
+    _logo = BaseSprite::gameSpriteWithFile("logo_top.jpg");
     _logo->setPosition(screenCenter);
     _logo->setZOrder(-1);
     this->addChild(_logo);
     
     // create progress bar outside part
-    GameSprite *barOutside = GameSprite::gameSpriteWithFile("bar_outside.png");
+    BaseSprite *barOutside = BaseSprite::gameSpriteWithFile("bar_outside.png");
     barOutside->setPosition(screenCenter);
     this->addChild(barOutside);
     
     // create progress bar inside part
-    _progressBar = CCProgressTimer::create(GameSprite::gameSpriteWithFile("bar_inside.png"));
+    _progressBar = CCProgressTimer::create(BaseSprite::gameSpriteWithFile("bar_inside.png"));
     // set initial status
     _progressBar->setPercentage(0.0f);
     // set bar to horizontal

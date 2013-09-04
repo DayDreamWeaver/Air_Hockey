@@ -6,18 +6,18 @@
 //
 //
 
-#include "GameSprite.h"
+#include "BaseSprite.h"
 
-GameSprite::GameSprite(void) {
+BaseSprite::BaseSprite(void) {
     _vector = ccp(0, 0);
 }
 
-GameSprite::~GameSprite(void) {
+BaseSprite::~BaseSprite(void) {
     
 }
 
-GameSprite * GameSprite::gameSpriteWithFile(const char * pszFilename) {
-    GameSprite * sprite = new GameSprite();
+BaseSprite* BaseSprite::gameSpriteWithFile(const char *pszFilename) {
+    BaseSprite *sprite = new BaseSprite();
     if (sprite && sprite->initWithFile(pszFilename)) {
         sprite->autorelease();
         return sprite;
@@ -26,8 +26,8 @@ GameSprite * GameSprite::gameSpriteWithFile(const char * pszFilename) {
     return NULL;
 }
 
-GameSprite * GameSprite::gameSpriteWithFrameName(const char *pszFilename) {
-    GameSprite * sprite = new GameSprite();
+BaseSprite* BaseSprite::gameSpriteWithFrameName(const char *pszFilename) {
+    BaseSprite *sprite = new BaseSprite();
     if (sprite && sprite->initWithSpriteFrameName(pszFilename)) {
         sprite->autorelease();
         return sprite;
@@ -36,7 +36,7 @@ GameSprite * GameSprite::gameSpriteWithFrameName(const char *pszFilename) {
     return NULL;
 }
 
-void GameSprite::setPosition(const cocos2d::CCPoint &pos) {
+void BaseSprite::setPosition(const cocos2d::CCPoint &pos) {
     CCSprite::setPosition(pos);
     if (!_nextPositon.equals(pos)) {
         _nextPositon = pos;

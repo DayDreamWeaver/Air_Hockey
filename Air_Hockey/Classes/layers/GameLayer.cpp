@@ -61,18 +61,18 @@ bool GameLayer::init()
     _originalPlayer1Y = _screenSize.height / 4;
     _originalPlayer2Y = _screenSize.height - _originalPlayer1Y;
     
-    _court = GameSprite::gameSpriteWithFile("court.png");
+    _court = BaseSprite::gameSpriteWithFile("court.png");
     _court->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5));
     // set Z value to -1, to set background to the bottom
     _court->setZOrder(-1);
     this->addChild(_court);
     
-    _player1 = GameSprite::gameSpriteWithFile("mallet.png");
+    _player1 = BaseSprite::gameSpriteWithFile("mallet.png");
     _originalPoint1 = ccp(_screenSize.width * 0.5, _originalPlayer1Y);
     _player1->setPosition(_originalPoint1);
     this->addChild(_player1);
     
-    _player2 = GameSprite::gameSpriteWithFile("mallet.png");
+    _player2 = BaseSprite::gameSpriteWithFile("mallet.png");
     _originalPoint2 = ccp(_screenSize.width * 0.5, _originalPlayer2Y);
     _player2->setPosition(_originalPoint2);
     
@@ -83,7 +83,7 @@ bool GameLayer::init()
     _attackPoint2 = _originalPoint2;
     
     // init ball
-    _ball = GameSprite::gameSpriteWithFile("puck.png");
+    _ball = BaseSprite::gameSpriteWithFile("puck.png");
     _ball->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5 - 2 * _ball->getRadius()));
     this->addChild(_ball);
     
@@ -103,14 +103,14 @@ bool GameLayer::init()
     this->addChild(_player2ScoreLabel);
     
     // logo
-    _logo = GameSprite::gameSpriteWithFile("logo.png");
+    _logo = BaseSprite::gameSpriteWithFile("logo.png");
     _logo->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5));
     this->addChild(_logo);
     
     // arrow
-    _arrow1 = GameSprite::gameSpriteWithFile("arrow_8.png");
+    _arrow1 = BaseSprite::gameSpriteWithFile("arrow_8.png");
     this->addChild(_arrow1);
-    _arrow2 = GameSprite::gameSpriteWithFile("arrow_2.png");
+    _arrow2 = BaseSprite::gameSpriteWithFile("arrow_2.png");
     this->addChild(_arrow2);
         
     // partcal system
@@ -134,7 +134,7 @@ bool GameLayer::init()
     
     // listen to touch
     this->setTouchEnabled(true);
-    this->schedule(schedule_selector(GameSprite::update));
+    this->schedule(schedule_selector(BaseSprite::update));
     
     return true;
 }
@@ -152,7 +152,7 @@ void GameLayer::draw() {
     
 }
 
-void GameLayer::transformArrow(GameSprite * arrow, CCPoint start, CCPoint end) {
+void GameLayer::transformArrow(BaseSprite * arrow, CCPoint start, CCPoint end) {
     // adjust scale
     if (arrow->isVisible()) {
         float distance = ccpDistance(start, end);
@@ -225,14 +225,14 @@ void GameLayer::update(float dt) {
         ballNextPosition.y += ballVector.y;
 
         // update player's position
-        GameSprite * player;
+        BaseSprite * player;
         CCPoint playerNextPosition;
         CCPoint playerVector;
 
         // simple collision detect
         float squared_radii = pow(_player1->getRadius() + _ball->getRadius(), 2);
         for (int p = 0; p < _players->count(); p++) {
-            player = (GameSprite *)_players->objectAtIndex(p);
+            player = (BaseSprite *)_players->objectAtIndex(p);
             playerNextPosition = player->getNextPosition();
             playerVector = player->getVector();
 
@@ -329,7 +329,7 @@ void GameLayer::update(float dt) {
     }
 }
 
-void GameLayer::doSpringEffect(GameSprite * sprite, cocos2d::CCPoint start, cocos2d::CCPoint end) {
+void GameLayer::doSpringEffect(BaseSprite * sprite, cocos2d::CCPoint start, cocos2d::CCPoint end) {
     float targetX = (end.x - start.x) * 2.5 + start.x;
     float targetY = (end.y - start.y) * 2.5 + start.y;
     
@@ -398,7 +398,7 @@ void GameLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* event) {
     CCSetIterator i;
     CCTouch* touch;
     CCPoint tap;
-    GameSprite* player;
+    BaseSprite* player;
     
     _isShowLogo = false;
     
@@ -407,7 +407,7 @@ void GameLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* event) {
         if (touch) {
             tap = touch->getLocation();
             for (int p = 0; p < 2; p++) {
-                player = (GameSprite *)_players->objectAtIndex(p);
+                player = (BaseSprite *)_players->objectAtIndex(p);
                 // if touch on player, set touch object onto player
                 if (player->boundingBox().containsPoint(tap)) {
                     player->setTouch(touch);
@@ -422,14 +422,14 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
     CCSetIterator i;
     CCTouch* touch;
     CCPoint tap;
-    GameSprite* player;
+    BaseSprite* player;
     int direction = -1;
     for (i = pTouches->begin(); i != pTouches->end(); i++) {
         touch = (CCTouch *)(*i);
         if (touch) {
             tap = touch->getLocation();
             for (int p = 0; p < _players->count(); p++) {
-                player = (GameSprite *)_players->objectAtIndex(p);
+                player = (BaseSprite *)_players->objectAtIndex(p);
                 // if player contains a touch
                 if (player->getTouch() != NULL && player->getTouch() == touch) {
                     CCPoint nextPosition = tap;
@@ -508,7 +508,7 @@ void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
     CCSetIterator i;
     CCTouch* touch;
     CCPoint tap;
-    GameSprite* player;
+    BaseSprite* player;
     
     printf("end");
     
@@ -517,7 +517,7 @@ void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
         if (touch) {
             tap = touch->getLocation();
             for (int p = 0; p < _players->count(); p++) {
-                player = (GameSprite *)_players->objectAtIndex(p);
+                player = (BaseSprite *)_players->objectAtIndex(p);
                 
                 if (player->getTouch() != NULL && player->getTouch() == touch) {
                     player->setTouch(NULL);
