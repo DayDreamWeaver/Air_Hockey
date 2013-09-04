@@ -28,6 +28,7 @@ public:
     static GameSprite* gameSpriteWithFrameName(const char * pszFilename);
 
     virtual void setPosition(const CCPoint& pos);
+    
     inline float getRadius() {
         return this->getTexture()->getContentSize().width * 0.5f;
     }

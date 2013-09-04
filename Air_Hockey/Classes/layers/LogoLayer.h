@@ -10,7 +10,7 @@
 #define __Air_Hockey__LogoLayer__
 
 #include "cocos2d.h"
-#include "GameSprite.h"
+#include "../sprites/GameSprite.h"
 
 using namespace cocos2d;
 
