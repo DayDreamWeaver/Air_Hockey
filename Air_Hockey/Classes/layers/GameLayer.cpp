@@ -1,5 +1,5 @@
 #include "GameLayer.h"
-#include "SimpleAudioEngine.h"
+#include "../utils/SoundManager.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -50,7 +50,7 @@ bool GameLayer::init()
     // 3. add your codes below...
     
     // player background
-    SimpleAudioEngine::sharedEngine()->playBackgroundMusic(BGM);
+    SoundManager::playBGM();
     
     // show logo at the begining of game
     _isShowLogo = true;
@@ -263,7 +263,7 @@ void GameLayer::update(float dt) {
                 ballNextPosition.x = playerNextPosition.x + (player->getRadius() + _ball->getRadius() + force) * cos(angle);
                 ballNextPosition.y = playerNextPosition.y + (player->getRadius() + _ball->getRadius() + force) * sin(angle);
 
-                SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
+                SoundManager::playSE(HIT_SE);
             }
         }
         
@@ -271,13 +271,13 @@ void GameLayer::update(float dt) {
         if (ballNextPosition.x < _ball->getRadius()) {
             ballNextPosition.x = _ball->getRadius();
             ballVector.x *= -0.8f;
-            SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
+            SoundManager::playSE(HIT_SE);
         }
 
         if (ballNextPosition.x > _screenSize.width - _ball->getRadius()) {
             ballNextPosition.x = _screenSize.width - _ball->getRadius();
             ballVector.x *= -0.8f;
-            SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
+            SoundManager::playSE(HIT_SE);
         }
 
         if (ballNextPosition.y > _screenSize.height - _ball->getRadius()) {
@@ -285,7 +285,7 @@ void GameLayer::update(float dt) {
                 _ball->getPosition().x > _screenSize.width * 0.5f + GOAL_WIDTH * 0.5f ) {
                 ballNextPosition.y = _screenSize.height - _ball->getRadius();
                 ballVector.y *= -0.8f;
-                SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
+                SoundManager::playSE(HIT_SE);
             }
         }
 
@@ -294,7 +294,7 @@ void GameLayer::update(float dt) {
                 _ball->getPosition().x > _screenSize.width * 0.5f + GOAL_WIDTH * 0.5f) {
                 ballNextPosition.y = _ball->getRadius();
                 ballVector.y *= -0.8f;
-                SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
+                SoundManager::playSE(HIT_SE);
             }
         }
         
@@ -368,7 +368,7 @@ int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end
 }
 
 void GameLayer::updatePlayerScore(int player) {
-    SimpleAudioEngine::sharedEngine()->playEffect(SCORE_SE);
+    SoundManager::playSE(SCORE_SE);
     _ball->setVector(ccp(0, 0));
     
     // get back to original position
