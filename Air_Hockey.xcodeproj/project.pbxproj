@@ -240,6 +240,7 @@
 		C8BD5CD117D758CD00ECAFB0 /* Ball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8BD5CCF17D758CC00ECAFB0 /* Ball.cpp */; };
 		C8BD5CD617D7592600ECAFB0 /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8BD5CD217D7592600ECAFB0 /* GameLayer.cpp */; };
 		C8BD5CD717D7592600ECAFB0 /* LogoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8BD5CD417D7592600ECAFB0 /* LogoLayer.cpp */; };
+		C8BD5CE917D76D2A00ECAFB0 /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8BD5CE717D76D2A00ECAFB0 /* SoundManager.cpp */; };
 		C8C0626117C961AC00958358 /* court.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625C17C961AC00958358 /* court.png */; };
 		C8C0626217C961AC00958358 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625D17C961AC00958358 /* logo.png */; };
 		C8C0626317C961AC00958358 /* mallet.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625E17C961AC00958358 /* mallet.png */; };
@@ -745,6 +746,8 @@
 		C8BD5CD317D7592600ECAFB0 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		C8BD5CD417D7592600ECAFB0 /* LogoLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LogoLayer.cpp; sourceTree = "<group>"; };
 		C8BD5CD517D7592600ECAFB0 /* LogoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoLayer.h; sourceTree = "<group>"; };
+		C8BD5CE717D76D2A00ECAFB0 /* SoundManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundManager.cpp; sourceTree = "<group>"; };
+		C8BD5CE817D76D2A00ECAFB0 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
 		C8C0625C17C961AC00958358 /* court.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = court.png; path = Resources/hd/court.png; sourceTree = "<group>"; };
 		C8C0625D17C961AC00958358 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Resources/hd/logo.png; sourceTree = "<group>"; };
 		C8C0625E17C961AC00958358 /* mallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mallet.png; path = Resources/hd/mallet.png; sourceTree = "<group>"; };
@@ -1797,6 +1800,8 @@
 		C8BD5CBF17D7553600ECAFB0 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				C8BD5CE717D76D2A00ECAFB0 /* SoundManager.cpp */,
+				C8BD5CE817D76D2A00ECAFB0 /* SoundManager.h */,
 			);
 			name = utils;
 			path = Classes/utils;
@@ -2144,6 +2149,7 @@
 				C8BD5CD117D758CD00ECAFB0 /* Ball.cpp in Sources */,
 				C8BD5CD617D7592600ECAFB0 /* GameLayer.cpp in Sources */,
 				C8BD5CD717D7592600ECAFB0 /* LogoLayer.cpp in Sources */,
+				C8BD5CE917D76D2A00ECAFB0 /* SoundManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
