@@ -82,8 +82,9 @@ bool GameLayer::init()
     _attackPoint1 = _originalPoint1;
     _attackPoint2 = _originalPoint2;
     
+    // init ball
     _ball = GameSprite::gameSpriteWithFile("puck.png");
-    _ball->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5 - 2 * _ball->radius()));
+    _ball->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5 - 2 * _ball->getRadius()));
     this->addChild(_ball);
     
     // keep player objects
@@ -111,10 +112,12 @@ bool GameLayer::init()
     this->addChild(_arrow1);
     _arrow2 = GameSprite::gameSpriteWithFile("arrow_2.png");
     this->addChild(_arrow2);
-    
+        
     // partcal system
-    _jet = CCParticleSystemQuad::create("jet.plist");
-    _jet->setAngle(180);
+    _jet = CCParticleSystemQuad::create("cool.plist");
+    _jet->setPosition(_ball->getPosition());
+    //_jet->setSourcePosition(ccp(-_ball->getRadius() * 1.0f, 0));
+    _jet->setAngle(270);
     _jet->stopSystem();
     this->addChild(_jet, Background);
     
@@ -227,7 +230,7 @@ void GameLayer::update(float dt) {
         CCPoint playerVector;
 
         // simple collision detect
-        float squared_radii = pow(_player1->radius() + _ball->radius(), 2);
+        float squared_radii = pow(_player1->getRadius() + _ball->getRadius(), 2);
         for (int p = 0; p < _players->count(); p++) {
             player = (GameSprite *)_players->objectAtIndex(p);
             playerNextPosition = player->getNextPosition();
@@ -257,58 +260,61 @@ void GameLayer::update(float dt) {
                 ballVector.x = force * cos(angle);
                 ballVector.y = force * sin(angle);
 
-                ballNextPosition.x = playerNextPosition.x + (player->radius() + _ball->radius() + force) * cos(angle);
-                ballNextPosition.y = playerNextPosition.y + (player->radius() + _ball->radius() + force) * sin(angle);
+                ballNextPosition.x = playerNextPosition.x + (player->getRadius() + _ball->getRadius() + force) * cos(angle);
+                ballNextPosition.y = playerNextPosition.y + (player->getRadius() + _ball->getRadius() + force) * sin(angle);
 
                 SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
             }
         }
         
         // if ball's postion is out of court edge, push back to court
-        if (ballNextPosition.x < _ball->radius()) {
-            ballNextPosition.x = _ball->radius();
+        if (ballNextPosition.x < _ball->getRadius()) {
+            ballNextPosition.x = _ball->getRadius();
             ballVector.x *= -0.8f;
             SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
         }
 
-        if (ballNextPosition.x > _screenSize.width - _ball->radius()) {
-            ballNextPosition.x = _screenSize.width - _ball->radius();
+        if (ballNextPosition.x > _screenSize.width - _ball->getRadius()) {
+            ballNextPosition.x = _screenSize.width - _ball->getRadius();
             ballVector.x *= -0.8f;
             SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
         }
 
-        if (ballNextPosition.y > _screenSize.height - _ball->radius()) {
+        if (ballNextPosition.y > _screenSize.height - _ball->getRadius()) {
             if (_ball->getPosition().x < _screenSize.width * 0.5f - GOAL_WIDTH * 0.5f || 
                 _ball->getPosition().x > _screenSize.width * 0.5f + GOAL_WIDTH * 0.5f ) {
-                ballNextPosition.y = _screenSize.height - _ball->radius();
+                ballNextPosition.y = _screenSize.height - _ball->getRadius();
                 ballVector.y *= -0.8f;
                 SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
             }
         }
 
-        if (ballNextPosition.y < _ball->radius()) {
+        if (ballNextPosition.y < _ball->getRadius()) {
             if (_ball->getPosition().x < _screenSize.width * 0.5f - GOAL_WIDTH * 0.5f ||
                 _ball->getPosition().x > _screenSize.width * 0.5f + GOAL_WIDTH * 0.5f) {
-                ballNextPosition.y = _ball->radius();
+                ballNextPosition.y = _ball->getRadius();
                 ballVector.y *= -0.8f;
                 SimpleAudioEngine::sharedEngine()->playEffect(HIT_SE);
             }
         }
         
-        // update jet partical postion
-        _jet->resetSystem();
-        _jet->setPosition(ballNextPosition);
+        // update jet partical position
+        if (!_jet->isActive()) {
+            _jet->resetSystem();
+        }
+        _jet->setPosition(_ball->getPosition());
+        _jet->setRotation(_ball->getRotation());
 
         // update vector and postio to ball
         _ball->setVector(ballVector);
         _ball->setNextPosition(ballNextPosition);
 
         // check for goals
-        if (ballNextPosition.y < _ball->radius() * 2) {
+        if (ballNextPosition.y < _ball->getRadius() * 2) {
             this->updatePlayerScore(2);
         }
 
-        if (ballNextPosition.y > _screenSize.height + _ball->radius() * 2) {
+        if (ballNextPosition.y > _screenSize.height + _ball->getRadius() * 2) {
             this->updatePlayerScore(1);
         }
 
@@ -371,12 +377,12 @@ void GameLayer::updatePlayerScore(int player) {
         _player1Score++;
         sprintf(score_buffer, "%i", _player1Score);
         _player1ScoreLabel->setString(score_buffer);
-        _ball->setNextPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5 + 2 * _ball->radius()));
+        _ball->setNextPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5 + 2 * _ball->getRadius()));
     } else {
         _player2Score++;
         sprintf(score_buffer, "%i", _player2Score);
         _player2ScoreLabel->setString(score_buffer);
-        _ball->setNextPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5 - 2 * _ball->radius()));
+        _ball->setNextPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5 - 2 * _ball->getRadius()));
     }
     
     // clear touch obj and set player to origin position
@@ -430,28 +436,28 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                     switch (p) {
                             // detect gesture for player 1, make y position a little lower than original position
                         case 0:
-                            direction = this->getGestureDicrection(ccp(_originalPoint1.x, _originalPoint1.y - _ball->radius()), tap, p);
+                            direction = this->getGestureDicrection(ccp(_originalPoint1.x, _originalPoint1.y - _ball->getRadius()), tap, p);
                             break;
                         case 1:
                             // detect gesture for player 2, make y position a little higher than original position
-                            direction = this->getGestureDicrection(ccp(_originalPoint2.x, _originalPoint2.y + _ball->radius()), tap, p);
+                            direction = this->getGestureDicrection(ccp(_originalPoint2.x, _originalPoint2.y + _ball->getRadius()), tap, p);
                             break;
                     }
                     // if touch is out of court, push it back
-                    if (nextPosition.x < player->radius()) {
-                        nextPosition.x = player->radius();
+                    if (nextPosition.x < player->getRadius()) {
+                        nextPosition.x = player->getRadius();
                     }
                     
-                    if (nextPosition.x > _screenSize.width - player->radius()) {
-                        nextPosition.x = _screenSize.width - player->radius();
+                    if (nextPosition.x > _screenSize.width - player->getRadius()) {
+                        nextPosition.x = _screenSize.width - player->getRadius();
                     }
                         
-                    if (nextPosition.y < player->radius()) {
-                        nextPosition.y = player->radius();
+                    if (nextPosition.y < player->getRadius()) {
+                        nextPosition.y = player->getRadius();
                     }
                         
-                    if (nextPosition.y > _screenSize.height - player->radius()) {
-                        nextPosition.y = _screenSize.height - player->radius();
+                    if (nextPosition.y > _screenSize.height - player->getRadius()) {
+                        nextPosition.y = _screenSize.height - player->getRadius();
                     }
                     
                     if (player->getPositionY() < _screenSize.height * 0.5f) {
