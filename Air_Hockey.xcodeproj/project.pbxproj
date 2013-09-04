@@ -227,17 +227,17 @@
 		C83E86F417C4F6200070B193 /* cocos2dx-ext_public.defines.txt in Resources */ = {isa = PBXBuildFile; fileRef = C83E86F317C4F6200070B193 /* cocos2dx-ext_public.defines.txt */; };
 		C83E86FA17C4F6200070B193 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E86F917C4F6200070B193 /* AppDelegate.cpp */; };
 		C83E86FD17C4F6210070B193 /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E86FC17C4F6210070B193 /* GameLayer.cpp */; };
-		C83E870917C503F80070B193 /* hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = C83E870717C503F80070B193 /* hit.wav */; };
-		C83E870A17C503F80070B193 /* score.wav in Resources */ = {isa = PBXBuildFile; fileRef = C83E870817C503F80070B193 /* score.wav */; };
 		C83E870D17C5072B0070B193 /* GameSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E870B17C5072B0070B193 /* GameSprite.cpp */; };
 		C88F2A2317C9A1550073CDDB /* arrow_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C88F2A2217C9A1550073CDDB /* arrow_1.png */; };
 		C88F2A2617CA531E0073CDDB /* LogoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88F2A2417CA531E0073CDDB /* LogoLayer.cpp */; };
 		C88F2A2C17CB51D90073CDDB /* logo_top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C88F2A2B17CB51D90073CDDB /* logo_top.jpg */; };
 		C8BD5CB317D3394F00ECAFB0 /* Code_Style in Resources */ = {isa = PBXBuildFile; fileRef = C8BD5CB217D3394F00ECAFB0 /* Code_Style */; };
-		C8BD5CB617D4635200ECAFB0 /* attack_ready.wav in Resources */ = {isa = PBXBuildFile; fileRef = C8BD5CB517D4635200ECAFB0 /* attack_ready.wav */; };
-		C8BD5CB817D46F6400ECAFB0 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8BD5CB717D46F6400ECAFB0 /* background.mp3 */; };
 		C8BD5CBB17D6AD6600ECAFB0 /* jet.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8BD5CBA17D6AD6600ECAFB0 /* jet.plist */; };
 		C8BD5CBD17D70BD000ECAFB0 /* cool.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8BD5CBC17D70BD000ECAFB0 /* cool.plist */; };
+		C8BD5CC417D7557900ECAFB0 /* attack_ready.wav in Resources */ = {isa = PBXBuildFile; fileRef = C8BD5CC017D7557900ECAFB0 /* attack_ready.wav */; };
+		C8BD5CC517D7557900ECAFB0 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8BD5CC117D7557900ECAFB0 /* background.mp3 */; };
+		C8BD5CC617D7557900ECAFB0 /* hit.wav in Resources */ = {isa = PBXBuildFile; fileRef = C8BD5CC217D7557900ECAFB0 /* hit.wav */; };
+		C8BD5CC717D7557900ECAFB0 /* score.wav in Resources */ = {isa = PBXBuildFile; fileRef = C8BD5CC317D7557900ECAFB0 /* score.wav */; };
 		C8C0626117C961AC00958358 /* court.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625C17C961AC00958358 /* court.png */; };
 		C8C0626217C961AC00958358 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625D17C961AC00958358 /* logo.png */; };
 		C8C0626317C961AC00958358 /* mallet.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625E17C961AC00958358 /* mallet.png */; };
@@ -726,8 +726,6 @@
 		C83E86F917C4F6200070B193 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		C83E86FB17C4F6200070B193 /* GameLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = Classes/GameLayer.h; sourceTree = "<group>"; };
 		C83E86FC17C4F6210070B193 /* GameLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GameLayer.cpp; path = Classes/GameLayer.cpp; sourceTree = "<group>"; };
-		C83E870717C503F80070B193 /* hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hit.wav; sourceTree = "<group>"; };
-		C83E870817C503F80070B193 /* score.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = score.wav; sourceTree = "<group>"; };
 		C83E870B17C5072B0070B193 /* GameSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameSprite.cpp; path = Classes/GameSprite.cpp; sourceTree = "<group>"; };
 		C83E870C17C5072B0070B193 /* GameSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameSprite.h; path = Classes/GameSprite.h; sourceTree = "<group>"; };
 		C88F2A2217C9A1550073CDDB /* arrow_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_1.png; path = Resources/sd/arrow_1.png; sourceTree = "<group>"; };
@@ -735,10 +733,12 @@
 		C88F2A2517CA531E0073CDDB /* LogoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogoLayer.h; path = Classes/LogoLayer.h; sourceTree = "<group>"; };
 		C88F2A2B17CB51D90073CDDB /* logo_top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = logo_top.jpg; path = Resources/sd/logo_top.jpg; sourceTree = "<group>"; };
 		C8BD5CB217D3394F00ECAFB0 /* Code_Style */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Code_Style; path = Document/Code_Style; sourceTree = "<group>"; };
-		C8BD5CB517D4635200ECAFB0 /* attack_ready.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = attack_ready.wav; sourceTree = "<group>"; };
-		C8BD5CB717D46F6400ECAFB0 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
 		C8BD5CBA17D6AD6600ECAFB0 /* jet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = jet.plist; path = Resources/sd/jet.plist; sourceTree = "<group>"; };
 		C8BD5CBC17D70BD000ECAFB0 /* cool.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = cool.plist; path = Resources/sd/cool.plist; sourceTree = "<group>"; };
+		C8BD5CC017D7557900ECAFB0 /* attack_ready.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = attack_ready.wav; path = Resources/attack_ready.wav; sourceTree = "<group>"; };
+		C8BD5CC117D7557900ECAFB0 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = background.mp3; path = Resources/background.mp3; sourceTree = "<group>"; };
+		C8BD5CC217D7557900ECAFB0 /* hit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = hit.wav; path = Resources/hit.wav; sourceTree = "<group>"; };
+		C8BD5CC317D7557900ECAFB0 /* score.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = score.wav; path = Resources/score.wav; sourceTree = "<group>"; };
 		C8C0625C17C961AC00958358 /* court.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = court.png; path = Resources/hd/court.png; sourceTree = "<group>"; };
 		C8C0625D17C961AC00958358 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Resources/hd/logo.png; sourceTree = "<group>"; };
 		C8C0625E17C961AC00958358 /* mallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mallet.png; path = Resources/hd/mallet.png; sourceTree = "<group>"; };
@@ -821,7 +821,10 @@
 		C83E842A17C4F61C0070B193 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C8BD5CB417D462CB00ECAFB0 /* sound */,
+				C8BD5CC017D7557900ECAFB0 /* attack_ready.wav */,
+				C8BD5CC117D7557900ECAFB0 /* background.mp3 */,
+				C8BD5CC217D7557900ECAFB0 /* hit.wav */,
+				C8BD5CC317D7557900ECAFB0 /* score.wav */,
 				C8C0625B17C9619200958358 /* hd */,
 				C8C0626617C961F400958358 /* sd */,
 				C83E842B17C4F61C0070B193 /* CloseNormal.png */,
@@ -1754,6 +1757,8 @@
 		C83E86F717C4F6200070B193 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C8BD5CBE17D7553600ECAFB0 /* sprites */,
+				C8BD5CBF17D7553600ECAFB0 /* utils */,
 				C83E86F817C4F6200070B193 /* AppDelegate.h */,
 				C83E86F917C4F6200070B193 /* AppDelegate.cpp */,
 				C83E86FB17C4F6200070B193 /* GameLayer.h */,
@@ -1774,16 +1779,20 @@
 			name = Document;
 			sourceTree = "<group>";
 		};
-		C8BD5CB417D462CB00ECAFB0 /* sound */ = {
+		C8BD5CBE17D7553600ECAFB0 /* sprites */ = {
 			isa = PBXGroup;
 			children = (
-				C8BD5CB717D46F6400ECAFB0 /* background.mp3 */,
-				C8BD5CB517D4635200ECAFB0 /* attack_ready.wav */,
-				C83E870717C503F80070B193 /* hit.wav */,
-				C83E870817C503F80070B193 /* score.wav */,
 			);
-			name = sound;
-			path = Resources/sound;
+			name = sprites;
+			path = Classes/sprites;
+			sourceTree = "<group>";
+		};
+		C8BD5CBF17D7553600ECAFB0 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = utils;
+			path = Classes/utils;
 			sourceTree = "<group>";
 		};
 		C8C0625B17C9619200958358 /* hd */ = {
@@ -1887,8 +1896,6 @@
 				C83E864617C4F61F0070B193 /* project.pbxproj in Resources */,
 				C83E86F217C4F6200070B193 /* cocos2dx-ext.mkf in Resources */,
 				C83E86F417C4F6200070B193 /* cocos2dx-ext_public.defines.txt in Resources */,
-				C83E870917C503F80070B193 /* hit.wav in Resources */,
-				C83E870A17C503F80070B193 /* score.wav in Resources */,
 				C8C0626117C961AC00958358 /* court.png in Resources */,
 				C8C0626217C961AC00958358 /* logo.png in Resources */,
 				C8C0626317C961AC00958358 /* mallet.png in Resources */,
@@ -1910,10 +1917,12 @@
 				84700E1B17D34D0E00D14B5C /* arrow_6.png in Resources */,
 				84700E1C17D34D0E00D14B5C /* arrow_7.png in Resources */,
 				84700E1D17D34D0E00D14B5C /* arrow_8.png in Resources */,
-				C8BD5CB617D4635200ECAFB0 /* attack_ready.wav in Resources */,
-				C8BD5CB817D46F6400ECAFB0 /* background.mp3 in Resources */,
 				C8BD5CBB17D6AD6600ECAFB0 /* jet.plist in Resources */,
 				C8BD5CBD17D70BD000ECAFB0 /* cool.plist in Resources */,
+				C8BD5CC417D7557900ECAFB0 /* attack_ready.wav in Resources */,
+				C8BD5CC517D7557900ECAFB0 /* background.mp3 in Resources */,
+				C8BD5CC617D7557900ECAFB0 /* hit.wav in Resources */,
+				C8BD5CC717D7557900ECAFB0 /* score.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,10 +15,10 @@ using namespace cocos2d;
 #define MAX_BALL_SPEED 15
 #define MIN_BALL_SPEED 5
 
-#define HIT_SE "sound/hit.wav"
-#define SCORE_SE "sound/score.wav"
-#define ATTACK_READY_SE "sound/attack_ready.wav"
-#define BGM "sound/background.mp3"
+#define HIT_SE "hit.wav"
+#define SCORE_SE "score.wav"
+#define ATTACK_READY_SE "attack_ready.wav"
+#define BGM "background.mp3"
 
 enum {
     UP,
