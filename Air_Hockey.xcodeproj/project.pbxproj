@@ -242,7 +242,7 @@
 		C8BD5CD717D7592600ECAFB0 /* LogoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8BD5CD417D7592600ECAFB0 /* LogoLayer.cpp */; };
 		C8BD5CE917D76D2A00ECAFB0 /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8BD5CE717D76D2A00ECAFB0 /* SoundManager.cpp */; };
 		C8BD5CEC17D76E3800ECAFB0 /* MainLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8BD5CEA17D76E3800ECAFB0 /* MainLayer.cpp */; };
-		C8BD5CEF17D76E6000ECAFB0 /* AbstractLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8BD5CED17D76E6000ECAFB0 /* AbstractLayer.cpp */; };
+		C8BD5CF517D7745D00ECAFB0 /* BaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8BD5CF317D7745C00ECAFB0 /* BaseLayer.cpp */; };
 		C8C0626117C961AC00958358 /* court.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625C17C961AC00958358 /* court.png */; };
 		C8C0626217C961AC00958358 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625D17C961AC00958358 /* logo.png */; };
 		C8C0626317C961AC00958358 /* mallet.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625E17C961AC00958358 /* mallet.png */; };
@@ -752,8 +752,8 @@
 		C8BD5CE817D76D2A00ECAFB0 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
 		C8BD5CEA17D76E3800ECAFB0 /* MainLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainLayer.cpp; sourceTree = "<group>"; };
 		C8BD5CEB17D76E3800ECAFB0 /* MainLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainLayer.h; sourceTree = "<group>"; };
-		C8BD5CED17D76E6000ECAFB0 /* AbstractLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractLayer.cpp; sourceTree = "<group>"; };
-		C8BD5CEE17D76E6000ECAFB0 /* AbstractLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractLayer.h; sourceTree = "<group>"; };
+		C8BD5CF317D7745C00ECAFB0 /* BaseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseLayer.cpp; sourceTree = "<group>"; };
+		C8BD5CF417D7745C00ECAFB0 /* BaseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLayer.h; sourceTree = "<group>"; };
 		C8C0625C17C961AC00958358 /* court.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = court.png; path = Resources/hd/court.png; sourceTree = "<group>"; };
 		C8C0625D17C961AC00958358 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Resources/hd/logo.png; sourceTree = "<group>"; };
 		C8C0625E17C961AC00958358 /* mallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mallet.png; path = Resources/hd/mallet.png; sourceTree = "<group>"; };
@@ -1822,8 +1822,8 @@
 				C8BD5CD517D7592600ECAFB0 /* LogoLayer.h */,
 				C8BD5CEA17D76E3800ECAFB0 /* MainLayer.cpp */,
 				C8BD5CEB17D76E3800ECAFB0 /* MainLayer.h */,
-				C8BD5CED17D76E6000ECAFB0 /* AbstractLayer.cpp */,
-				C8BD5CEE17D76E6000ECAFB0 /* AbstractLayer.h */,
+				C8BD5CF317D7745C00ECAFB0 /* BaseLayer.cpp */,
+				C8BD5CF417D7745C00ECAFB0 /* BaseLayer.h */,
 			);
 			name = layers;
 			path = Classes/layers;
@@ -2161,7 +2161,7 @@
 				C8BD5CD717D7592600ECAFB0 /* LogoLayer.cpp in Sources */,
 				C8BD5CE917D76D2A00ECAFB0 /* SoundManager.cpp in Sources */,
 				C8BD5CEC17D76E3800ECAFB0 /* MainLayer.cpp in Sources */,
-				C8BD5CEF17D76E6000ECAFB0 /* AbstractLayer.cpp in Sources */,
+				C8BD5CF517D7745D00ECAFB0 /* BaseLayer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
