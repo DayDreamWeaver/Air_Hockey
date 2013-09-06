@@ -9,6 +9,8 @@
 #ifndef __Air_Hockey__Ball__
 #define __Air_Hockey__Ball__
 
-#include <iostream>
+#include "cocos2d.h"
+
+
 
 #endif /* defined(__Air_Hockey__Ball__) */

@@ -10,7 +10,6 @@
 #define __Air_Hockey__GameSprite__
 
 #include "cocos2d.h"
-#include <iostream>
 
 using namespace cocos2d;
 
@@ -23,15 +22,19 @@ public:
     BaseSprite(void);
     ~BaseSprite(void);
 
+    // directly create sprite with file
     static BaseSprite* gameSpriteWithFile(const char *pszFilename);
     // when using sprite sheet, create with frame name
     static BaseSprite* gameSpriteWithFrameName(const char *pszFilename);
-
+    // override setPosition function
+    // to update _nextPostion when to set position
     virtual void setPosition(const CCPoint &pos);
-    
+    // get radius of sprite
     inline float getRadius() {
         return this->getTexture()->getContentSize().width * 0.5f;
     }
+    // make basic move constraints
+    void collsionWithSides(const CCSize &winSize);
 };
 
 #endif /* defined(__Air_Hockey__GameSprite__) */
