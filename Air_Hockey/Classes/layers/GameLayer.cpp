@@ -82,6 +82,9 @@ bool GameLayer::init()
     _attackPoint1 = _originalPoint1;
     _attackPoint2 = _originalPoint2;
     
+    // init attack degree range
+    _attackRangeDegree = 10;
+    
     // init ball
     _ball = BaseSprite::gameSpriteWithFile("puck.png");
     _ball->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5 - 2 * _ball->getRadius()));
@@ -142,12 +145,15 @@ bool GameLayer::init()
 void GameLayer::draw() {
     //test to draw line of player's fixed track
     if (!_isShowLogo) {
-        // become bolder when distance become larger, and start NORMAL_BOLD to MAX_BOLD
+        
         int blod_value_1 = 0.5 * MAX_BOLD;
         int blod_value_2 = 0.5 * MAX_BOLD;
         
         drawLine(ccp(0, _originalPlayer1Y), ccp(_screenSize.width, _originalPlayer1Y), RED, blod_value_1);
         drawLine(ccp(0, _originalPlayer2Y), ccp(_screenSize.width, _originalPlayer2Y), RED, blod_value_2);
+        
+        drawAngleCheckLine();
+        
     }
     
 }
@@ -190,15 +196,26 @@ void GameLayer::drawLine(CCPoint start, CCPoint end, int color, int bold) {
     }
     
     // set bold value of line
-    if (bold < NORMAL_BOLD) {
-        bold = NORMAL_BOLD;
-    }
+
     glLineWidth(bold);
 
     // draw line
     ccDrawLine(start, end);
 }
-
+void GameLayer::drawAngleCheckLine() {
+    CCPoint startAttackPoint1 = ccp(_attackPoint1.x, _attackPoint1.y);
+    CCPoint startAttackPoint2 = ccp(_attackPoint2.x, _attackPoint2.y);
+    CCPoint leftAttackRangeVector1 = ccpForAngle(CC_DEGREES_TO_RADIANS(-_attackRangeDegree));
+    CCPoint rightAttackRangeVector1 = ccpForAngle(CC_DEGREES_TO_RADIANS(_attackRangeDegree - 180));
+    float leftEnd1X = _screenSize.width;
+    float leftEnd1Y = startAttackPoint1.y + (_screenSize.width - startAttackPoint1.x) * leftAttackRangeVector1.y / leftAttackRangeVector1.x;
+    float rightEnd1X = 0;
+    float rightEnd1Y = startAttackPoint1.y - (startAttackPoint1.x - 0) * rightAttackRangeVector1.y / rightAttackRangeVector1.x;
+    CCPoint leftEnd1 = ccp(leftEnd1X, leftEnd1Y);
+    CCPoint rightEnd2 = ccp(rightEnd1X,rightEnd1Y);
+    drawLine(startAttackPoint1, leftEnd1, RED, 2);
+    drawLine(startAttackPoint1, rightEnd2, RED, 2);
+}
 void GameLayer::update(float dt) {
     if (!_isShowLogo) {
         // should be visible
@@ -347,7 +364,7 @@ int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end
                 result = UP;
             } else {
                 //check the attack angle is greater than 10 degree.
-                if (getAcuteAngleOfAttack(start, end) < 10) {
+                if (getAcuteAngleOfAttack(start, end) < _attackRangeDegree) {
                     result = UP;
                 } else {
                     result = DOWN;
@@ -361,7 +378,7 @@ int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end
                 result = DOWN;
             } else {
                 //check the attack angle is greater than 10 degree.
-                if (getAcuteAngleOfAttack(start, end) < 10) {
+                if (getAcuteAngleOfAttack(start, end) < _attackRangeDegree) {
                     result = DOWN;
                 } else {
                     result = UP;

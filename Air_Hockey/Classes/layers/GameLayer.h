@@ -9,6 +9,8 @@ using namespace cocos2d;
 #define GOAL_WIDTH 400
 
 #define RED 1
+#define GREEN 2
+#define BLUE 3
 #define NORMAL_BOLD 10
 #define MAX_BOLD 20
 #define MAX_SCALE 20
@@ -58,6 +60,7 @@ class GameLayer : public cocos2d::CCLayer
     int _originalPlayer1Y;
     int _originalPlayer2Y;
     
+    int _attackRangeDegree;
     // partical system
     CCParticleSystem * _jet;
     
@@ -65,7 +68,7 @@ class GameLayer : public cocos2d::CCLayer
     
     // draw line between touch point and origin point
     void drawLine(CCPoint start, CCPoint end, int color, int boldDegree);
-    
+        
     // transform arrow according to player position
     void transformArrow(BaseSprite * arrow, CCPoint start, CCPoint end);
     
@@ -76,7 +79,8 @@ class GameLayer : public cocos2d::CCLayer
     int getGestureDicrection(CCPoint start, CCPoint end, int playerIndex);
     // get acute angle of attack direction
     double getAcuteAngleOfAttack(CCPoint attack, CCPoint tap);
-
+    // draw two lines show the attack angle range
+    void drawAngleCheckLine();
 public:
 
     ~GameLayer();
