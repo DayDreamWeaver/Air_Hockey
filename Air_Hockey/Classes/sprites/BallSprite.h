@@ -9,6 +9,21 @@
 #ifndef __Air_Hockey__BallSprite__
 #define __Air_Hockey__BallSprite__
 
-#include <iostream>
+#include "BaseSprite.h"
+
+#define WEAK_RATIO 0.99f
+#define REBOUND_RATIO -0.8f
+#define MAX_BALL_SPEED 15
+#define MIN_BALL_SPEED 5
+
+
+class BallSprite : public BaseSprite {
+public:
+    BallSprite();
+    ~BallSprite();
+    CC_SYNTHESIZE(CCRect, _winRect, WinRect);
+    void collisionWithPlayer(BaseSprite* player);
+    void update(float dt);
+};
 
 #endif /* defined(__Air_Hockey__BallSprite__) */

@@ -35,7 +35,7 @@ public:
     }
     // let sprite to control status of itself
     virtual void update(float dt);
-    // check basic move constraints
+    // check basic move constraints in rect
     virtual bool isCollsionWithSides(const CCRect &winRect);
 };
 

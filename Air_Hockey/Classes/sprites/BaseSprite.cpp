@@ -62,32 +62,31 @@ bool BaseSprite::isCollsionWithSides(const CCRect &winRect) {
      */
     bool isCollsion = false;
     float radius = this->getRadius();
-    CCPoint current_postion = this->getPosition();
+    CCPoint nextPosition = this->getNextPosition();
     CCPoint rectStartPoint = winRect.origin;
     CCSize rectSize = winRect.size;
 
     // if x is out of rect
-    if (current_postion.x < radius) {
-        this->setPositionX(radius);
+    if (nextPosition.x < radius) {
+        nextPosition.x = radius;
         isCollsion = true;
     }
-
-    if (current_postion.x > rectSize.width - radius) {
-        this->setPositionX(rectSize.width - radius);
+    
+    if (nextPosition.x > rectSize.width - radius) {
+        nextPosition.x = rectSize.width - radius;
         isCollsion = true;
     }
-
+    
     // if y is out of rect
-    if (current_postion.y < radius) {
-        this->setPositionY(radius);
+    if (nextPosition.y < radius) {
+        nextPosition.y = radius;
         isCollsion = true;
     }
 
-    if (current_postion.y > rectStartPoint.y + rectSize.height - radius) {
-        this->setPositionY(rectStartPoint.y + rectSize.height - radius);
+    if (nextPosition.y > rectStartPoint.y + rectSize.height - radius) {
+        nextPosition.y = rectStartPoint.y + rectSize.height - radius;
         isCollsion = true;
     }
 
     return isCollsion;
 }
-

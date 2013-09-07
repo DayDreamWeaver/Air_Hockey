@@ -1,5 +1,6 @@
 #include "GameLayer.h"
 #include "../utils/SoundManager.h"
+#include "../sprites/PlayerSprite.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -246,13 +247,12 @@ void GameLayer::update(float dt) {
                 float force = sqrt(mag_ball + mag_player);
                 float angle = atan2(diffy, diffx);
                 
-                // control ball speed
+                // control ball speedp
                 if (force >= MAX_BALL_SPEED) {
                     force = MAX_BALL_SPEED;
                 } else if (force <= MIN_BALL_SPEED) {
                     force = MIN_BALL_SPEED;
                 }
-
                 ballVector.x = force * cos(angle);
                 ballVector.y = force * sin(angle);
 
