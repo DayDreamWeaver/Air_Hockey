@@ -43,7 +43,13 @@ void BaseSprite::setPosition(const cocos2d::CCPoint &pos) {
     }
 }
 
-bool BaseSprite::isCollsionWithSides(const CCSize &winSize) {
+void BaseSprite::update(float dt) {
+    /*
+     Let sprite to control its status, like postion, rotation, vector, self
+     */
+}
+
+bool BaseSprite::isCollsionWithSides(const CCRect &winRect) {
     /*
      Make sure sprite is in the window, when positon of sprite
      is out of winSize, get it back to winSize
@@ -54,6 +60,34 @@ bool BaseSprite::isCollsionWithSides(const CCSize &winSize) {
      Return:
        bool
      */
-    
+    bool isCollsion = false;
+    float radius = this->getRadius();
+    CCPoint current_postion = this->getPosition();
+    CCPoint rectStartPoint = winRect.origin;
+    CCSize rectSize = winRect.size;
+
+    // if x is out of rect
+    if (current_postion.x < radius) {
+        this->setPositionX(radius);
+        isCollsion = true;
+    }
+
+    if (current_postion.x > rectSize.width - radius) {
+        this->setPositionX(rectSize.width - radius);
+        isCollsion = true;
+    }
+
+    // if y is out of rect
+    if (current_postion.y < radius) {
+        this->setPositionY(radius);
+        isCollsion = true;
+    }
+
+    if (current_postion.y > rectStartPoint.y + rectSize.height - radius) {
+        this->setPositionY(rectStartPoint.y + rectSize.height - radius);
+        isCollsion = true;
+    }
+
+    return isCollsion;
 }
 

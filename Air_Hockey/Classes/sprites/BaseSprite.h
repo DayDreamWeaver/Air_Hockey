@@ -33,8 +33,10 @@ public:
     inline float getRadius() {
         return this->getTexture()->getContentSize().width * 0.5f;
     }
-    // make basic move constraints
-    virtual bool isCollsionWithSides(const CCSize &winSize);
+    // let sprite to control status of itself
+    virtual void update(float dt);
+    // check basic move constraints
+    virtual bool isCollsionWithSides(const CCRect &winRect);
 };
 
 #endif /* defined(__Air_Hockey__GameSprite__) */
