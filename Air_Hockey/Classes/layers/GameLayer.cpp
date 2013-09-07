@@ -346,12 +346,13 @@ int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end
             if (end.y >= start.y) {
                 result = UP;
             } else {
-                //check the attack angle is greater than 30 degree.
-                if (getOpposite2HypotenusRatioSquare(start, end) < 0.25) {
+                //check the attack angle is greater than 10 degree.
+                if (getAcuteAngleOfAttack(start, end) < 10) {
                     result = UP;
                 } else {
                     result = DOWN;
                 }
+                printf("acute angle:%lf",getAcuteAngleOfAttack(start, end));
             }
             break;
         case 1:
@@ -359,8 +360,8 @@ int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end
             if (end.y >= start.y) {
                 result = DOWN;
             } else {
-                //check the attack angle is greater than 30 degree.
-                if (getOpposite2HypotenusRatioSquare(start, end) < 0.25) {
+                //check the attack angle is greater than 10 degree.
+                if (getAcuteAngleOfAttack(start, end) < 10) {
                     result = DOWN;
                 } else {
                     result = UP;
@@ -372,13 +373,15 @@ int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end
     }
     return result;
 }
-// assume that the touch point and Line make a right-angle triangle
-double GameLayer::getOpposite2HypotenusRatioSquare(cocos2d::CCPoint attack, cocos2d::CCPoint tap){
-    int disHypoSquare = (attack.y - tap.y) * (attack.y - tap.y) + (attack.x - tap.x) * (attack.x - tap.x);
-    int disOppoSquare = (attack.y - tap.y) * (attack.y - tap.y);
-    return 1.0 * disOppoSquare / disHypoSquare;
-}
 
+double GameLayer::getAcuteAngleOfAttack(cocos2d::CCPoint attack, cocos2d::CCPoint tap) {
+    CCPoint leftHorizon = ccp(-1,0);
+    CCPoint rightHorizon = ccp(1,0);
+    CCPoint attackDirection = ccpSub(attack, tap);
+    double angle1 = CC_RADIANS_TO_DEGREES(ccpAngle(leftHorizon,attackDirection));
+    double angle2 = CC_RADIANS_TO_DEGREES(ccpAngle(rightHorizon,attackDirection));
+    return angle1 < angle2 ? angle1 : angle2;
+}
 void GameLayer::updatePlayerScore(int player) {
     SoundManager::playSE(SCORE_SE);
     _ball->setVector(ccp(0, 0));
