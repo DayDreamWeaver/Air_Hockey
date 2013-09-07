@@ -9,7 +9,6 @@
 #include "AppDelegate.h"
 
 #include "cocos2d.h"
-#include "SimpleAudioEngine.h"
 #include "layers/GameLayer.h"
 #include "layers/LogoLayer.h"
 #include "utils/SoundManager.h"
@@ -24,7 +23,7 @@ AppDelegate::AppDelegate()
 
 AppDelegate::~AppDelegate()
 {
-    SimpleAudioEngine::sharedEngine()->end();   
+    SoundManager::releaseSound();
 }
 
 bool AppDelegate::applicationDidFinishLaunching()
@@ -75,14 +74,12 @@ bool AppDelegate::applicationDidFinishLaunching()
 void AppDelegate::applicationDidEnterBackground()
 {
     CCDirector::sharedDirector()->stopAnimation();
-    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
-    SimpleAudioEngine::sharedEngine()->pauseAllEffects();
+    SoundManager::pauseSound();
 }
 
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground()
 {
     CCDirector::sharedDirector()->startAnimation();
-    SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
-    SimpleAudioEngine::sharedEngine()->resumeAllEffects();
+    SoundManager::resumeSound();
 }

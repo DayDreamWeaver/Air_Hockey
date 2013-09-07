@@ -34,7 +34,7 @@ public:
         return this->getTexture()->getContentSize().width * 0.5f;
     }
     // make basic move constraints
-    void collsionWithSides(const CCSize &winSize);
+    virtual bool isCollsionWithSides(const CCSize &winSize);
 };
 
 #endif /* defined(__Air_Hockey__GameSprite__) */

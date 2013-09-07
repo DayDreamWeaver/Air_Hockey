@@ -60,7 +60,7 @@ void SoundManager::playSE(int SETag) {
     }
 }
 
-void SoundManager::preloadRes() {
+void SoundManager::preloadSound() {
     /*
      Preload all the sound resources
      
@@ -74,7 +74,7 @@ void SoundManager::preloadRes() {
     SimpleAudioEngine::sharedEngine()->preloadEffect(BGM_PATH);
 }
 
-void SoundManager::releaseRes() {
+void SoundManager::releaseSound() {
     /*
      Release all sound resources
      
@@ -133,7 +133,23 @@ void SoundManager::initSoundEnvironment() {
        void
      */
     
-    SoundManager::preloadRes();
+    SoundManager::preloadSound();
     SoundManager::setBGMVolumn(DEFAULT_BGM_VOLUMN);
     SoundManager::setSEVolumn(DEFAULT_SE_VOLUMN);
+}
+
+void SoundManager::resumeSound() {
+    /*
+     Resume sound play
+     */
+    SimpleAudioEngine::sharedEngine()->resumeAllEffects();
+    SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+}
+
+void SoundManager::pauseSound() {
+    /*
+     Pause sound play
+     */
+    SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+    SimpleAudioEngine::sharedEngine()->pauseAllEffects();
 }

@@ -39,9 +39,9 @@ public:
     // play sound effect
     static void playSE(int SETag);
     // preload all sound resources
-    static void preloadRes();
+    static void preloadSound();
     // release all sound resources
-    static void releaseRes();
+    static void releaseSound();
     // get simple audio engine object
     static SimpleAudioEngine* getSimpleAudioEngin();
     // set bgm volumn
@@ -50,6 +50,10 @@ public:
     static void setSEVolumn(float volumn);
     // init sound environment
     static void initSoundEnvironment();
+    // resume sound play
+    static void resumeSound();
+    // pause sound play
+    static void pauseSound();
 };
 
 #endif /* defined(__Air_Hockey__SoundManager__) */

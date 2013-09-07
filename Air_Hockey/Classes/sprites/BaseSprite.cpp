@@ -43,15 +43,17 @@ void BaseSprite::setPosition(const cocos2d::CCPoint &pos) {
     }
 }
 
-void BaseSprite::collsionWithSides(const CCSize &winSize) {
+bool BaseSprite::isCollsionWithSides(const CCSize &winSize) {
     /*
-     Make sure sprite is in the window
+     Make sure sprite is in the window, when positon of sprite
+     is out of winSize, get it back to winSize
      
      Args:
        winSize: CCSize, available move space
      
      Return:
-       void
+       bool
      */
+    
 }
 

@@ -67,9 +67,6 @@ class GameLayer : public cocos2d::CCLayer
     
     // transform arrow according to player position
     void transformArrow(BaseSprite * arrow, CCPoint start, CCPoint end);
-
-    // count middel CCPoint
-    CCPoint getMiddlePoint(CCPoint start, CCPoint end);
     
     // spring effect
     void doSpringEffect(BaseSprite * sprite, CCPoint start, CCPoint end);

@@ -175,14 +175,10 @@ void GameLayer::transformArrow(BaseSprite * arrow, CCPoint start, CCPoint end) {
         arrow->setRotation(angle);
         
         // adjust position
-        CCPoint middelPoint = this->getMiddlePoint(start, end);
-        arrow->setPosition(middelPoint);
+        arrow->setPosition(ccpMidpoint(start, end));
     }
 }
-                         
-CCPoint GameLayer::getMiddlePoint(CCPoint start, CCPoint end) {
-    return ccp((start.x + end.x) / 2, (start.y + end.y) / 2);
-}
+                    
 
 void GameLayer::drawLine(CCPoint start, CCPoint end, int color, int bold) {
     // select color

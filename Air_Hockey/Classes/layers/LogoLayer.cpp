@@ -85,10 +85,8 @@ void LogoLayer::update(float dt) {
     } else {
         // load is completed, move to next scene
         // transition to next scene
-        CCDirector::sharedDirector()->setDepthTest(true);
         CCScene *gameScene = GameLayer::scene();
-        CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionFade::create(1.0f, gameScene));
-        //CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionFadeUp::create(3.5, gameScene));
+        CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionSlideInL::create(2.0f, gameScene));
     }
     
     
