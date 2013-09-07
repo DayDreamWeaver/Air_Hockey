@@ -346,7 +346,12 @@ int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end
             if (end.y >= start.y) {
                 result = UP;
             } else {
-                result = DOWN;
+                //check the attack angle is greater than 30 degree.
+                if (getOpposite2HypotenusRatioSquare(start, end) < 0.25) {
+                    result = UP;
+                } else {
+                    result = DOWN;
+                }
             }
             break;
         case 1:
@@ -354,13 +359,24 @@ int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end
             if (end.y >= start.y) {
                 result = DOWN;
             } else {
-                result = UP;
+                //check the attack angle is greater than 30 degree.
+                if (getOpposite2HypotenusRatioSquare(start, end) < 0.25) {
+                    result = DOWN;
+                } else {
+                    result = UP;
+                }
             }
             break;
         default:
             break;
     }
     return result;
+}
+// assume that the touch point and Line make a right-angle triangle
+double GameLayer::getOpposite2HypotenusRatioSquare(cocos2d::CCPoint attack, cocos2d::CCPoint tap){
+    int disHypoSquare = (attack.y - tap.y) * (attack.y - tap.y) + (attack.x - tap.x) * (attack.x - tap.x);
+    int disOppoSquare = (attack.y - tap.y) * (attack.y - tap.y);
+    return 1.0 * disOppoSquare / disHypoSquare;
 }
 
 void GameLayer::updatePlayerScore(int player) {
@@ -430,13 +446,13 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                 if (player->getTouch() != NULL && player->getTouch() == touch) {
                     CCPoint nextPosition = tap;
                     switch (p) {
-                            // detect gesture for player 1, make y position a little lower than original position
+                            // detect gesture for player 1, make y position a little lower than _attackPoint1 position
                         case 0:
-                            direction = this->getGestureDicrection(ccp(_originalPoint1.x, _originalPoint1.y - _ball->getRadius()), tap, p);
+                            direction = this->getGestureDicrection(ccp(_attackPoint1.x, _attackPoint1.y - _ball->getRadius()), tap, p);
                             break;
                         case 1:
-                            // detect gesture for player 2, make y position a little higher than original position
-                            direction = this->getGestureDicrection(ccp(_originalPoint2.x, _originalPoint2.y + _ball->getRadius()), tap, p);
+                            // detect gesture for player 2, make y position a little higher than _attackPoint2 position
+                            direction = this->getGestureDicrection(ccp(_attackPoint2.x, _attackPoint2.y + _ball->getRadius()), tap, p);
                             break;
                     }
                     // if touch is out of court, push it back

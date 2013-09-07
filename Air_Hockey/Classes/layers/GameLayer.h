@@ -28,6 +28,7 @@ enum {
 
 class GameLayer : public cocos2d::CCLayer
 {
+
     // player object
     BaseSprite * _player1;
     BaseSprite * _player2;
@@ -74,7 +75,7 @@ class GameLayer : public cocos2d::CCLayer
     // get gesture direction
     int getGestureDicrection(CCPoint start, CCPoint end, int playerIndex);
 public:
-    
+    double getOpposite2HypotenusRatioSquare(CCPoint attack, CCPoint tap);
     ~GameLayer();
     
     // Method 'init' in cocos2d-x returns bool, instead of 'id' in cocos2d-iphone (an object pointer)
