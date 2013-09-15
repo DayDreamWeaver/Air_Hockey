@@ -42,21 +42,21 @@ void BallSprite::update(float dt) {
      */
     CCPoint nextPosition = this->getNextPosition();
     CCPoint currentVector = this->getVector();
+    
     // vector become slower according with time
     currentVector = ccpMult(currentVector, WEAK_RATIO);
     
     // update next position of sprite
     nextPosition.x += currentVector.x;
     nextPosition.y += currentVector.y;
-    
-    this->setNextPosition(nextPosition);
-    this->setVector(currentVector);
 
     // check collision with bound of screen
-    if (this->collisionWithSides(this->getWinRect())) {
+    if (this->collisionWithSides(this->getWinRect(), nextPosition, currentVector)) {
         SoundManager::playSE(HIT_SE);
     }
     
+    this->setNextPosition(nextPosition);
+    this->setVector(currentVector);
     this->setPosition(this->getNextPosition());
 }
 

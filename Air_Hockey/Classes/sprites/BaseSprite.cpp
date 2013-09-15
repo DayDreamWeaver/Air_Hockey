@@ -56,21 +56,22 @@ void BaseSprite::update(float dt) {
      */
 }
 
-bool BaseSprite::collisionWithSides(const CCRect &winRect) {
+bool BaseSprite::collisionWithSides(const CCRect &winRect, CCPoint &nextPosition, CCPoint &currentVector) {
     /*
      Make sure sprite is in the window, when positon of sprite
      is out of winSize, get it back to winSize
      
      Args:
        winSize: CCSize, available move space
+       nextPoint: CCPoint ref, next position of sprite
+       currentVector: CCPoint ref, current vector of sprite
      
      Return:
        bool
      */
     bool isCollsion = false;
+    
     float radius = this->getRadius();
-    CCPoint nextPosition = this->getNextPosition();
-    CCPoint currentVector = this->getVector();
     CCPoint rectStartPoint = winRect.origin;
     CCSize rectSize = winRect.size;
 
@@ -100,11 +101,6 @@ bool BaseSprite::collisionWithSides(const CCRect &winRect) {
         isCollsion = true;
     }
     
-    if (isCollsion) {
-        this->setNextPosition(nextPosition);
-        this->setVector(currentVector);
-    }
-
     return isCollsion;
 }
 

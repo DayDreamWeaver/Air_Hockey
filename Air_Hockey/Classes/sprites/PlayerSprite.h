@@ -16,7 +16,6 @@ using namespace cocos2d;
 
 class PlayerSprite : public BaseSprite {
 public:
-    CC_SYNTHESIZE(CCRect, _winRect, WinRect);
     void update(float dt);
 };
 

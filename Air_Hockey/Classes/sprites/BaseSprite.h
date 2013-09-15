@@ -47,7 +47,7 @@ public:
     // let sprite to control status of itself
     virtual void update(float dt);
     // check basic move constraints with rect
-    virtual bool collisionWithSides(const CCRect &winRect);
+    virtual bool collisionWithSides(const CCRect &winRect, CCPoint &nextPosition, CCPoint &vector);
     // reset variables of sprite
     virtual void reset(void);
 };
