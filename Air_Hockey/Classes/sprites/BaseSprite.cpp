@@ -9,7 +9,7 @@
 #include "BaseSprite.h"
 
 BaseSprite::BaseSprite(void) {
-    _vector = ccp(0, 0);
+    this->reset();
 }
 
 BaseSprite::~BaseSprite(void) {
@@ -37,6 +37,12 @@ BaseSprite* BaseSprite::gameSpriteWithFrameName(const char *pszFilename) {
 }
 
 void BaseSprite::setPosition(const cocos2d::CCPoint &pos) {
+    /*
+     Update next position, and set sprite position to next 
+     positon.
+     
+     pos: CCPoint, next position object
+     */
     CCSprite::setPosition(pos);
     if (!_nextPositon.equals(pos)) {
         _nextPositon = pos;
@@ -49,7 +55,7 @@ void BaseSprite::update(float dt) {
      */
 }
 
-bool BaseSprite::isCollsionWithSides(const CCRect &winRect) {
+bool BaseSprite::isCollisionWithSides(const CCRect &winRect) {
     /*
      Make sure sprite is in the window, when positon of sprite
      is out of winSize, get it back to winSize
@@ -89,4 +95,13 @@ bool BaseSprite::isCollsionWithSides(const CCRect &winRect) {
     }
 
     return isCollsion;
+}
+
+void BaseSprite::reset() {
+    /*
+     Reset all status for the sprite.
+     */
+    _vector = ccp(0, 0);
+    _screenSize = CCDirector::sharedDirector()->getWinSize();
+    _touch = NULL;
 }

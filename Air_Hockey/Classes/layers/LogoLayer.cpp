@@ -29,7 +29,7 @@ bool LogoLayer::init() {
     if (!CCLayer::init()) {
         return false;
     }
-
+    // design resolution size
     CCSize screenSize = CCDirector::sharedDirector()->getWinSize();
     
     CCPoint screenCenter = ccp(screenSize.width * 0.5, screenSize.height * 0.5);

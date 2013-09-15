@@ -17,7 +17,29 @@ BallSprite::~BallSprite() {
     
 }
 
+BallSprite* BallSprite::create(const char* pszFileName) {
+    /*
+     Create sprite with image file name.
+     
+     Args:
+       pszFileName: char *, string of file name
+     
+     Returns:
+       BallSprite *
+     */
+    BallSprite *sprite = new BallSprite();
+    if (sprite && sprite->initWithFile(pszFileName)) {
+        sprite->autorelease();
+        return sprite;
+    }
+    CC_SAFE_DELETE(sprite);
+    return NULL;
+}
+
 void BallSprite::update(float dt) {
+    /*
+     Update ball sprite status
+     */
     CCPoint nextPosition = this->getNextPosition();
     CCPoint currentVector = this->getVector();
     // vector become slower according with time
@@ -26,9 +48,10 @@ void BallSprite::update(float dt) {
     // update next position of sprite
     nextPosition.x += currentVector.x;
     nextPosition.y += currentVector.y;
-    
-    if (this->isCollsionWithSides(this->getWinRect())) {
-        ccpMult(currentVector, REBOUND_RATIO);
+
+    // check collision with bound of screen
+    if (this->isCollisionWithSides(this->getWinRect())) {
+        currentVector = ccpMult(currentVector, REBOUND_RATIO);
         SoundManager::playSE(HIT_SE);
     }
     
@@ -37,10 +60,21 @@ void BallSprite::update(float dt) {
 }
 
 void BallSprite::collisionWithPlayer(BaseSprite *player) {
+    /*
+     Logic process for collision with player sprite
+     
+     Args:
+       player: base sprite pointer.
+     
+     Returns:
+       void
+     */
     CCPoint ballNextPosition = this->getNextPosition();
     CCPoint ballVector = this->getVector();
+    
     CCPoint playerNextPosition = player->getNextPosition();
     CCPoint playerVector = player->getVector();
+    
     
     float diffx1 = ballNextPosition.x - player->getPositionX();
     float diffy1 = ballNextPosition.y - player->getPositionY();

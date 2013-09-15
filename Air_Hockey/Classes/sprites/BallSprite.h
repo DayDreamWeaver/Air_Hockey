@@ -16,11 +16,11 @@
 #define MAX_BALL_SPEED 15
 #define MIN_BALL_SPEED 5
 
-
 class BallSprite : public BaseSprite {
 public:
-    BallSprite();
-    ~BallSprite();
+    BallSprite(void);
+    ~BallSprite(void);
+    static BallSprite* create(const char *pszFileName);
     CC_SYNTHESIZE(CCRect, _winRect, WinRect);
     void collisionWithPlayer(BaseSprite* player);
     void update(float dt);
