@@ -16,19 +16,12 @@
 #define MAX_BALL_SPEED 15
 #define MIN_BALL_SPEED 5
 
-enum {
-    MIN_X,
-    MAX_X,
-    MIN_Y,
-    MAX_y,
-};
-
 class BallSprite : public BaseSprite {
 public:
     BallSprite(void);
     ~BallSprite(void);
     static BallSprite* create(const char *pszFileName);
-    void collisionWithPlayer(BaseSprite* player);
+    void collisionWithPlayer(BaseSprite* player, CCPoint &nextPosition, CCPoint &currentVector);
     void update(float dt);
 };
 

@@ -55,12 +55,13 @@ void BallSprite::update(float dt) {
         SoundManager::playSE(HIT_SE);
     }
     
+    // update position, nextPosition and vector 
     this->setNextPosition(nextPosition);
     this->setVector(currentVector);
     this->setPosition(this->getNextPosition());
 }
 
-void BallSprite::collisionWithPlayer(BaseSprite *player) {
+void BallSprite::collisionWithPlayer(BaseSprite *player, CCPoint &nextPosition, CCPoint &currentVector) {
     /*
      Logic process for collision with player sprite
      
@@ -70,9 +71,6 @@ void BallSprite::collisionWithPlayer(BaseSprite *player) {
      Returns:
        void
      */
-    CCPoint nextPosition = this->getNextPosition();
-    CCPoint vector = this->getVector();
-    
     CCPoint playerNextPosition = player->getNextPosition();
     CCPoint playerVector = player->getVector();
     
@@ -88,7 +86,7 @@ void BallSprite::collisionWithPlayer(BaseSprite *player) {
     float shortestCollisionDistance = pow(this->getRadius(), 2) + pow(player->getRadius(), 2);
 
     if (distance1 <= shortestCollisionDistance || distance2 <= shortestCollisionDistance) {
-        float magtitudeBallVector = pow(vector.x, 2) + pow(vector.y , 2);
+        float magtitudeBallVector = pow(currentVector.x, 2) + pow(currentVector.y , 2);
         float magtitudePlayerVector = pow(playerVector.x, 2) + pow(playerVector.y, 2);
         
         float force = sqrt(magtitudeBallVector + magtitudePlayerVector);
@@ -101,8 +99,8 @@ void BallSprite::collisionWithPlayer(BaseSprite *player) {
             force = MIN_BALL_SPEED;
         }
         
-        vector.x = force * cos(angle);
-        vector.y = force * sin(angle);
+        currentVector.x = force * cos(angle);
+        currentVector.y = force * sin(angle);
         
         nextPosition.x = playerNextPosition.x + (player->getRadius() + this->getRadius() + force) * cos(angle);
         nextPosition.y = playerNextPosition.y + (player->getRadius() + this->getRadius() + force) * sin(angle);
@@ -110,8 +108,4 @@ void BallSprite::collisionWithPlayer(BaseSprite *player) {
         SoundManager::playSE(HIT_SE);
         
     }
-    
-    // apply position change
-    this->setNextPosition(nextPosition);
-    this->setVector(vector);
 }

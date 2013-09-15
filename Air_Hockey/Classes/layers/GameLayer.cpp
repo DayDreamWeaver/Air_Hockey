@@ -218,10 +218,13 @@ void GameLayer::update(float dt) {
 
         // update player's position
         BaseSprite * player;
+        CCPoint ballNextPosition = _ball->getNextPosition();
+        CCPoint ballVector = _ball->getVector();
+        
         // simple collision detect
         for (int p = 0; p < _players->count(); p++) {
             player = (BaseSprite *)_players->objectAtIndex(p);
-            _ball->collisionWithPlayer(player);
+            _ball->collisionWithPlayer(player, ballNextPosition, ballVector);
         }
         
         _ball->update(dt);
@@ -236,7 +239,6 @@ void GameLayer::update(float dt) {
         _jet->setRotation(_ball->getRotation());
 
         // check for goals
-        /*
         if (ballNextPosition.y < _ball->getRadius() * 2) {
             this->updatePlayerScore(2);
         }
@@ -244,12 +246,10 @@ void GameLayer::update(float dt) {
         if (ballNextPosition.y > _screenSize.height + _ball->getRadius() * 2) {
             this->updatePlayerScore(1);
         }
-         */
 
         // update player's position
         _player1->setPosition(_player1->getNextPosition());
         _player2->setPosition(_player2->getNextPosition());    
-        //_ball->setPosition(_ball->getNextPosition());
         
         // transform arrow
         this->transformArrow(_arrow1, _attackPoint1, _player1->getPosition());
