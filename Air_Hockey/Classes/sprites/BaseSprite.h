@@ -25,6 +25,8 @@ public:
     CC_SYNTHESIZE(CCPoint, _vector, Vector);
     // touch on the sprite
     CC_SYNTHESIZE(CCTouch *, _touch, Touch);
+    // rect region of sprite movement
+    CC_SYNTHESIZE(CCRect, _winRect, WinRect);
     
     BaseSprite(void);
     // need to use virtual deconstruction in the base class
@@ -45,7 +47,7 @@ public:
     // let sprite to control status of itself
     virtual void update(float dt);
     // check basic move constraints with rect
-    virtual bool isCollisionWithSides(const CCRect &winRect);
+    virtual bool collisionWithSides(const CCRect &winRect);
     // reset variables of sprite
     virtual void reset(void);
 };

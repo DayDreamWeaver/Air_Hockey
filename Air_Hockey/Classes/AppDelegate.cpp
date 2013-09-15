@@ -39,7 +39,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     // get real screen size from device
     CCSize screenSize = pEGLView->getFrameSize();
     // set design size
-    pEGLView->setDesignResolutionSize(768, 1024, kResolutionShowAll);
+    pEGLView->setDesignResolutionSize(DESIGN_RESOLUTION_WIDTH, DESIGN_RESOLUTION_HEIGHT, kResolutionShowAll);
     
     std::vector<std::string> searchPaths;
     if (screenSize.width > 768) {

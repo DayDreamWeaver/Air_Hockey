@@ -2,7 +2,7 @@
 #define __GAMELAYER_H__
 
 #include "cocos2d.h"
-#include "../sprites/BaseSprite.h"
+#include "../sprites/BallSprite.h"
 
 using namespace cocos2d;
 
@@ -31,7 +31,10 @@ class GameLayer : public cocos2d::CCLayer
     // player object
     BaseSprite * _player1;
     BaseSprite * _player2;
-    BaseSprite * _ball;
+    
+    // ball object
+    BallSprite * _ball;
+    
     BaseSprite * _logo;
     BaseSprite * _court;
     BaseSprite * _arrow1;

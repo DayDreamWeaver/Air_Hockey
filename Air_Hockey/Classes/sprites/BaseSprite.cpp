@@ -7,6 +7,7 @@
 //
 
 #include "BaseSprite.h"
+#include "BallSprite.h"
 
 BaseSprite::BaseSprite(void) {
     this->reset();
@@ -55,7 +56,7 @@ void BaseSprite::update(float dt) {
      */
 }
 
-bool BaseSprite::isCollisionWithSides(const CCRect &winRect) {
+bool BaseSprite::collisionWithSides(const CCRect &winRect) {
     /*
      Make sure sprite is in the window, when positon of sprite
      is out of winSize, get it back to winSize
@@ -69,29 +70,39 @@ bool BaseSprite::isCollisionWithSides(const CCRect &winRect) {
     bool isCollsion = false;
     float radius = this->getRadius();
     CCPoint nextPosition = this->getNextPosition();
+    CCPoint currentVector = this->getVector();
     CCPoint rectStartPoint = winRect.origin;
     CCSize rectSize = winRect.size;
 
     // if x is out of rect
     if (nextPosition.x < radius) {
         nextPosition.x = radius;
+        currentVector.x *= REBOUND_RATIO;
         isCollsion = true;
     }
     
     if (nextPosition.x > rectSize.width - radius) {
         nextPosition.x = rectSize.width - radius;
+        currentVector.x *= REBOUND_RATIO;
         isCollsion = true;
     }
     
     // if y is out of rect
     if (nextPosition.y < radius) {
         nextPosition.y = radius;
+        currentVector.y *= REBOUND_RATIO;
         isCollsion = true;
     }
 
     if (nextPosition.y > rectStartPoint.y + rectSize.height - radius) {
         nextPosition.y = rectStartPoint.y + rectSize.height - radius;
+        currentVector.y *= REBOUND_RATIO;
         isCollsion = true;
+    }
+    
+    if (isCollsion) {
+        this->setNextPosition(nextPosition);
+        this->setVector(currentVector);
     }
 
     return isCollsion;

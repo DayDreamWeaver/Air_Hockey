@@ -48,15 +48,16 @@ void BallSprite::update(float dt) {
     // update next position of sprite
     nextPosition.x += currentVector.x;
     nextPosition.y += currentVector.y;
+    
+    this->setNextPosition(nextPosition);
+    this->setVector(currentVector);
 
     // check collision with bound of screen
-    if (this->isCollisionWithSides(this->getWinRect())) {
-        currentVector = ccpMult(currentVector, REBOUND_RATIO);
+    if (this->collisionWithSides(this->getWinRect())) {
         SoundManager::playSE(HIT_SE);
     }
     
-    this->setPosition(nextPosition);
-    this->setVector(currentVector);
+    this->setPosition(this->getNextPosition());
 }
 
 void BallSprite::collisionWithPlayer(BaseSprite *player) {
@@ -69,15 +70,15 @@ void BallSprite::collisionWithPlayer(BaseSprite *player) {
      Returns:
        void
      */
-    CCPoint ballNextPosition = this->getNextPosition();
-    CCPoint ballVector = this->getVector();
+    CCPoint nextPosition = this->getNextPosition();
+    CCPoint vector = this->getVector();
     
     CCPoint playerNextPosition = player->getNextPosition();
     CCPoint playerVector = player->getVector();
     
     
-    float diffx1 = ballNextPosition.x - player->getPositionX();
-    float diffy1 = ballNextPosition.y - player->getPositionY();
+    float diffx1 = nextPosition.x - player->getPositionX();
+    float diffy1 = nextPosition.y - player->getPositionY();
     float distance1 = pow(diffx1, 2) + pow(diffy1, 2);
     
     float diffx2 = this->getPosition().x - player->getNextPosition().x;
@@ -87,7 +88,7 @@ void BallSprite::collisionWithPlayer(BaseSprite *player) {
     float shortestCollisionDistance = pow(this->getRadius(), 2) + pow(player->getRadius(), 2);
 
     if (distance1 <= shortestCollisionDistance || distance2 <= shortestCollisionDistance) {
-        float magtitudeBallVector = pow(ballVector.x, 2) + pow(ballVector.y , 2);
+        float magtitudeBallVector = pow(vector.x, 2) + pow(vector.y , 2);
         float magtitudePlayerVector = pow(playerVector.x, 2) + pow(playerVector.y, 2);
         
         float force = sqrt(magtitudeBallVector + magtitudePlayerVector);
@@ -100,14 +101,17 @@ void BallSprite::collisionWithPlayer(BaseSprite *player) {
             force = MIN_BALL_SPEED;
         }
         
-        ballVector.x = force * cos(angle);
-        ballVector.y = force * sin(angle);
+        vector.x = force * cos(angle);
+        vector.y = force * sin(angle);
         
-        ballNextPosition.x = playerNextPosition.x + (player->getRadius() + this->getRadius() + force) * cos(angle);
-        ballNextPosition.y = playerNextPosition.y + (player->getRadius() + this->getRadius() + force) * sin(angle);
+        nextPosition.x = playerNextPosition.x + (player->getRadius() + this->getRadius() + force) * cos(angle);
+        nextPosition.y = playerNextPosition.y + (player->getRadius() + this->getRadius() + force) * sin(angle);
         
         SoundManager::playSE(HIT_SE);
         
     }
     
+    // apply position change
+    this->setNextPosition(nextPosition);
+    this->setVector(vector);
 }
