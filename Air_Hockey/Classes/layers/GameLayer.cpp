@@ -57,9 +57,6 @@ bool GameLayer::init()
     _player1Score = 0;
     _player2Score = 0;
     _screenSize = CCDirector::sharedDirector()->getWinSize();
-    // init original player 1 and 2's position Y
-    _originalPlayer1Y = _screenSize.height / 4;
-    _originalPlayer2Y = _screenSize.height - _originalPlayer1Y;
     
     _court = BaseSprite::gameSpriteWithFile("court.png");
     _court->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5));
@@ -69,19 +66,19 @@ bool GameLayer::init()
     
     // create player sprite
     _player1 = PlayerSprite::create("mallet.png");
-    _originalPoint1 = ccp(_screenSize.width * 0.5, _originalPlayer1Y);
-    _player1->setPosition(_originalPoint1);
-    CCRect playerRect1 = CCRect(0, 0, DESIGN_RESOLUTION_WIDTH, _originalPlayer1Y);
-    _player1->setWinRect(playerRect1);
-    _player1->setAttackPoint(_originalPoint1);
+    _player1->setStartPoint(ccp(_screenSize.width * 0.5, _screenSize.height / 4));
+    _player1->setPosition(_player1->getStartPoint());
+    _player1->setWinRect(CCRect(0, 0, DESIGN_RESOLUTION_WIDTH, _player1->getStartPoint().y));
+    _player1->setAttackPoint(_player1->getStartPoint());
+    _player1->setPlayerIndex(P1);
     this->addChild(_player1);
     
     _player2 = PlayerSprite::create("mallet.png");
-    _originalPoint2 = ccp(_screenSize.width * 0.5, _originalPlayer2Y);
-    _player2->setPosition(_originalPoint2);
-    CCRect playerRect2 = CCRect(0, _originalPlayer2Y, DESIGN_RESOLUTION_WIDTH, _originalPlayer1Y);
-    _player2->setWinRect(playerRect2);
-    _player2->setAttackPoint(_originalPoint2);
+    _player2->setStartPoint(ccp(_screenSize.width * 0.5, _screenSize.height - _screenSize.height / 4));
+    _player2->setPosition(_player2->getStartPoint());
+    _player2->setWinRect(CCRect(0, _player2->getStartPoint().y, DESIGN_RESOLUTION_WIDTH, _player1->getStartPoint().y));
+    _player2->setAttackPoint(_player2->getStartPoint());
+    _player2->setPlayerIndex(P2);
     this->addChild(_player2);
     
     // keep player objects
@@ -152,8 +149,8 @@ void GameLayer::draw() {
         int blod_value_1 = 0.5 * MAX_BOLD;
         int blod_value_2 = 0.5 * MAX_BOLD;
         
-        drawLine(ccp(0, _originalPlayer1Y), ccp(_screenSize.width, _originalPlayer1Y), RED, blod_value_1);
-        drawLine(ccp(0, _originalPlayer2Y), ccp(_screenSize.width, _originalPlayer2Y), RED, blod_value_2);
+        drawLine(ccp(0, _player1->getStartPoint().y), ccp(_screenSize.width, _player1->getStartPoint().y), RED, blod_value_1);
+        drawLine(ccp(0, _player2->getStartPoint().y), ccp(_screenSize.width, _player2->getStartPoint().y), RED, blod_value_2);
     }
     
 }
@@ -274,7 +271,7 @@ int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end
     CCAssert(playerIndex == 0 or playerIndex == 1, "player index is fiexed as 0 or 1");
     int result = -1;
     switch (playerIndex) {
-        case 0:
+        case P1:
             // player 1
             if (end.y >= start.y) {
                 result = UP;
@@ -282,7 +279,7 @@ int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end
                 result = DOWN;
             }
             break;
-        case 1:
+        case P2:
             // player 2
             if (end.y >= start.y) {
                 result = DOWN;
@@ -315,10 +312,8 @@ void GameLayer::updatePlayerScore(int player) {
     }
     
     // clear touch obj and set player to origin position
-    _player1->setPosition(_originalPoint1);
-    _player2->setPosition(_originalPoint2);
-    _player1->setTouch(NULL);
-    _player2->setTouch(NULL);
+    _player1->reset();
+    _player2->reset();
     _arrow1->setVisible(false);
     _arrow2->setVisible(false);
 }
@@ -362,44 +357,30 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                 // if player contains a touch
                 if (player->getTouch() != NULL && player->getTouch() == touch) {
                     CCPoint nextPosition = tap;
-                    switch (p) {
-                            // detect gesture for player 1, make y position a little lower than original position
-                        case 0:
-                            direction = this->getGestureDicrection(ccp(_originalPoint1.x, _originalPoint1.y - _ball->getRadius()), tap, p);
+                    switch (player->getPlayerIndex()) {
+                        case P1:
+                            direction = this->getGestureDicrection(ccp(player->getStartPoint().x, player->getStartPoint().y - _ball->getRadius()), tap, player->getPlayerIndex());
                             break;
-                        case 1:
-                            // detect gesture for player 2, make y position a little higher than original position
-                            direction = this->getGestureDicrection(ccp(_originalPoint2.x, _originalPoint2.y + _ball->getRadius()), tap, p);
+                        case P2:
+                            direction = this->getGestureDicrection(ccp(player->getStartPoint().x, player->getStartPoint().y + _ball->getRadius()), tap, player->getPlayerIndex());
                             break;
                     }
-                    // if touch is out of court, push it back
-                    if (nextPosition.x < player->getRadius()) {
-                        nextPosition.x = player->getRadius();
-                    }
-                    
-                    if (nextPosition.x > _screenSize.width - player->getRadius()) {
-                        nextPosition.x = _screenSize.width - player->getRadius();
-                    }
-                        
-                    if (nextPosition.y < player->getRadius()) {
-                        nextPosition.y = player->getRadius();
-                    }
-                        
-                    if (nextPosition.y > _screenSize.height - player->getRadius()) {
-                        nextPosition.y = _screenSize.height - player->getRadius();
-                    }
+                                        // if touch is out of court, push it back
+                    player->collisionWithSides(player->getWinRect(), nextPosition, nextPosition);
                     
                     if (player->getPositionY() < _screenSize.height * 0.5f) {
                         // update player 1's position Y
                         switch (direction) {
                             case UP:
-                                nextPosition.y = _originalPlayer1Y;
+                                nextPosition.y = player->getStartPoint().y;
                                 _arrow1->setVisible(false);
                                 // update attack start position
                                 player->setAttackPoint(player->getPosition());
+                                printf("UP\n");
                                 break;
                             case DOWN:
                                 _arrow1->setVisible(true);
+                                printf("DOWN\n");
                                 break;
                             default:
                                 break;
@@ -409,7 +390,7 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                         // update player 2's position Y
                         switch (direction) {
                             case UP:
-                                nextPosition.y = _originalPlayer2Y;
+                                nextPosition.y = player->getStartPoint().y;
                                 _arrow2->setVisible(false);
                                 // update attack start position
                                 player->setAttackPoint(player->getPosition());
@@ -425,6 +406,7 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                     // update position and vector to player
                     player->setNextPosition(nextPosition);
                     player->setVector(ccp(tap.x - player->getPositionX(), tap.y - player->getPositionY()));
+                    player->setPosition(player->getNextPosition());
                 }
             }
         }

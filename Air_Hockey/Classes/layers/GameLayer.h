@@ -46,16 +46,11 @@ class GameLayer : public cocos2d::CCLayer
     CCLabelTTF * _player1ScoreLabel;
     CCLabelTTF * _player2ScoreLabel;
     
-    CCPoint _originalPoint1;
-    CCPoint _originalPoint2;
-    
     CCSize _screenSize;
     
     int _player1Score;
     int _player2Score;
     
-    int _originalPlayer1Y;
-    int _originalPlayer2Y;
     
     // partical system
     CCParticleSystem * _jet;

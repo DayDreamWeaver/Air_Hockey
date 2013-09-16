@@ -36,6 +36,55 @@ BallSprite* BallSprite::create(const char* pszFileName) {
     return NULL;
 }
 
+bool BallSprite::collisionWithSides(const CCRect &winRect, CCPoint &nextPosition, CCPoint &currentVector) {
+    /*
+     Make sure sprite is in the window, when positon of sprite
+     is out of winSize, get it back to winSize
+     
+     Args:
+     winSize: CCSize, available move space
+     nextPoint: CCPoint ref, next position of sprite
+     currentVector: CCPoint ref, current vector of sprite
+     
+     Return:
+     bool
+     */
+    bool isCollsion = false;
+    
+    float radius = this->getRadius();
+    CCPoint rectStartPoint = winRect.origin;
+    CCSize rectSize = winRect.size;
+    
+    // if x is out of rect
+    if (nextPosition.x < radius) {
+        nextPosition.x = radius;
+        currentVector.x *= REBOUND_RATIO;
+        isCollsion = true;
+    }
+    
+    if (nextPosition.x > rectSize.width - radius) {
+        nextPosition.x = rectSize.width - radius;
+        currentVector.x *= REBOUND_RATIO;
+        isCollsion = true;
+    }
+    
+    // if y is out of rect
+    if (nextPosition.y < radius) {
+        nextPosition.y = radius;
+        currentVector.y *= REBOUND_RATIO;
+        isCollsion = true;
+    }
+    
+    if (nextPosition.y > rectStartPoint.y + rectSize.height - radius) {
+        nextPosition.y = rectStartPoint.y + rectSize.height - radius;
+        currentVector.y *= REBOUND_RATIO;
+        isCollsion = true;
+    }
+    
+    return isCollsion;
+}
+
+
 void BallSprite::update(float dt) {
     /*
      Update ball sprite status
@@ -112,4 +161,8 @@ void BallSprite::collisionWithPlayer(BaseSprite *player) {
         this->setNextPosition(nextPosition);
         this->setVector(currentVector);
     }
+}
+
+void BallSprite::reset() {
+
 }

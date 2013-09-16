@@ -40,8 +40,30 @@ void PlayerSprite::update(float dt) {
     
     CCPoint nextPosition = this->getNextPosition();
     CCPoint currentVector = this->getVector();
-    if (this->collisionWithSides(this->getWinRect(), nextPosition, currentVector)) {
-        SoundManager::playSE(HIT_SE);
+    this->collisionWithSides(this->getWinRect(), nextPosition, currentVector);
+    
+    // udpate position of player
+    this->setNextPosition(nextPosition);
+    this->setVector(currentVector);
+    this->setPosition(this->getNextPosition());
+}
+
+bool PlayerSprite::collisionWithSides(const CCRect &winRect, CCPoint &nextPosition, CCPoint &currentVector) {
+    bool isCollision = false;
+    if (nextPosition.x < this->getRadius()) {
+        nextPosition.x = this->getRadius();
+        isCollision = true;
     }
     
+    if (nextPosition.x > _screenSize.width - this->getRadius()) {
+        nextPosition.x = _screenSize.width - this->getRadius();
+        isCollision = true;
+    }
+    return isCollision;
 }
+
+void PlayerSprite::reset() {
+    this->setPosition(this->getStartPoint());
+    this->setTouch(NULL);
+}
+
