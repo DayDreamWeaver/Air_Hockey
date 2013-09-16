@@ -72,6 +72,7 @@ void BallSprite::collisionWithPlayer(BaseSprite *player) {
      */
     CCPoint playerNextPosition = player->getNextPosition();
     CCPoint playerVector = player->getVector();
+    
     CCPoint nextPosition = this->getNextPosition();
     CCPoint currentVector = this->getVector();
     
@@ -92,7 +93,7 @@ void BallSprite::collisionWithPlayer(BaseSprite *player) {
         float force = sqrt(magtitudeBallVector + magtitudePlayerVector);
         float angle = atan2(diffx1, diffy1);
         
-        // control ball speedp
+        // control ball speed
         if (force >= MAX_BALL_SPEED) {
             force = MAX_BALL_SPEED;
         } else if (force <= MIN_BALL_SPEED) {
@@ -107,7 +108,7 @@ void BallSprite::collisionWithPlayer(BaseSprite *player) {
         
         SoundManager::playSE(HIT_SE);
         
-        // update ball position
+        // update ball positionssre
         this->setNextPosition(nextPosition);
         this->setVector(currentVector);
     }

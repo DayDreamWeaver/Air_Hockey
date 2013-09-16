@@ -16,6 +16,10 @@ using namespace cocos2d;
 
 class PlayerSprite : public BaseSprite {
 public:
+    CC_SYNTHESIZE(CCPoint, _attackPoint, AttackPoint);
+    PlayerSprite(void);
+    ~PlayerSprite(void);
+    static PlayerSprite* create(const char *pszFileName);
     void update(float dt);
 };
 

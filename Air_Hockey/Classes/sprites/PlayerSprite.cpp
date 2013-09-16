@@ -7,6 +7,25 @@
 //
 
 #include "PlayerSprite.h"
+#include "../utils/SoundManager.h"
+
+PlayerSprite::PlayerSprite() {
+    
+}
+
+PlayerSprite::~PlayerSprite() {
+    
+}
+
+PlayerSprite* PlayerSprite::create(const char *pszFileName) {
+    PlayerSprite *sprite = new PlayerSprite();
+    if (sprite && sprite->initWithFile(pszFileName)) {
+        sprite->autorelease();
+        return sprite;
+    }
+    CC_SAFE_DELETE(sprite);
+    return NULL;
+}
 
 void PlayerSprite::update(float dt) {
     /*
@@ -18,5 +37,11 @@ void PlayerSprite::update(float dt) {
       Returns:
         void
      */
+    
+    CCPoint nextPosition = this->getNextPosition();
+    CCPoint currentVector = this->getVector();
+    if (this->collisionWithSides(this->getWinRect(), nextPosition, currentVector)) {
+        SoundManager::playSE(HIT_SE);
+    }
     
 }

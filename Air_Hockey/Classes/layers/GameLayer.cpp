@@ -67,20 +67,26 @@ bool GameLayer::init()
     _court->setZOrder(-1);
     this->addChild(_court);
     
-    // create ball sprite
-    _player1 = BaseSprite::gameSpriteWithFile("mallet.png");
+    // create player sprite
+    _player1 = PlayerSprite::create("mallet.png");
     _originalPoint1 = ccp(_screenSize.width * 0.5, _originalPlayer1Y);
     _player1->setPosition(_originalPoint1);
+    CCRect playerRect1 = CCRect(0, 0, DESIGN_RESOLUTION_WIDTH, _originalPlayer1Y);
+    _player1->setWinRect(playerRect1);
+    _player1->setAttackPoint(_originalPoint1);
     this->addChild(_player1);
     
-    _player2 = BaseSprite::gameSpriteWithFile("mallet.png");
+    _player2 = PlayerSprite::create("mallet.png");
     _originalPoint2 = ccp(_screenSize.width * 0.5, _originalPlayer2Y);
     _player2->setPosition(_originalPoint2);
+    CCRect playerRect2 = CCRect(0, _originalPlayer2Y, DESIGN_RESOLUTION_WIDTH, _originalPlayer1Y);
+    _player2->setWinRect(playerRect2);
+    _player2->setAttackPoint(_originalPoint2);
     this->addChild(_player2);
     
-    // init attack point
-    _attackPoint1 = _originalPoint1;
-    _attackPoint2 = _originalPoint2;
+    // keep player objects
+    _players = CCArray::create(_player1, _player2, NULL);
+    _players->retain();
     
     ////////////////////////
     // init ball sprite //
@@ -90,10 +96,6 @@ bool GameLayer::init()
     CCRect ballWinRect = CCRect(0, 0, DESIGN_RESOLUTION_WIDTH, DESIGN_RESOLUTION_HEIGHT);
     _ball->setWinRect(ballWinRect);
     this->addChild(_ball);
-    
-    // keep player objects
-    _players = CCArray::create(_player1, _player2, NULL);
-    _players->retain();
     
     // label
     _player1ScoreLabel = CCLabelTTF::create("0", "Arial", 60);
@@ -219,7 +221,6 @@ void GameLayer::update(float dt) {
         // update player's position
         BaseSprite * player;
         CCPoint ballNextPosition = _ball->getNextPosition();
-        CCPoint ballVector = _ball->getVector();
         // simple collision detect
         for (int p = 0; p < _players->count(); p++) {
             player = (BaseSprite *)_players->objectAtIndex(p);
@@ -252,8 +253,8 @@ void GameLayer::update(float dt) {
         _player2->setPosition(_player2->getNextPosition());    
         
         // transform arrow
-        this->transformArrow(_arrow1, _attackPoint1, _player1->getPosition());
-        this->transformArrow(_arrow2, _attackPoint2, _player2->getPosition());
+        this->transformArrow(_arrow1, _player1->getAttackPoint(), _player1->getPosition());
+        this->transformArrow(_arrow2, _player2->getAttackPoint(), _player2->getPosition());
     }
 }
 
@@ -350,14 +351,14 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
     CCSetIterator i;
     CCTouch* touch;
     CCPoint tap;
-    BaseSprite* player;
+    PlayerSprite* player;
     int direction = -1;
     for (i = pTouches->begin(); i != pTouches->end(); i++) {
         touch = (CCTouch *)(*i);
         if (touch) {
             tap = touch->getLocation();
             for (int p = 0; p < _players->count(); p++) {
-                player = (BaseSprite *)_players->objectAtIndex(p);
+                player = (PlayerSprite *)_players->objectAtIndex(p);
                 // if player contains a touch
                 if (player->getTouch() != NULL && player->getTouch() == touch) {
                     CCPoint nextPosition = tap;
@@ -395,12 +396,10 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                                 nextPosition.y = _originalPlayer1Y;
                                 _arrow1->setVisible(false);
                                 // update attack start position
-                                _attackPoint1 = player->getPosition();
-                                printf("UP\n");
+                                player->setAttackPoint(player->getPosition());
                                 break;
                             case DOWN:
                                 _arrow1->setVisible(true);
-                                printf("DOWN\n");
                                 break;
                             default:
                                 break;
@@ -413,7 +412,7 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                                 nextPosition.y = _originalPlayer2Y;
                                 _arrow2->setVisible(false);
                                 // update attack start position
-                                _attackPoint2 = player->getPosition();
+                                player->setAttackPoint(player->getPosition());
                                 break;
                             case DOWN:
                                 _arrow2->setVisible(true);
@@ -436,7 +435,7 @@ void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
     CCSetIterator i;
     CCTouch* touch;
     CCPoint tap;
-    BaseSprite* player;
+    PlayerSprite* player;
     
     printf("end");
     
@@ -445,24 +444,24 @@ void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
         if (touch) {
             tap = touch->getLocation();
             for (int p = 0; p < _players->count(); p++) {
-                player = (BaseSprite *)_players->objectAtIndex(p);
+                player = (PlayerSprite *)_players->objectAtIndex(p);
                 
                 if (player->getTouch() != NULL && player->getTouch() == touch) {
                     player->setTouch(NULL);
                     // need to keep its vector, because need to perform spring effect
                     if (p == 0) {
                         // player 1
-                        player->setPosition(_attackPoint1);
+                        player->setPosition(player->getAttackPoint());
                         // show spring effect
                         if (_arrow1->isVisible()) {
-                            this->doSpringEffect(_player1, tap, _attackPoint1);
+                            this->doSpringEffect(_player1, tap, player->getAttackPoint());
                         }
                     } else {
                         // player 2
-                        player->setPosition(_attackPoint2);
+                        player->setPosition(player->getAttackPoint());
                         // show spring effect
                         if (_arrow2->isVisible()) {
-                            this->doSpringEffect(_player2, tap, _attackPoint2);
+                            this->doSpringEffect(_player2, tap, player->getAttackPoint());
                         }
                     }
                 }

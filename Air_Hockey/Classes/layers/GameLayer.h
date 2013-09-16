@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "../sprites/BallSprite.h"
+#include "../sprites/PlayerSprite.h"
 
 using namespace cocos2d;
 
@@ -29,8 +30,8 @@ enum {
 class GameLayer : public cocos2d::CCLayer
 {
     // player object
-    BaseSprite * _player1;
-    BaseSprite * _player2;
+    PlayerSprite * _player1;
+    PlayerSprite * _player2;
     
     // ball object
     BallSprite * _ball;
@@ -40,10 +41,6 @@ class GameLayer : public cocos2d::CCLayer
     BaseSprite * _arrow1;
     BaseSprite * _arrow2;
     bool _isShowLogo;
-    
-    // player attack start position
-    CCPoint _attackPoint1;
-    CCPoint _attackPoint2;
     
     CCArray * _players;
     CCLabelTTF * _player1ScoreLabel;
