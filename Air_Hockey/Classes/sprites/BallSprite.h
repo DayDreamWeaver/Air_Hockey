@@ -23,6 +23,8 @@ public:
     static BallSprite* create(const char *pszFileName);
     void collisionWithPlayer(BaseSprite* player, CCPoint &nextPosition, CCPoint &currentVector);
     void update(float dt);
+    bool collisionWithSides(const CCRect &winRect, CCPoint &nextPosition, CCPoint &currentVector);
+    void reset(void);
 };
 
 #endif /* defined(__Air_Hockey__BallSprite__) */
