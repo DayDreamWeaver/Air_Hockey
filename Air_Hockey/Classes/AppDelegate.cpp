@@ -34,21 +34,22 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setOpenGLView(pEGLView);
 
     // turn on display FPS
-    pDirector->setDisplayStats(true);
+    pDirector->setDisplayStats(false);
     
-    // set resource path
+    // get real screen size from device
     CCSize screenSize = pEGLView->getFrameSize();
-    pEGLView->setDesignResolutionSize(768, 1024, kResolutionExactFit);
+    // set design size
+    pEGLView->setDesignResolutionSize(DESIGN_RESOLUTION_WIDTH, DESIGN_RESOLUTION_HEIGHT, kResolutionShowAll);
     
     std::vector<std::string> searchPaths;
-    if (screenSize.width > 768) {
+    if (screenSize.width > DESIGN_RESOLUTION_WIDTH) {
         printf("hd here.\n");
         searchPaths.push_back("hd");
-        pDirector->setContentScaleFactor(2);
+        pDirector->setContentScaleFactor(screenSize.width / DESIGN_RESOLUTION_WIDTH);
     } else {
         printf("sd here.\n");
         searchPaths.push_back("sd");
-        pDirector->setContentScaleFactor(1);
+        pDirector->setContentScaleFactor(screenSize.width / DESIGN_RESOLUTION_WIDTH);
     }
     CCFileUtils::sharedFileUtils()->setSearchResolutionsOrder(searchPaths);
     

@@ -2,7 +2,8 @@
 #define __GAMELAYER_H__
 
 #include "cocos2d.h"
-#include "../sprites/BaseSprite.h"
+#include "../sprites/BallSprite.h"
+#include "../sprites/PlayerSprite.h"
 
 using namespace cocos2d;
 
@@ -32,33 +33,27 @@ class GameLayer : public cocos2d::CCLayer
 {
 
     // player object
-    BaseSprite * _player1;
-    BaseSprite * _player2;
-    BaseSprite * _ball;
+    PlayerSprite * _player1;
+    PlayerSprite * _player2;
+    
+    // ball object
+    BallSprite * _ball;
+    
     BaseSprite * _logo;
     BaseSprite * _court;
     BaseSprite * _arrow1;
     BaseSprite * _arrow2;
     bool _isShowLogo;
     
-    // player attack start position
-    CCPoint _attackPoint1;
-    CCPoint _attackPoint2;
-    
     CCArray * _players;
     CCLabelTTF * _player1ScoreLabel;
     CCLabelTTF * _player2ScoreLabel;
-    
-    CCPoint _originalPoint1;
-    CCPoint _originalPoint2;
     
     CCSize _screenSize;
     
     int _player1Score;
     int _player2Score;
     
-    int _originalPlayer1Y;
-    int _originalPlayer2Y;
     
     int _attackRangeDegree;
     // partical system
@@ -104,6 +99,7 @@ public:
 
     void update(float dt);
     virtual void draw();
+    void reset(void);
     
 };
 

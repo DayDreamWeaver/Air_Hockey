@@ -7,9 +7,10 @@
 //
 
 #include "BaseSprite.h"
+#include "BallSprite.h"
 
 BaseSprite::BaseSprite(void) {
-    _vector = ccp(0, 0);
+    this->reset();
 }
 
 BaseSprite::~BaseSprite(void) {
@@ -37,23 +38,33 @@ BaseSprite* BaseSprite::gameSpriteWithFrameName(const char *pszFilename) {
 }
 
 void BaseSprite::setPosition(const cocos2d::CCPoint &pos) {
+    /*
+     Update next position, and set sprite position to next 
+     positon.
+     
+     pos: CCPoint, next position object
+     */
     CCSprite::setPosition(pos);
     if (!_nextPositon.equals(pos)) {
         _nextPositon = pos;
     }
 }
 
-bool BaseSprite::isCollsionWithSides(const CCSize &winSize) {
+void BaseSprite::update(float dt) {
     /*
-     Make sure sprite is in the window, when positon of sprite
-     is out of winSize, get it back to winSize
-     
-     Args:
-       winSize: CCSize, available move space
-     
-     Return:
-       bool
+     Let sprite to control its status, like postion, rotation, vector, self
      */
+}
+
+bool BaseSprite::collisionWithSides(const CCRect &winRect, CCPoint &nextPosition, CCPoint &currentVector) {
     
 }
 
+void BaseSprite::reset() {
+    /*
+     Reset all status for the sprite.
+     */
+    _vector = ccp(0, 0);
+    _screenSize = CCDirector::sharedDirector()->getWinSize();
+    _touch = NULL;
+}
