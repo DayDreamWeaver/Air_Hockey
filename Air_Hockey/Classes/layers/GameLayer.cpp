@@ -202,10 +202,11 @@ void GameLayer::update(float dt) {
         return ;
     }
     
-    // update player's position
-    _player1->setPosition(_player1->getNextPosition());
-    _player2->setPosition(_player2->getNextPosition());
-    
+    for (int p = 0; p < _players->count(); p++) {
+        player->update(dt);
+        player = (BaseSprite *)_players->objectAtIndex(p);
+        player->setPosition(player->getNextPosition());
+    }
 }
 
 int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end, int playerIndex) {
