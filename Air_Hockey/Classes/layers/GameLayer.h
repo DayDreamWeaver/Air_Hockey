@@ -91,6 +91,7 @@ public:
 
     void update(float dt);
     virtual void draw();
+    void reset(void);
     
 };
 

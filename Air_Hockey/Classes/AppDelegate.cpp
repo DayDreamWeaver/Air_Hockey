@@ -42,14 +42,14 @@ bool AppDelegate::applicationDidFinishLaunching()
     pEGLView->setDesignResolutionSize(DESIGN_RESOLUTION_WIDTH, DESIGN_RESOLUTION_HEIGHT, kResolutionShowAll);
     
     std::vector<std::string> searchPaths;
-    if (screenSize.width > 768) {
+    if (screenSize.width > DESIGN_RESOLUTION_WIDTH) {
         printf("hd here.\n");
         searchPaths.push_back("hd");
-        pDirector->setContentScaleFactor(2);
+        pDirector->setContentScaleFactor(screenSize.width / DESIGN_RESOLUTION_WIDTH);
     } else {
         printf("sd here.\n");
         searchPaths.push_back("sd");
-        pDirector->setContentScaleFactor(1);
+        pDirector->setContentScaleFactor(screenSize.width / DESIGN_RESOLUTION_WIDTH);
     }
     CCFileUtils::sharedFileUtils()->setSearchResolutionsOrder(searchPaths);
     

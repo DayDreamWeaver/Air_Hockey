@@ -238,10 +238,12 @@ void GameLayer::update(float dt) {
         // check for goals
         if (ballNextPosition.y < _ball->getRadius() * 2) {
             this->updatePlayerScore(2);
-        }
-
-        if (ballNextPosition.y > _screenSize.height + _ball->getRadius() * 2) {
+            this->reset();
+            return ;
+        } else if (ballNextPosition.y > _screenSize.height + _ball->getRadius() * 2) {
             this->updatePlayerScore(1);
+            this->reset();
+            return ;
         }
         
 
@@ -295,7 +297,7 @@ int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end
 
 void GameLayer::updatePlayerScore(int player) {
     SoundManager::playSE(SCORE_SE);
-    _ball->setVector(ccp(0, 0));
+    
     
     // get back to original position
     char score_buffer[10];
@@ -310,7 +312,10 @@ void GameLayer::updatePlayerScore(int player) {
         _player2ScoreLabel->setString(score_buffer);
         _ball->setNextPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5 - 2 * _ball->getRadius()));
     }
-    
+}
+
+void GameLayer::reset() {
+    _ball->setVector(ccp(0, 0));
     // clear touch obj and set player to origin position
     _player1->reset();
     _player2->reset();

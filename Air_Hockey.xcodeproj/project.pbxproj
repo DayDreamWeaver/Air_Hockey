@@ -226,6 +226,7 @@
 		C83E86F217C4F6200070B193 /* cocos2dx-ext.mkf in Resources */ = {isa = PBXBuildFile; fileRef = C83E86F117C4F6200070B193 /* cocos2dx-ext.mkf */; };
 		C83E86F417C4F6200070B193 /* cocos2dx-ext_public.defines.txt in Resources */ = {isa = PBXBuildFile; fileRef = C83E86F317C4F6200070B193 /* cocos2dx-ext_public.defines.txt */; };
 		C83E86FA17C4F6200070B193 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E86F917C4F6200070B193 /* AppDelegate.cpp */; };
+		C842A51517EEA22A0064AFC6 /* ArrowSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C842A51317EEA22A0064AFC6 /* ArrowSprite.cpp */; };
 		C84329C217DAE1CC00B5577C /* PlayerSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C84329C017DAE1CC00B5577C /* PlayerSprite.cpp */; };
 		C84329C517DAE1DA00B5577C /* BallSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C84329C317DAE1DA00B5577C /* BallSprite.cpp */; };
 		C88F2A2317C9A1550073CDDB /* arrow_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C88F2A2217C9A1550073CDDB /* arrow_1.png */; };
@@ -729,6 +730,8 @@
 		C83E86F617C4F6200070B193 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		C83E86F817C4F6200070B193 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		C83E86F917C4F6200070B193 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
+		C842A51317EEA22A0064AFC6 /* ArrowSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArrowSprite.cpp; sourceTree = "<group>"; };
+		C842A51417EEA22A0064AFC6 /* ArrowSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowSprite.h; sourceTree = "<group>"; };
 		C84329C017DAE1CC00B5577C /* PlayerSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerSprite.cpp; sourceTree = "<group>"; };
 		C84329C117DAE1CC00B5577C /* PlayerSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSprite.h; sourceTree = "<group>"; };
 		C84329C317DAE1DA00B5577C /* BallSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BallSprite.cpp; sourceTree = "<group>"; };
@@ -1798,6 +1801,8 @@
 				C84329C117DAE1CC00B5577C /* PlayerSprite.h */,
 				C84329C317DAE1DA00B5577C /* BallSprite.cpp */,
 				C84329C417DAE1DA00B5577C /* BallSprite.h */,
+				C842A51317EEA22A0064AFC6 /* ArrowSprite.cpp */,
+				C842A51417EEA22A0064AFC6 /* ArrowSprite.h */,
 			);
 			name = sprites;
 			path = Classes/sprites;
@@ -2162,6 +2167,7 @@
 				C8BD5CF517D7745D00ECAFB0 /* BaseLayer.cpp in Sources */,
 				C84329C217DAE1CC00B5577C /* PlayerSprite.cpp in Sources */,
 				C84329C517DAE1DA00B5577C /* BallSprite.cpp in Sources */,
+				C842A51517EEA22A0064AFC6 /* ArrowSprite.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

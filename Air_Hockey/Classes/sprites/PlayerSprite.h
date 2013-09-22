@@ -20,6 +20,8 @@ enum {
 };
 
 class PlayerSprite : public BaseSprite {
+private:
+    CCSprite *arrow;    
 public:
     CC_SYNTHESIZE(CCPoint, _attackPoint, AttackPoint);
     CC_SYNTHESIZE(int, _playerIndex, PlayerIndex);
