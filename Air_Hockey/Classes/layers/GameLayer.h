@@ -39,11 +39,9 @@ class GameLayer : public cocos2d::CCLayer
     // ball object
     BallSprite * _ball;
     
-    BaseSprite * _logo;
     BaseSprite * _court;
     BaseSprite * _arrow1;
     BaseSprite * _arrow2;
-    bool _isShowLogo;
     
     CCArray * _players;
     CCLabelTTF * _player1ScoreLabel;

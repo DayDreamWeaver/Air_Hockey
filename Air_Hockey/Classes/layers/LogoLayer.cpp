@@ -8,7 +8,7 @@
 
 #include "LogoLayer.h"
 #include "SimpleAudioEngine.h"
-#include "GameLayer.h"
+#include "MainLayer.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
@@ -85,7 +85,7 @@ void LogoLayer::update(float dt) {
     } else {
         // load is completed, move to next scene
         // transition to next scene
-        CCScene *gameScene = GameLayer::scene();
+        CCScene *gameScene = MainLayer::scene();
         CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionSlideInL::create(2.0f, gameScene));
     }
     

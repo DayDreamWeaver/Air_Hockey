@@ -52,8 +52,6 @@ bool GameLayer::init()
     // player background
     SoundManager::playBGM();
     
-    // show logo at the begining of game
-    _isShowLogo = true;
     _player1Score = 0;
     _player2Score = 0;
     _screenSize = CCDirector::sharedDirector()->getWinSize();
@@ -105,11 +103,6 @@ bool GameLayer::init()
     _player2ScoreLabel->setRotation(90);
     this->addChild(_player2ScoreLabel);
     
-    // logo
-    _logo = BaseSprite::gameSpriteWithFile("logo.png");
-    _logo->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5));
-    this->addChild(_logo);
-    
     // arrow
     _arrow1 = BaseSprite::gameSpriteWithFile("arrow_8.png");
     this->addChild(_arrow1);
@@ -124,16 +117,7 @@ bool GameLayer::init()
     _jet->stopSystem();
     this->addChild(_jet, Background);
     
-    if (_isShowLogo) {
-        _court->setVisible(!_isShowLogo);
-        _player1->setVisible(!_isShowLogo);
-        _player2->setVisible(!_isShowLogo);
-        _ball->setVisible(!_isShowLogo);
-        _player1ScoreLabel->setVisible(!_isShowLogo);
-        _player2ScoreLabel->setVisible(!_isShowLogo);
-        _arrow1->setVisible(!_isShowLogo);
-        _arrow2->setVisible(!_isShowLogo);
-    }
+    _attackRangeDegree = 10;
     
     // listen to touch
     this->setTouchEnabled(true);
@@ -144,19 +128,17 @@ bool GameLayer::init()
 
 void GameLayer::draw() {
     //test to draw line of player's fixed track
-    if (!_isShowLogo) {
         
-        int blod_value_1 = 0.5 * MAX_BOLD;
-        int blod_value_2 = 0.5 * MAX_BOLD;
-        
-        drawLine(ccp(0, _player1->getStartPoint().y), ccp(_screenSize.width, _player1->getStartPoint().y), RED, blod_value_1);
-        drawLine(ccp(0, _player2->getStartPoint().y), ccp(_screenSize.width, _player2->getStartPoint().y), RED, blod_value_2);
-        
-        drawAngleCheckLine();
-        
-        drawLine(ccp(0, _player1->getStartPoint().y), ccp(_screenSize.width, _player1->getStartPoint().y), RED, blod_value_1);
-        drawLine(ccp(0, _player2->getStartPoint().y), ccp(_screenSize.width, _player2->getStartPoint().y), RED, blod_value_2);
-    }
+    int blod_value_1 = 0.5 * MAX_BOLD;
+    int blod_value_2 = 0.5 * MAX_BOLD;
+    
+    drawLine(ccp(0, _player1->getStartPoint().y), ccp(_screenSize.width, _player1->getStartPoint().y), RED, blod_value_1);
+    drawLine(ccp(0, _player2->getStartPoint().y), ccp(_screenSize.width, _player2->getStartPoint().y), RED, blod_value_2);
+    
+    drawAngleCheckLine();
+    
+    drawLine(ccp(0, _player1->getStartPoint().y), ccp(_screenSize.width, _player1->getStartPoint().y), RED, blod_value_1);
+    drawLine(ccp(0, _player2->getStartPoint().y), ccp(_screenSize.width, _player2->getStartPoint().y), RED, blod_value_2);
     
 }
 
@@ -206,7 +188,7 @@ void GameLayer::drawLine(CCPoint start, CCPoint end, int color, int bold) {
 }
 void GameLayer::drawAngleCheckLine() {
     CCPoint startAttackPoint1 = ccp(_player1->getAttackPoint().x, _player1->getAttackPoint().y);
-    CCPoint startAttackPoint2 = ccp(_player2->getAttackPoint().x, _player2->getAttackPoint().y);
+    //CCPoint startAttackPoint2 = ccp(_player2->getAttackPoint().x, _player2->getAttackPoint().y);
     CCPoint leftAttackRangeVector1 = ccpForAngle(CC_DEGREES_TO_RADIANS(-_attackRangeDegree));
     CCPoint rightAttackRangeVector1 = ccpForAngle(CC_DEGREES_TO_RADIANS(_attackRangeDegree - 180));
     float leftEnd1X = _screenSize.width;
@@ -220,58 +202,46 @@ void GameLayer::drawAngleCheckLine() {
 }
 
 void GameLayer::update(float dt) {
-    if (!_isShowLogo) {
-        // should be visible
-        _court->setVisible(!_isShowLogo);
-        _player1->setVisible(!_isShowLogo);
-        _player2->setVisible(!_isShowLogo);
-        _ball->setVisible(!_isShowLogo);
-        _player1ScoreLabel->setVisible(!_isShowLogo);
-        _player2ScoreLabel->setVisible(!_isShowLogo);
-        
-        // should be unvisible
-        _logo->setVisible(_isShowLogo);
-
-        // update player's position
-        BaseSprite * player;
-        CCPoint ballNextPosition = _ball->getNextPosition();
-        CCPoint ballCurrentPosition = _ball->getVector();
-        // simple collision detect
-        for (int p = 0; p < _players->count(); p++) {
-            player = (BaseSprite *)_players->objectAtIndex(p);
-            _ball->collisionWithPlayer(player, ballNextPosition, ballCurrentPosition);
-        }
-        
-        _ball->update(dt);
-        
-        
-        // update jet partical position
-        if (!_jet->isActive()) {
-            _jet->resetSystem();
-        }
-        
-        _jet->setPosition(_ball->getPosition());
-        _jet->setRotation(_ball->getRotation());
-
-        // check for goals
-        if (ballNextPosition.y < _ball->getRadius() * 2) {
-            this->updatePlayerScore(2);
-            this->reset();
-            return ;
-        } else if (ballNextPosition.y > _screenSize.height + _ball->getRadius() * 2) {
-            this->updatePlayerScore(1);
-            this->reset();
-            return ;
-        }
-
-        // update player's position
-        _player1->setPosition(_player1->getNextPosition());
-        _player2->setPosition(_player2->getNextPosition());    
-        
-        // transform arrow
-        this->transformArrow(_arrow1, _player1->getAttackPoint(), _player1->getPosition());
-        this->transformArrow(_arrow2, _player2->getAttackPoint(), _player2->getPosition());
+    // update player's position
+    BaseSprite * player;
+    CCPoint ballNextPosition = _ball->getNextPosition();
+    CCPoint ballCurrentPosition = _ball->getVector();
+    // simple collision detect
+    for (int p = 0; p < _players->count(); p++) {
+        player = (BaseSprite *)_players->objectAtIndex(p);
+        _ball->collisionWithPlayer(player, ballNextPosition, ballCurrentPosition);
     }
+    
+    _ball->update(dt);
+    
+    
+    // update jet partical position
+    if (!_jet->isActive()) {
+        _jet->resetSystem();
+    }
+    
+    _jet->setPosition(_ball->getPosition());
+    _jet->setRotation(_ball->getRotation());
+    
+    // check for goals
+    if (ballNextPosition.y < _ball->getRadius() * 2) {
+        this->updatePlayerScore(2);
+        this->reset();
+        return ;
+    } else if (ballNextPosition.y > _screenSize.height + _ball->getRadius() * 2) {
+        this->updatePlayerScore(1);
+        this->reset();
+        return ;
+    }
+    
+    // update player's position
+    _player1->setPosition(_player1->getNextPosition());
+    _player2->setPosition(_player2->getNextPosition());
+    
+    // transform arrow
+    this->transformArrow(_arrow1, _player1->getAttackPoint(), _player1->getPosition());
+    this->transformArrow(_arrow2, _player2->getAttackPoint(), _player2->getPosition());
+
 }
 
 void GameLayer::doSpringEffect(BaseSprite * sprite, cocos2d::CCPoint start, cocos2d::CCPoint end) {
@@ -364,8 +334,6 @@ void GameLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* event) {
     CCTouch* touch;
     CCPoint tap;
     BaseSprite* player;
-    
-    _isShowLogo = false;
     
     for (i = pTouches->begin(); i != pTouches->end(); i++) {
         touch = (CCTouch *)(*i);
