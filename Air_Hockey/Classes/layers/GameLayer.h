@@ -14,7 +14,6 @@ using namespace cocos2d;
 #define BLUE 3
 #define NORMAL_BOLD 10
 #define MAX_BOLD 20
-#define MAX_SCALE 20
 #define MAX_BALL_SPEED 15
 #define MIN_BALL_SPEED 5
 
@@ -40,8 +39,6 @@ class GameLayer : public cocos2d::CCLayer
     BallSprite * _ball;
     
     BaseSprite * _court;
-    BaseSprite * _arrow1;
-    BaseSprite * _arrow2;
     
     CCArray * _players;
     CCLabelTTF * _player1ScoreLabel;
@@ -61,13 +58,6 @@ class GameLayer : public cocos2d::CCLayer
     
     // draw line between touch point and origin point
     void drawLine(CCPoint start, CCPoint end, int color, int boldDegree);
-        
-    // transform arrow according to player position
-    void transformArrow(BaseSprite * arrow, CCPoint start, CCPoint end);
-    
-    // spring effect
-    void doSpringEffect(BaseSprite * sprite, CCPoint start, CCPoint end);
-    
     // get gesture direction
     int getGestureDicrection(CCPoint start, CCPoint end, int playerIndex);
     // get acute angle of attack direction
