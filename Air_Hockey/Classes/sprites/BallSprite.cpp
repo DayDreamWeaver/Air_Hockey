@@ -10,7 +10,7 @@
 #include "../utils/SoundManager.h"
 
 BallSprite::BallSprite() {
-    
+    this->reset();
 }
 
 BallSprite::~BallSprite() {
@@ -162,5 +162,5 @@ void BallSprite::collisionWithPlayer(BaseSprite *player, CCPoint &nextPosition, 
 }
 
 void BallSprite::reset() {
-
+    this->setVector(ccp(0, 0));
 }

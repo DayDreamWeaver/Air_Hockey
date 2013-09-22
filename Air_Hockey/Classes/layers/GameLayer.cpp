@@ -274,7 +274,7 @@ void GameLayer::updatePlayerScore(int player) {
 }
 
 void GameLayer::reset() {
-    _ball->setVector(ccp(0, 0));
+    _ball->reset();
     // clear touch obj and set player to origin position
     _player1->reset();
     _player2->reset();
