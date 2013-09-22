@@ -226,7 +226,6 @@
 		C83E86F217C4F6200070B193 /* cocos2dx-ext.mkf in Resources */ = {isa = PBXBuildFile; fileRef = C83E86F117C4F6200070B193 /* cocos2dx-ext.mkf */; };
 		C83E86F417C4F6200070B193 /* cocos2dx-ext_public.defines.txt in Resources */ = {isa = PBXBuildFile; fileRef = C83E86F317C4F6200070B193 /* cocos2dx-ext_public.defines.txt */; };
 		C83E86FA17C4F6200070B193 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C83E86F917C4F6200070B193 /* AppDelegate.cpp */; };
-		C842A51517EEA22A0064AFC6 /* ArrowSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C842A51317EEA22A0064AFC6 /* ArrowSprite.cpp */; };
 		C84329C217DAE1CC00B5577C /* PlayerSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C84329C017DAE1CC00B5577C /* PlayerSprite.cpp */; };
 		C84329C517DAE1DA00B5577C /* BallSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C84329C317DAE1DA00B5577C /* BallSprite.cpp */; };
 		C88F2A2317C9A1550073CDDB /* arrow_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C88F2A2217C9A1550073CDDB /* arrow_1.png */; };
@@ -252,7 +251,7 @@
 		C8C0626C17C9620E00958358 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0626817C9620E00958358 /* logo.png */; };
 		C8C0626D17C9620E00958358 /* mallet.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0626917C9620E00958358 /* mallet.png */; };
 		C8C0626E17C9620E00958358 /* puck.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0626A17C9620E00958358 /* puck.png */; };
-		C8DDD6CE17E611A200710221 /* ArrowSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8DDD6CC17E611A100710221 /* ArrowSprite.cpp */; };
+		C8E4B81B17EEBD79005D5C05 /* ArrowSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8E4B81917EEBD79005D5C05 /* ArrowSprite.cpp */; };
 		C8E50CBF17CB9F190097DF47 /* bar_inside.png in Resources */ = {isa = PBXBuildFile; fileRef = C8E50CBD17CB9F190097DF47 /* bar_inside.png */; };
 		C8E50CC017CB9F190097DF47 /* bar_outside.png in Resources */ = {isa = PBXBuildFile; fileRef = C8E50CBE17CB9F190097DF47 /* bar_outside.png */; };
 		C8E50CC417CC91850097DF47 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C8E50CC317CC91850097DF47 /* Default-Portrait~ipad.png */; };
@@ -731,8 +730,6 @@
 		C83E86F617C4F6200070B193 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		C83E86F817C4F6200070B193 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		C83E86F917C4F6200070B193 /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
-		C842A51317EEA22A0064AFC6 /* ArrowSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArrowSprite.cpp; sourceTree = "<group>"; };
-		C842A51417EEA22A0064AFC6 /* ArrowSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowSprite.h; sourceTree = "<group>"; };
 		C84329C017DAE1CC00B5577C /* PlayerSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerSprite.cpp; sourceTree = "<group>"; };
 		C84329C117DAE1CC00B5577C /* PlayerSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSprite.h; sourceTree = "<group>"; };
 		C84329C317DAE1DA00B5577C /* BallSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BallSprite.cpp; sourceTree = "<group>"; };
@@ -766,8 +763,8 @@
 		C8C0626817C9620E00958358 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Resources/sd/logo.png; sourceTree = "<group>"; };
 		C8C0626917C9620E00958358 /* mallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mallet.png; path = Resources/sd/mallet.png; sourceTree = "<group>"; };
 		C8C0626A17C9620E00958358 /* puck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puck.png; path = Resources/sd/puck.png; sourceTree = "<group>"; };
-		C8DDD6CC17E611A100710221 /* ArrowSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArrowSprite.cpp; sourceTree = "<group>"; };
-		C8DDD6CD17E611A100710221 /* ArrowSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowSprite.h; sourceTree = "<group>"; };
+		C8E4B81917EEBD79005D5C05 /* ArrowSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArrowSprite.cpp; sourceTree = "<group>"; };
+		C8E4B81A17EEBD79005D5C05 /* ArrowSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowSprite.h; sourceTree = "<group>"; };
 		C8E50CBD17CB9F190097DF47 /* bar_inside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bar_inside.png; path = Resources/sd/bar_inside.png; sourceTree = "<group>"; };
 		C8E50CBE17CB9F190097DF47 /* bar_outside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bar_outside.png; path = Resources/sd/bar_outside.png; sourceTree = "<group>"; };
 		C8E50CC317CC91850097DF47 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "Resources/Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -1804,8 +1801,8 @@
 				C84329C117DAE1CC00B5577C /* PlayerSprite.h */,
 				C84329C317DAE1DA00B5577C /* BallSprite.cpp */,
 				C84329C417DAE1DA00B5577C /* BallSprite.h */,
-				C8DDD6CC17E611A100710221 /* ArrowSprite.cpp */,
-				C8DDD6CD17E611A100710221 /* ArrowSprite.h */,
+				C8E4B81917EEBD79005D5C05 /* ArrowSprite.cpp */,
+				C8E4B81A17EEBD79005D5C05 /* ArrowSprite.h */,
 			);
 			name = sprites;
 			path = Classes/sprites;
@@ -2170,7 +2167,7 @@
 				C8BD5CF517D7745D00ECAFB0 /* BaseLayer.cpp in Sources */,
 				C84329C217DAE1CC00B5577C /* PlayerSprite.cpp in Sources */,
 				C84329C517DAE1DA00B5577C /* BallSprite.cpp in Sources */,
-				C842A51517EEA22A0064AFC6 /* ArrowSprite.cpp in Sources */,
+				C8E4B81B17EEBD79005D5C05 /* ArrowSprite.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@
 #include "ArrowSprite.h"
 
 ArrowSprite::ArrowSprite() {
-
+    
 }
 
 ArrowSprite::~ArrowSprite() {
@@ -25,3 +25,4 @@ ArrowSprite* ArrowSprite::create(const char *pszFileName) {
     CC_SAFE_DELETE(sprite);
     return NULL;
 }
+

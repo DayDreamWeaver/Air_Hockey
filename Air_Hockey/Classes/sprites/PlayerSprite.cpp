@@ -8,10 +8,10 @@
 
 #include "PlayerSprite.h"
 #include "../utils/SoundManager.h"
-#include "ArrowSprite.h"
+//#include "ArrowSprite.h"
 
 PlayerSprite::PlayerSprite() {
-    this->arrow = ArrowSprite::create("arrow_8.png");
+    //this->arrow = ArrowSprite::create("arrow_8.png");
 }
 
 PlayerSprite::~PlayerSprite() {

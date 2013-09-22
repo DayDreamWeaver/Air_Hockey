@@ -123,9 +123,6 @@ void BallSprite::collisionWithPlayer(BaseSprite *player, CCPoint &nextPosition, 
     CCPoint playerNextPosition = player->getNextPosition();
     CCPoint playerVector = player->getVector();
     
-    CCPoint nextPosition = this->getNextPosition();
-    CCPoint currentVector = this->getVector();
-    
     float diffx1 = nextPosition.x - player->getPositionX();
     float diffy1 = nextPosition.y - player->getPositionY();
     float distance1 = pow(diffx1, 2) + pow(diffy1, 2);

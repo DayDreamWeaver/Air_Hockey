@@ -218,10 +218,11 @@ void GameLayer::update(float dt) {
         // update player's position
         BaseSprite * player;
         CCPoint ballNextPosition = _ball->getNextPosition();
+        CCPoint ballCurrentPosition = _ball->getVector();
         // simple collision detect
         for (int p = 0; p < _players->count(); p++) {
             player = (BaseSprite *)_players->objectAtIndex(p);
-            _ball->collisionWithPlayer(player, ballNextPosition, ballVector);
+            _ball->collisionWithPlayer(player, ballNextPosition, ballCurrentPosition);
         }
         
         _ball->update(dt);

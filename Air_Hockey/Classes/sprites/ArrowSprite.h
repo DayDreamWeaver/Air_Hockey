@@ -20,4 +20,5 @@ public:
     static ArrowSprite *create(const char * pszFileName);
 };
 
+
 #endif /* defined(__Air_Hockey__ArrowSprite__) */

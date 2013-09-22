@@ -11,6 +11,8 @@
 
 #include "BaseSprite.h"
 
+using namespace cocos2d;
+
 #define WEAK_RATIO 0.99f
 #define REBOUND_RATIO -0.8f
 #define MAX_BALL_SPEED 15
