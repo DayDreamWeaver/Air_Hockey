@@ -244,7 +244,6 @@
 		C8BD5CEC17D76E3800ECAFB0 /* MainLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8BD5CEA17D76E3800ECAFB0 /* MainLayer.cpp */; };
 		C8BD5CF517D7745D00ECAFB0 /* BaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8BD5CF317D7745C00ECAFB0 /* BaseLayer.cpp */; };
 		C8C0626117C961AC00958358 /* court.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625C17C961AC00958358 /* court.png */; };
-		C8C0626217C961AC00958358 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625D17C961AC00958358 /* logo.png */; };
 		C8C0626317C961AC00958358 /* mallet.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625E17C961AC00958358 /* mallet.png */; };
 		C8C0626417C961AC00958358 /* puck.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0625F17C961AC00958358 /* puck.png */; };
 		C8C0626B17C9620E00958358 /* court.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0626717C9620E00958358 /* court.png */; };
@@ -757,7 +756,6 @@
 		C8BD5CF317D7745C00ECAFB0 /* BaseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseLayer.cpp; sourceTree = "<group>"; };
 		C8BD5CF417D7745C00ECAFB0 /* BaseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLayer.h; sourceTree = "<group>"; };
 		C8C0625C17C961AC00958358 /* court.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = court.png; path = Resources/hd/court.png; sourceTree = "<group>"; };
-		C8C0625D17C961AC00958358 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Resources/hd/logo.png; sourceTree = "<group>"; };
 		C8C0625E17C961AC00958358 /* mallet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mallet.png; path = Resources/hd/mallet.png; sourceTree = "<group>"; };
 		C8C0625F17C961AC00958358 /* puck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puck.png; path = Resources/hd/puck.png; sourceTree = "<group>"; };
 		C8C0626717C9620E00958358 /* court.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = court.png; path = Resources/sd/court.png; sourceTree = "<group>"; };
@@ -1843,7 +1841,6 @@
 			isa = PBXGroup;
 			children = (
 				C8C0625C17C961AC00958358 /* court.png */,
-				C8C0625D17C961AC00958358 /* logo.png */,
 				C8C0625E17C961AC00958358 /* mallet.png */,
 				C8C0625F17C961AC00958358 /* puck.png */,
 			);
@@ -1941,7 +1938,6 @@
 				C83E86F217C4F6200070B193 /* cocos2dx-ext.mkf in Resources */,
 				C83E86F417C4F6200070B193 /* cocos2dx-ext_public.defines.txt in Resources */,
 				C8C0626117C961AC00958358 /* court.png in Resources */,
-				C8C0626217C961AC00958358 /* logo.png in Resources */,
 				C8C0626317C961AC00958358 /* mallet.png in Resources */,
 				C8C0626417C961AC00958358 /* puck.png in Resources */,
 				C8C0626B17C9620E00958358 /* court.png in Resources */,
