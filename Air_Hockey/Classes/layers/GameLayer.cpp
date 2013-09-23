@@ -92,6 +92,7 @@ bool GameLayer::init()
     _ball->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.5 - 2 * _ball->getRadius()));
     CCRect ballWinRect = CCRect(0, 0, DESIGN_RESOLUTION_WIDTH, DESIGN_RESOLUTION_HEIGHT);
     _ball->setWinRect(ballWinRect);
+    this->addChild(this->_ball->getParticle());
     this->addChild(_ball);
     
     // label
@@ -104,14 +105,6 @@ bool GameLayer::init()
     _player2ScoreLabel->setPosition(ccp(_screenSize.width - 60, _screenSize.height * 0.5 + 80));
     _player2ScoreLabel->setRotation(90);
     this->addChild(_player2ScoreLabel);
-        
-    // partcal system
-    _jet = CCParticleSystemQuad::create("cool.plist");
-    _jet->setPosition(_ball->getPosition());
-    //_jet->setSourcePosition(ccp(-_ball->getRadius() * 1.0f, 0));
-    _jet->setAngle(270);
-    _jet->stopSystem();
-    this->addChild(_jet, Background);
     
     _attackRangeDegree = 10;
     
@@ -181,15 +174,6 @@ void GameLayer::update(float dt) {
     }
     
     _ball->update(dt);
-    
-    
-    // update jet partical position
-    if (!_jet->isActive()) {
-        _jet->resetSystem();
-    }
-    
-    _jet->setPosition(_ball->getPosition());
-    _jet->setRotation(_ball->getRotation());
     
     // check for goals
     if (ballNextPosition.y < _ball->getRadius() * 2) {

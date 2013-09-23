@@ -10,6 +10,7 @@
 #include "../utils/SoundManager.h"
 
 BallSprite::BallSprite() {
+    _jet = CCParticleSystemQuad::create("cool.plist");
     this->reset();
 }
 
@@ -108,6 +109,13 @@ void BallSprite::update(float dt) {
     this->setNextPosition(nextPosition);
     this->setVector(currentVector);
     this->setPosition(this->getNextPosition());
+    
+    // update jet partical position
+    if (!this->_jet->isActive()) {
+        this->_jet->resetSystem();
+    }
+    
+    this->_jet->setPosition(this->getPosition());
 }
 
 void BallSprite::collisionWithPlayer(BaseSprite *player, CCPoint &nextPosition, CCPoint &currentVector) {
@@ -158,9 +166,18 @@ void BallSprite::collisionWithPlayer(BaseSprite *player, CCPoint &nextPosition, 
         // update ball positionssre
         this->setNextPosition(nextPosition);
         this->setVector(currentVector);
+        
+        // shake screen
     }
+}
+
+CCParticleSystem * BallSprite::getParticle() {
+    return this->_jet;
 }
 
 void BallSprite::reset() {
     this->setVector(ccp(0, 0));
+    this->_jet->setPosition(this->getPosition());
+    this->_jet->setAngle(270);
+    this->_jet->stopSystem();
 }

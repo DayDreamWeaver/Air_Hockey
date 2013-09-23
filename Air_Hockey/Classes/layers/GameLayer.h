@@ -49,11 +49,8 @@ class GameLayer : public cocos2d::CCLayer
     int _player1Score;
     int _player2Score;
     
-    
     int _attackRangeDegree;
-    // partical system
-    CCParticleSystem * _jet;
-    
+
     void updatePlayerScore(int player);
     
     // draw line between touch point and origin point

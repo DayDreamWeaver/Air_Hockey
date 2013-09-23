@@ -19,6 +19,8 @@ using namespace cocos2d;
 #define MIN_BALL_SPEED 5
 
 class BallSprite : public BaseSprite {
+protected:
+    CCParticleSystem * _jet;
 public:
     BallSprite(void);
     ~BallSprite(void);
@@ -27,6 +29,7 @@ public:
     void update(float dt);
     bool collisionWithSides(const CCRect &winRect, CCPoint &nextPosition, CCPoint &currentVector);
     void reset(void);
+    CCParticleSystem * getParticle();
 };
 
 #endif /* defined(__Air_Hockey__BallSprite__) */
