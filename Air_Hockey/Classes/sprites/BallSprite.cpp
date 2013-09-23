@@ -8,6 +8,7 @@
 
 #include "BallSprite.h"
 #include "../utils/SoundManager.h"
+#include "../utils/CCShake.h"
 
 BallSprite::BallSprite() {
     _jet = CCParticleSystemQuad::create("cool.plist");
@@ -118,7 +119,7 @@ void BallSprite::update(float dt) {
     this->_jet->setPosition(this->getPosition());
 }
 
-void BallSprite::collisionWithPlayer(BaseSprite *player, CCPoint &nextPosition, CCPoint &currentVector) {
+bool BallSprite::collisionWithPlayer(BaseSprite *player, CCPoint &nextPosition, CCPoint &currentVector) {
     /*
      Logic process for collision with player sprite
      
@@ -128,6 +129,7 @@ void BallSprite::collisionWithPlayer(BaseSprite *player, CCPoint &nextPosition, 
      Returns:
        void
      */
+    bool isCollision = false;
     CCPoint playerNextPosition = player->getNextPosition();
     CCPoint playerVector = player->getVector();
     
@@ -166,9 +168,10 @@ void BallSprite::collisionWithPlayer(BaseSprite *player, CCPoint &nextPosition, 
         // update ball positionssre
         this->setNextPosition(nextPosition);
         this->setVector(currentVector);
-        
-        // shake screen
+        isCollision = true;
     }
+    
+    return isCollision;
 }
 
 CCParticleSystem * BallSprite::getParticle() {

@@ -25,7 +25,7 @@ public:
     BallSprite(void);
     ~BallSprite(void);
     static BallSprite* create(const char *pszFileName);
-    void collisionWithPlayer(BaseSprite* player, CCPoint &nextPosition, CCPoint &currentVector);
+    bool collisionWithPlayer(BaseSprite* player, CCPoint &nextPosition, CCPoint &currentVector);
     void update(float dt);
     bool collisionWithSides(const CCRect &winRect, CCPoint &nextPosition, CCPoint &currentVector);
     void reset(void);

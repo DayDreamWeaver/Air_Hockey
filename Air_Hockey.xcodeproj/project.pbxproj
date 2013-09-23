@@ -252,6 +252,7 @@
 		C8C0626D17C9620E00958358 /* mallet.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0626917C9620E00958358 /* mallet.png */; };
 		C8C0626E17C9620E00958358 /* puck.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C0626A17C9620E00958358 /* puck.png */; };
 		C8E4B81B17EEBD79005D5C05 /* ArrowSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8E4B81917EEBD79005D5C05 /* ArrowSprite.cpp */; };
+		C8E4B81E17F05DE7005D5C05 /* CCShake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8E4B81C17F05DE7005D5C05 /* CCShake.cpp */; };
 		C8E50CBF17CB9F190097DF47 /* bar_inside.png in Resources */ = {isa = PBXBuildFile; fileRef = C8E50CBD17CB9F190097DF47 /* bar_inside.png */; };
 		C8E50CC017CB9F190097DF47 /* bar_outside.png in Resources */ = {isa = PBXBuildFile; fileRef = C8E50CBE17CB9F190097DF47 /* bar_outside.png */; };
 		C8E50CC417CC91850097DF47 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C8E50CC317CC91850097DF47 /* Default-Portrait~ipad.png */; };
@@ -765,6 +766,8 @@
 		C8C0626A17C9620E00958358 /* puck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = puck.png; path = Resources/sd/puck.png; sourceTree = "<group>"; };
 		C8E4B81917EEBD79005D5C05 /* ArrowSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArrowSprite.cpp; sourceTree = "<group>"; };
 		C8E4B81A17EEBD79005D5C05 /* ArrowSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrowSprite.h; sourceTree = "<group>"; };
+		C8E4B81C17F05DE7005D5C05 /* CCShake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCShake.cpp; sourceTree = "<group>"; };
+		C8E4B81D17F05DE7005D5C05 /* CCShake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCShake.h; sourceTree = "<group>"; };
 		C8E50CBD17CB9F190097DF47 /* bar_inside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bar_inside.png; path = Resources/sd/bar_inside.png; sourceTree = "<group>"; };
 		C8E50CBE17CB9F190097DF47 /* bar_outside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bar_outside.png; path = Resources/sd/bar_outside.png; sourceTree = "<group>"; };
 		C8E50CC317CC91850097DF47 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "Resources/Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -1813,6 +1816,8 @@
 			children = (
 				C8BD5CE717D76D2A00ECAFB0 /* SoundManager.cpp */,
 				C8BD5CE817D76D2A00ECAFB0 /* SoundManager.h */,
+				C8E4B81C17F05DE7005D5C05 /* CCShake.cpp */,
+				C8E4B81D17F05DE7005D5C05 /* CCShake.h */,
 			);
 			name = utils;
 			path = Classes/utils;
@@ -2168,6 +2173,7 @@
 				C84329C217DAE1CC00B5577C /* PlayerSprite.cpp in Sources */,
 				C84329C517DAE1DA00B5577C /* BallSprite.cpp in Sources */,
 				C8E4B81B17EEBD79005D5C05 /* ArrowSprite.cpp in Sources */,
+				C8E4B81E17F05DE7005D5C05 /* CCShake.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

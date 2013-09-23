@@ -1,5 +1,6 @@
 #include "GameLayer.h"
 #include "../utils/SoundManager.h"
+#include "../utils/CCShake.h"
 #include "../sprites/PlayerSprite.h"
 #include "../sprites/BallSprite.h"
 #include "AppDelegate.h"
@@ -170,7 +171,10 @@ void GameLayer::update(float dt) {
     // simple collision detect
     for (int p = 0; p < _players->count(); p++) {
         player = (BaseSprite *)_players->objectAtIndex(p);
-        _ball->collisionWithPlayer(player, ballNextPosition, ballCurrentPosition);
+        bool isCollision = _ball->collisionWithPlayer(player, ballNextPosition, ballCurrentPosition);
+        if (isCollision) {
+            this->runAction(CCShake::create(0.5f, 10));
+        }
     }
     
     _ball->update(dt);
