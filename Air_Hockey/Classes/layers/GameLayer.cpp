@@ -86,6 +86,12 @@ bool GameLayer::init()
     _players = CCArray::create(_player1, _player2, NULL);
     _players->retain();
     
+    /// init card
+    attack_status = 0;
+    _card = BaseCard::create("card.jpg");
+    _card->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.1));
+    this->addChild(_card);
+    
     ////////////////////////
     // init ball sprite //
     ////////////////////////
@@ -195,6 +201,14 @@ void GameLayer::update(float dt) {
         player = (BaseSprite *)_players->objectAtIndex(p);
         player->setPosition(player->getNextPosition());
     }
+    
+    // update card position
+    if (attack_status) {
+        _card->setPosition(_player1->getPosition());
+    } else {
+        _card->setPosition(ccp(_screenSize.width * 0.5, _screenSize.height * 0.1));
+    }
+    
 }
 
 int GameLayer::getGestureDicrection(cocos2d::CCPoint start, cocos2d::CCPoint end, int playerIndex) {
@@ -313,7 +327,7 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                             direction = this->getGestureDicrection(ccp(player->getStartPoint().x, player->getStartPoint().y + _ball->getRadius()), tap, player->getPlayerIndex());
                             break;
                     }
-                                        // if touch is out of court, push it back
+                    // if touch is out of court, push it back
                     player->collisionWithSides(player->getWinRect(), nextPosition, nextPosition);
                     
                     // update player 1's position Y
@@ -324,15 +338,15 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
                             // update attack start position
                             player->setAttackPoint(player->getPosition());
                             printf("UP\n");
+                            attack_status = 0;
                             break;
                         case DOWN:
                             player->getArrow()->setVisible(true);
+                            attack_status = 1;
                             printf("DOWN\n");
-                            break;
-                        default:
+                            
                             break;
                     }
-
                     
                     // update position and vector to player
                     player->setNextPosition(nextPosition);
@@ -342,6 +356,11 @@ void GameLayer::ccTouchesMoved(CCSet* pTouches, CCEvent* event) {
             }
         }
     }
+}
+
+
+void GameLayer::springActionCallBackN(CCNode *pSender) {
+    attack_status = 0;
 }
 
 void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
@@ -365,7 +384,7 @@ void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
                         player->setPosition(player->getAttackPoint());
                         // show spring effect
                         if (player->getArrow()->isVisible()) {
-                            player->doSpringEffect(tap, player->getAttackPoint());
+                            player->doSpringEffect(tap, player->getAttackPoint(), CCCallFuncN::create(this, callfuncN_selector(GameLayer::springActionCallBackN)));
                         }
                     }
             }

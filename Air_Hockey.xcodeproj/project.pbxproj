@@ -230,6 +230,8 @@
 		C84329C517DAE1DA00B5577C /* BallSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C84329C317DAE1DA00B5577C /* BallSprite.cpp */; };
 		C88F2A2317C9A1550073CDDB /* arrow_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C88F2A2217C9A1550073CDDB /* arrow_1.png */; };
 		C88F2A2C17CB51D90073CDDB /* logo_top.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C88F2A2B17CB51D90073CDDB /* logo_top.jpg */; };
+		C8B67D4D181E8D5D005931C1 /* BaseCard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8B67D4B181E8D5D005931C1 /* BaseCard.cpp */; };
+		C8B67D4F181E9711005931C1 /* card.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8B67D4E181E9711005931C1 /* card.jpg */; };
 		C8BD5CB317D3394F00ECAFB0 /* Code_Style in Resources */ = {isa = PBXBuildFile; fileRef = C8BD5CB217D3394F00ECAFB0 /* Code_Style */; };
 		C8BD5CBB17D6AD6600ECAFB0 /* jet.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8BD5CBA17D6AD6600ECAFB0 /* jet.plist */; };
 		C8BD5CBD17D70BD000ECAFB0 /* cool.plist in Resources */ = {isa = PBXBuildFile; fileRef = C8BD5CBC17D70BD000ECAFB0 /* cool.plist */; };
@@ -736,6 +738,9 @@
 		C84329C417DAE1DA00B5577C /* BallSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallSprite.h; sourceTree = "<group>"; };
 		C88F2A2217C9A1550073CDDB /* arrow_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_1.png; path = Resources/sd/arrow_1.png; sourceTree = "<group>"; };
 		C88F2A2B17CB51D90073CDDB /* logo_top.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = logo_top.jpg; path = Resources/sd/logo_top.jpg; sourceTree = "<group>"; };
+		C8B67D4B181E8D5D005931C1 /* BaseCard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseCard.cpp; sourceTree = "<group>"; };
+		C8B67D4C181E8D5D005931C1 /* BaseCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCard.h; sourceTree = "<group>"; };
+		C8B67D4E181E9711005931C1 /* card.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = card.jpg; path = Resources/sd/card.jpg; sourceTree = "<group>"; };
 		C8BD5CB217D3394F00ECAFB0 /* Code_Style */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Code_Style; path = Document/Code_Style; sourceTree = "<group>"; };
 		C8BD5CBA17D6AD6600ECAFB0 /* jet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = jet.plist; path = Resources/sd/jet.plist; sourceTree = "<group>"; };
 		C8BD5CBC17D70BD000ECAFB0 /* cool.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = cool.plist; path = Resources/sd/cool.plist; sourceTree = "<group>"; };
@@ -1804,6 +1809,8 @@
 				C84329C417DAE1DA00B5577C /* BallSprite.h */,
 				C8E4B81917EEBD79005D5C05 /* ArrowSprite.cpp */,
 				C8E4B81A17EEBD79005D5C05 /* ArrowSprite.h */,
+				C8B67D4B181E8D5D005931C1 /* BaseCard.cpp */,
+				C8B67D4C181E8D5D005931C1 /* BaseCard.h */,
 			);
 			name = sprites;
 			path = Classes/sprites;
@@ -1850,6 +1857,7 @@
 		C8C0626617C961F400958358 /* sd */ = {
 			isa = PBXGroup;
 			children = (
+				C8B67D4E181E9711005931C1 /* card.jpg */,
 				C8BD5CBC17D70BD000ECAFB0 /* cool.plist */,
 				C8BD5CBA17D6AD6600ECAFB0 /* jet.plist */,
 				84700E1017D34D0E00D14B5C /* arrow_2.png */,
@@ -1935,6 +1943,7 @@
 				C83E844017C4F61C0070B193 /* iTunesArtwork in Resources */,
 				C83E84DC17C4F61D0070B193 /* ChangeLog in Resources */,
 				C83E864617C4F61F0070B193 /* project.pbxproj in Resources */,
+				C8B67D4F181E9711005931C1 /* card.jpg in Resources */,
 				C83E86F217C4F6200070B193 /* cocos2dx-ext.mkf in Resources */,
 				C83E86F417C4F6200070B193 /* cocos2dx-ext_public.defines.txt in Resources */,
 				C8C0626117C961AC00958358 /* court.png in Resources */,
@@ -2085,6 +2094,7 @@
 				C83E85E517C4F61F0070B193 /* TGAlib.cpp in Sources */,
 				C83E85E917C4F61F0070B193 /* tinyxml2.cpp in Sources */,
 				C83E85EC17C4F61F0070B193 /* TransformUtils.cpp in Sources */,
+				C8B67D4D181E8D5D005931C1 /* BaseCard.cpp in Sources */,
 				C83E85F117C4F61F0070B193 /* CCUserDefault.mm in Sources */,
 				C83E85F417C4F61F0070B193 /* ioapi.cpp in Sources */,
 				C83E85F717C4F61F0070B193 /* unzip.cpp in Sources */,

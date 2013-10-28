@@ -37,7 +37,7 @@ public:
     bool collisionWithSides(const CCRect &winRect, CCPoint &nextPosition, CCPoint &currentVector);
     void reset();
     void transferArrow();
-    void doSpringEffect(cocos2d::CCPoint start, cocos2d::CCPoint end);
+    void doSpringEffect(cocos2d::CCPoint start, cocos2d::CCPoint end, CCCallFuncN *callBackFunc);
 };
 
 #endif /* defined(__Air_Hockey__PlayerSprite__) */

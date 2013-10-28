@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "../sprites/BallSprite.h"
+#include "../sprites/BaseCard.h"
 #include "../sprites/PlayerSprite.h"
 
 using namespace cocos2d;
@@ -40,6 +41,9 @@ class GameLayer : public cocos2d::CCLayer
     
     BaseSprite * _court;
     
+    // card object
+    BaseCard * _card;
+    
     CCArray * _players;
     CCLabelTTF * _player1ScoreLabel;
     CCLabelTTF * _player2ScoreLabel;
@@ -48,6 +52,8 @@ class GameLayer : public cocos2d::CCLayer
     
     int _player1Score;
     int _player2Score;
+    
+    int attack_status;
     
     int _attackRangeDegree;
 
@@ -86,6 +92,8 @@ public:
     virtual void draw();
     void reset(void);
     
+    
+    void springActionCallBackN(CCNode *pSender);
 };
 
 #endif // __GAMELAYER_H__

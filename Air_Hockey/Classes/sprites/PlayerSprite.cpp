@@ -56,14 +56,14 @@ void PlayerSprite::update(float dt) {
     this->transferArrow();
 }
 
-void PlayerSprite::doSpringEffect(cocos2d::CCPoint start, cocos2d::CCPoint end) {
+void PlayerSprite::doSpringEffect(cocos2d::CCPoint start, cocos2d::CCPoint end, CCCallFuncN *callBackFunc) {
     float targetX = (end.x - start.x) * 2.5 + start.x;
     float targetY = (end.y - start.y) * 2.5 + start.y;
     
     CCActionInterval * actionTo = CCMoveTo::create(0.4, ccp(targetX, targetY));
     CCActionInterval * actionBack = CCMoveTo::create(0.15, end);
     
-    this->runAction(CCSequence::create(actionTo, actionBack, NULL));
+    this->runAction(CCSequence::create(actionTo, actionBack, callBackFunc, NULL));
 }
 
 bool PlayerSprite::collisionWithSides(const CCRect &winRect, CCPoint &nextPosition, CCPoint &currentVector) {
